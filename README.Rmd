@@ -18,17 +18,18 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of norgeo is to ...
+R pakke `norgeo` skal hjelpe til å spore geokoder endringer basert på informasjon som er tilgjengelig på SSB [hjemmeside](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
 
-## Installation
+## Installasjon
 
-You can install the released version of norgeo from [CRAN](https://CRAN.R-project.org) with:
+Pakken kan installere fra [Folkehelseprofil](https://github.com/folkehelseprofil) **GitHub** side. Følgende kode kan kjøres i R console. Hvis du ikke allerede har installert `remotes` pakke, skal den installeres først automatisk.
 
 ``` r
-install.packages("norgeo")
+if(!require(remotes)) install.packages("remotes")
+remotes::install.packages("folkehelseprofil/norgeo")
 ```
 
-## Example
+## Eksampel
 
 This is a basic example which shows you how to solve a common problem:
 
