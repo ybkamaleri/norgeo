@@ -4,7 +4,16 @@
 \alias{add_change}
 \title{Legg til geokoder endringer}
 \usage{
-add_change(filegeo, filechg, year, type = "land", path = NULL, raw = TRUE)
+add_change(
+  filegeo = NULL,
+  filechg = NULL,
+  year = NULL,
+  type = "land",
+  fpath = NULL,
+  grep.file = NULL,
+  grep.change = NULL,
+  raw = TRUE
+)
 }
 \arguments{
 \item{filegeo}{CSV fil for alle geokoder}
@@ -15,7 +24,11 @@ add_change(filegeo, filechg, year, type = "land", path = NULL, raw = TRUE)
 
 \item{type}{Hvilket nivå f.eks fylke, kommune osv.}
 
-\item{path}{Sti til mappen for filene ligger}
+\item{fpath}{Sti til mappen for filene ligger}
+
+\item{grep.file}{Navn til geokode fil. Funker med bare noen ord eg. "jan2019"}
+
+\item{grep.change}{Navn til endringsfil eg. "change"}
 
 \item{raw}{Hvis FALSE så er \code{filegeo} og \code{filechg} en ferdig
 laget object i .GlobalEnv dvs. ikke er CSV og Excel fil}

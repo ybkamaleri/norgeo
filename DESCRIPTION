@@ -20,3 +20,5 @@ Imports:
     odbc,
     DBI,
     magrittr
+Suggests: 
+    testthat
