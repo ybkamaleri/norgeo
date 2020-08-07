@@ -124,23 +124,3 @@ add_change <- function(
   list(DT = DT[], xl = xlTbl[], change = fileChg, code = fileGeo)
 
 }
-
-
-#' Select files
-#'
-#' Use \code{regex} to select files
-#' @inheritParams add_change
-#'
-#' @export
-
-select_ssb <- function(grep.file = NULL,
-                       grep.change = NULL,
-                       folder.path = NULL){
-
-  files <- fs::dir_ls(folder.path)
-  filInd <- grep(grep.file, files, ignore.case = TRUE)
-  chgInd <- grep(grep.change, files[filInd])
-  chgFil <- files[filInd][chgInd]
-  codeList <- files[filInd][-chgInd]
-  list(chgfile = chgFil, allfile = codeList)
-}
