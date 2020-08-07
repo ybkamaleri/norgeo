@@ -4,10 +4,18 @@
 \alias{merge_geo}
 \title{Merge all geo codes}
 \usage{
-merge_geo(files)
+merge_geo(files, output = c("complete", "all", "change", "duplicate"))
 }
 \arguments{
 \item{files}{A list of objects to be merged. The order must be from lowest to highest year.}
+
+\item{output}{Data output which can be one of these:
+\itemize{
+\item \code{complete} : A list of all different outputs
+\item \code{all}      : Dataset for all data
+\item \code{change}   : Dataset that include only codes that have changed
+\item \code{duplicate}: Dataset for codes that have duplicated of previous codes
+}}
 }
 \description{
 Create a table with all geo change and year. The files for the argument must be

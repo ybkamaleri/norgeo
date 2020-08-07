@@ -4,6 +4,14 @@
 #' the output object from `add_change()` function.
 #'
 #' @param files A list of objects to be merged. The order must be from lowest to highest year.
+#' @param output Data output which can be one of these:
+#' \itemize{
+#'   \item `complete` : A list of all different outputs
+#'   \item `all`      : Dataset for all data
+#'   \item `change`   : Dataset that include only codes that have changed
+#'   \item `duplicate`: Dataset for codes that have duplicated of previous codes
+#' }
+#'
 #' @import data.table
 #'
 #' @examples
@@ -14,11 +22,12 @@
 #'
 #' @export
 
-merge_geo <- function(files){
+merge_geo <- function(files, output = c("complete", "all", "change", "duplicate")){
 
-  if (inherits(files, "list") == 0) stop("'files' should be a list", call. = TRUE)
+  if (inherits(files, "list") == 0) stop("Object for 'files' should be a list", call. = TRUE)
 
   fileMx  <- length(files)
+  ## create cross join as a reference table
   ind <- CJ(1:fileMx, 1:fileMx)
   indSel <- ind[V1 != V2, ][V1 < fileMx, ][V1 < V2, ]
 
@@ -40,8 +49,7 @@ merge_geo <- function(files){
   joinDT <- rbindlist(join_dt)
 
   ## Change once
-  indChg <- ind[V1 - V2 == 1, ]
-
+  indChg <- ind[V1 - V2 == 1, ] #reference table
   chg_dt <- vector(mode = "list", length = nrow(indChg))
 
   for (i in seq_len(nrow(indChg))){
@@ -63,9 +71,10 @@ merge_geo <- function(files){
 
   ## Merge all changes ie. multiple and change once
   changeDT <- rbindlist(list(joinDT, currDT))
+  setkey(changeDT, code)
 
-  ## Clean up duplicated lines and delete codes that have not changed
-  ## if duplicated lines exists
+  ## Clean up duplicated raws if exist and
+  ## delete codes that have not changed ie. column for 'prev' is NA
   indX <- changeDT[, .I[duplicated(changeDT)]]
 
   if (sum(indX > 0)){
@@ -79,7 +88,7 @@ merge_geo <- function(files){
     uniDT <- dtz[-dupInx]
     dupDT <- dtz[dupInx]
 
-    ## Clean duplicated code if codes aren't in newest geo
+    ## Clean duplicated codes if codes aren't in newest geo
     dupCodes <- unique(dupDT$code)
     keepInd <- is.element(dupCodes, recentCodes)
     keepCodes <- dupCodes[keepInd]
@@ -110,5 +119,14 @@ merge_geo <- function(files){
   }
 
   setkey(geoDT, code, year)
-  list(dupDT = dupDT, chgDT = CDT, allDT = geoDT)
+
+  DTout <- switch(output,
+                  "complete" = list(dupDT = dupDT, chgDT = CDT, allDT = geoDT),
+                  "all" = allDT,
+                  "change" = CDT,
+                  "duplicate" = dupDT,
+                  list(dupDT = dupDT, chgDT = CDT, allDT = geoDT))
+
+  return(DTout[])
+
 }
