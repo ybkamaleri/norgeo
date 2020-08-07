@@ -2,5 +2,6 @@
 
 export("%>%")
 export(add_change)
+export(select_ssb)
 import(data.table)
 importFrom(magrittr,"%>%")
