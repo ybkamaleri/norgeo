@@ -17,7 +17,7 @@ read_ssb(
 
 \item{type}{Hvilket nivå f.eks fylke, kommune osv.}
 
-\item{sep}{The separate symbols in the CSV file}
+\item{sep}{The separate symbols in the CSV file. Use ".." if lazy to check}
 
 \item{encoding}{Select the suitable encoding}
 

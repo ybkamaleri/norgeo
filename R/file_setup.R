@@ -28,7 +28,7 @@ select_ssb <- function(grep.file = NULL,
 #'
 #' @param global If TRUE the objects will be available globally
 #' @param encoding Select the suitable encoding
-#' @param sep The separate symbols in the CSV file
+#' @param sep The separate symbols in the CSV file. Use ".." if lazy to check
 #' @inheritParams add_change
 #' 
 #'
