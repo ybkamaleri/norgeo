@@ -2,6 +2,7 @@
 
 export("%>%")
 export(add_change)
+export(merge_multi)
 export(select_ssb)
 import(data.table)
 importFrom(magrittr,"%>%")
