@@ -19,6 +19,8 @@ Imports:
     readxl,
     odbc,
     DBI,
-    magrittr
+    magrittr,
+    RSQLite,
+    writexl
 Suggests: 
     testthat
