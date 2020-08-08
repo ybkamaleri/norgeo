@@ -21,6 +21,7 @@ Imports:
     DBI,
     magrittr,
     RSQLite,
-    writexl
+    writexl,
+    openxlsx
 Suggests: 
     testthat

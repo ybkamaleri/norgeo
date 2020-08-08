@@ -8,4 +8,8 @@ utils::globalVariables(c("curr",
                          "code",
                          "V1",
                          "V2",
-                         "allDT"))
+                         "allDT",
+                         "i.code",
+                         "i.year",
+                         "name",
+                         "precode"))

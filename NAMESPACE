@@ -3,6 +3,7 @@
 export("%>%")
 export(add_change)
 export(find_change)
+export(get_change)
 export(merge_geo)
 export(merge_multi)
 export(read_ssb)
