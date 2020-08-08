@@ -34,21 +34,27 @@ cast_geo <- function(file, type, year, folder.path, keep.col = c("code", "name")
 
   dt[, `:=`(border = year, geo = type)]
 
-  ## Create reference tables
-  kommune <- data.table(v1 = "fylke", v2 = 2)
-  bydel <- data.table(v1 = c("kommune", "fylke"), v2 = c(2, 4))
-  grunnkrets <- data.table(v1 = c("kommune", "fylke"), v2 = c(4, 6))
-  refTab <- list(kommune = kommune, bydel = bydel, grunnkrets = grunnkrets)
+  ## Fylke has no lower granularity, so skip this
+  type <- tolower(type)
+  if (type != "fylke"){
 
-  numRow <- nrow(refTab[[type]])
+    ## Create reference tables
+    kommune <- data.table(v1 = "fylke", v2 = 2)
+    bydel <- data.table(v1 = c("kommune", "fylke"), v2 = c(2, 4))
+    grunnkrets <- data.table(v1 = c("kommune", "fylke"), v2 = c(4, 6))
+    refTab <- list(kommune = kommune, bydel = bydel, grunnkrets = grunnkrets)
 
-  for (i in seq_len(numRow)){
+    numRow <- nrow(refTab[[type]])
 
-    colName <- refTab[[type]]$v1[i]
-    numD <- refTab[[type]]$v2[i]
-    subDigit <- paste0("\\d{", numD, "}$")
+    for (i in seq_len(numRow)){
 
-    dt[, (colName) := as.numeric(gsub(subDigit, "", code))]
+      colName <- refTab[[type]]$v1[i]
+      numD <- refTab[[type]]$v2[i]
+      subDigit <- paste0("\\d{", numD, "}$")
+
+      dt[, (colName) := as.numeric(gsub(subDigit, "", code))]
+
+    }
 
   }
 
