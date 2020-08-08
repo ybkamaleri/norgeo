@@ -4,7 +4,7 @@
 \alias{cast_geo}
 \title{Add lower granularity when applicable}
 \usage{
-cast_geo(file, type, year, folder.path, keep.col = c("code", "name"))
+cast_geo(file, type, year, folder.path = NULL, keep.col = c("code", "name"))
 }
 \arguments{
 \item{file}{File names}

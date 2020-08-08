@@ -2,6 +2,7 @@
 
 export("%>%")
 export(add_change)
+export(cast_all)
 export(cast_geo)
 export(find_change)
 export(get_change)

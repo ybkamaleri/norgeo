@@ -1,3 +1,55 @@
+#' Add lower granularity to all files
+#'
+#' Add all granularity levels. Here the structure is important.
+#' The the order for types should be similar to the order in files.
+#'
+#' @param file Files names with complete path to the files
+#' @param type Types equivalent to the file names. Must be the same order with file names
+#' @inheritParams add_change
+#' @inheritParams cast_geo
+#'
+#' @examples
+#' \dontrun{
+#' file = c("C:/Geo/fylke/fylke2020.csv",
+#'           "C:/Geo/kommune/kommune2020.csv",
+#'           "C:/folder2/bydel2020.csv" )
+#'
+#' types = c("fylke","kommune","bydel")
+#'
+#' DT <- cast_all(files=files, type=types, year=2020)
+#' }
+#'
+#' @import data.table
+#' @export
+
+cast_all <- function(file, type, year, keep.col){
+
+  tblFile <- data.table::data.table(file = files, type = types)
+
+  ## allocate template for memory use
+  listDT <- vector(mode = "list", length = nrow(tblFile))
+
+  for (i in seq_len(nrow(tblFile))){
+
+    fileName <- tblFile[i, file]
+    typeName <- tblFile[i, type]
+
+    dt <- cast_geo(file = fileName,
+                   type = typeName,
+                   year = year,
+                   keep.col = keep.col)
+
+    listDT[[i]] <- dt
+
+  }
+
+  DT <- rbindlist(listDT)
+
+  return(DT[])
+}
+
+
+
 #' Add lower granularity when applicable
 #'
 #' This function will add lower granularity to the current granularity when applicable.
@@ -24,9 +76,14 @@
 #' @import data.table
 #' @export
 
-cast_geo <- function(file, type, year, folder.path, keep.col = c("code", "name")){
+cast_geo <- function(file, type, year, folder.path = NULL, keep.col = c("code", "name")){
 
-  fName <- file.path(folder.path, file)
+  if (is.null(folder.path)){
+    fName <- file
+  } else {
+    fName <- file.path(folder.path, file)
+  }
+
   dt <- data.table::fread(fName, fill = TRUE)
 
   outCol <- setdiff(names(dt), keep.col)

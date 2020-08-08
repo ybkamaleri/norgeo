@@ -12,4 +12,6 @@ utils::globalVariables(c("curr",
                          "i.code",
                          "i.year",
                          "name",
-                         "precode"))
+                         "precode",
+                         "types",
+                         "files"))
