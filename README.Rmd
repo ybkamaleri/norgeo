@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -18,38 +16,32 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-R pakke `norgeo` skal hjelpe til å spore geokoder endringer basert på informasjon som er tilgjengelig på SSB [hjemmeside](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
+The aim of `norgeo` package is to be able to track changes to the geo codes in Norway. This is based on information and tables available on SSB [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020). Therefore, the use of this package might be limited to the data available from SSB.
 
-## Installasjon
+## Installation
 
-Pakken kan installere fra [Folkehelseprofil](https://github.com/folkehelseprofil) **GitHub** side. Følgende kode kan kjøres i R console. Hvis du ikke allerede har installert `remotes` pakke, skal den installeres først automatisk.
+`norgeo` package can be installed directly from **GitHub** page of [Folkehelseprofil](https://github.com/folkehelseprofil). You can run the code below for installation. It will use `remotes` package to access to the **GitHub**. If you haven't installed it before, the package will be installed automatically prior to installing `norgeo`.
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
 remotes::install.packages("folkehelseprofil/norgeo")
 ```
 
-## Eksampel
+# Example
 
-This is a basic example which shows you how to solve a common problem:
+You have to download the files from SSB and save it as a `csv` file. Else copy paste in an Excel file for code changes under *Endringer* tab. It's advisable to name the file with endring with `change`. For example `fylke_change_jan2018.xlsx`. It's also advisable to add the year to all files to easily differentiate them when running the code.
 
-```{r example}
-library(norgeo)
-## basic example code
+## Add code change
+
+To merge both the `csv` and `xlsx` files, use function `add_change()` as the following:
+
+```r
+folder <- "F:/org/kommune"
+
+kommune2018 <- add_change(grep.file = "jan2018",
+                          grep.change = "change",
+                          year = 2018,
+                          type = "kommune",
+                          folder.path = file_path)
+
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
