@@ -28,8 +28,8 @@ get_change(
 }
 \description{
 Create table for code changes when table tracking the changes isn't already available from SSB.
-This function will be using a reference colums other than geo code ie. names. Therefore this
-function should be used with precaution. The output can be save as \code{xlsx} or \code{csv}.
+This function will be using a reference colum other than geo code ie. names. Therefore this
+function should be used with caution. The output can be save as \code{xlsx} or \code{csv}.
 }
 \examples{
 
