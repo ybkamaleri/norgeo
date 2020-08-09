@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_change.R
 \name{add_change}
 \alias{add_change}
-\title{Legg til geokoder endringer}
+\title{Add code changes}
 \usage{
 add_change(
   grep.file = NULL,
@@ -33,16 +33,17 @@ add_change(
 \item{raw}{If TRUE then specify direct filename in \code{filegeo} and \code{filechg}}
 }
 \description{
-Filen for gjeldende geokoder i \code{csv} format og filen om koder som har
-endret i \code{xlsx} skal legges sammen. Disse filene hentes fra SSB
-hjemmeside.
+The downloaded file of geo codes for respective granualrity from SSB in \code{csv}
+format and codes that have changed copied from \emph{Endringer} tab and pasted into
+an Excel file. The \code{.csv} and \code{.xlsx} files will than be merged by running this function.
 }
 \details{
 Følgende dataset produseres:
 \itemize{
-\item DT     : Hele datasettet med kode endringer
-\item xl     : Endringer fra Excel filen
-\item change : Sti til fil endringe hvis \code{raw = FALSE}
-\item code   : Sti til kodefilen hvis \code{raw = FALSE}
+\item DT     : The whole merged dataset
+\item xl     : The xlsx file
+\item change : Path where the change file is if \code{raw = FALSE}
+\item code   : Path where the \code{csv} file is if \code{raw = FALSE}
+\item type   : The granularity level
 }
 }

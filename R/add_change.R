@@ -1,15 +1,16 @@
-#' Legg til geokoder endringer
+#' Add code changes
 #'
-#' Filen for gjeldende geokoder i \code{csv} format og filen om koder som har
-#' endret i \code{xlsx} skal legges sammen. Disse filene hentes fra SSB
-#' hjemmeside.
+#' The downloaded file of geo codes for respective granualrity from SSB in `csv`
+#' format and codes that have changed copied from *Endringer* tab and pasted into
+#' an Excel file. The `.csv` and `.xlsx` files will than be merged by running this function.
 #'
 #' Følgende dataset produseres:
 #' \itemize{
-#'   \item DT     : Hele datasettet med kode endringer
-#'   \item xl     : Endringer fra Excel filen
-#'   \item change : Sti til fil endringe hvis \code{raw = FALSE}
-#'   \item code   : Sti til kodefilen hvis \code{raw = FALSE}
+#'   \item DT     : The whole merged dataset
+#'   \item xl     : The xlsx file
+#'   \item change : Path where the change file is if \code{raw = FALSE}
+#'   \item code   : Path where the `csv` file is if \code{raw = FALSE}
+#'   \item type   : The granularity level
 #' }
 #'
 #' @param grep.file Felles navn til filene. Funker med bare noen ord eg. "jan2019"
