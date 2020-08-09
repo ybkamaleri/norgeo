@@ -45,7 +45,17 @@ cast_all <- function(file, type, year, keep.col = c("code", "name")){
 
   DT <- rbindlist(listDT, fill = TRUE)
 
-  return(DT[])
+  ## Fill the granularity level columns with its own code
+  for (i in type){
+    DT[granularity == i, (i) := code]
+  }
+
+  ## Add Land
+  norge <- list(code = 0, name = "Norge", border = 2020, granularity = "land")
+  DTout <- rbindlist(list(DT, norge), fill = TRUE)
+  data.table::setkey(DTout, code)
+
+  return(DTout[])
 }
 
 
@@ -82,8 +92,8 @@ cast_geo <- function(file, type, year, folder.path = NULL, keep.col = c("code", 
     fName <- file
   } else {
     fName <- file.path(folder.path, file)
-  }
 
+  }
   dt <- data.table::fread(fName, fill = TRUE)
 
   ## Check keep.col exist
