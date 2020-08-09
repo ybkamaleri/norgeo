@@ -82,7 +82,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p><code>norgeo</code> package can be installed directly from <strong>GitHub</strong> page of <a href="https://github.com/folkehelseprofil">Folkehelseprofil</a>. You can run the code below for installation. It will use <code>remotes</code> package to access to the <strong>GitHub</strong>. If you haven’t installed it before, the package will be installed automatically prior to installing <code>norgeo</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">remotes</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu">install.packages</span>(<span class="st">"folkehelseprofil/norgeo"</span>)</pre></div>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"folkehelseprofil/norgeo"</span>)</pre></div>
 </div>
 <div id="track-code-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -191,7 +191,7 @@
 <h2 class="hasAnchor">
 <a href="#change-codes" class="anchor"></a>Change codes</h2>
 <p>The steps above depends on two type of data ie. current valid codes which is in a <code>csv</code> format and codes that have changed in a <code>xlsx</code> format. When table for code changes isn’t available, we have to create one to be able to use the <code><a href="reference/add_change.html">add_change()</a></code> function. For example granularity <em>bydel</em> has no table of code change in SSB website.</p>
-<p>To create the table from the available <code>csv</code> files, we have to decide a reference column other than geo code such as <code>names</code>. Therefore this function should be used with caution. The output can be save as <code>xlsx</code> or <code>csv</code>.</p>
+<p>To create the table from the available <code>csv</code> files, we have to decide a reference column other than geo code such as <code>names</code>. Therefore this function should be used with caution. The output can be saved as <code>xlsx</code> or <code>csv</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="no">files</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ssb_bydel_jan2004.csv"</span>,
           <span class="st">"ssb_bydel_jan2018.csv"</span>,
           <span class="st">"ssb_bydel_jan2020.csv"</span>)
