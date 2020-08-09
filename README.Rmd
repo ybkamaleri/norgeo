@@ -93,18 +93,43 @@ save_geo(tblname = "tblTest",
 
 ## Add granularity
 
-The function `cast_all()` will add lower granularity to all files when applicable. It means for *kommune* files, a new `fylke` column will be added, while column `fylke` and `kommune` will be added to a *bydle* and *grunnkrets* files.
+The function `cast_all()` will add lower granularity to all files when applicable. It means for *kommune* files, a new `fylke` column will be added, while column `fylke` and `kommune` will be added to a *bydel* and *grunnkrets* files.
 
 ```{r granularity, eval=FALSE}
 
+## Geo 2019
+file2019 <- c("F:/Geo/fylke/fylke_jan2019.csv",
+              "F:/Geo/kommune/kommune_jan2019.csv",
+              "F:/Geo/bydel/bydel_jan2019.csv",
+              "F:/Geo/grunnkrets/grunnkrets_jan2019.csv")
+
+fileTyp2019 <- c("fylke", "kommune", "bydel", "grunnkrets")
+
+
+DF2019 <- cast_all(file = file2019,
+                   type = fileTyp2019,
+                   year = 2019)
+
+## Geo 2020
 file2020 <- c("F:/Geo/fylke/fylke_jan2020.csv",
               "F:/Geo/kommune/kommune_jan2020.csv",
               "F:/Geo/bydel/bydel_jan2020.csv",
               "F:/Geo/grunnkrets/grunnkrets_jan2020.csv")
 
-fileTyp <- c("fylke", "kommune", "bydel", "grunnkrets")
+fileTyp2020 <- c("fylke", "kommune", "bydel", "grunnkrets")
 
-DF <- cast_all(file = file2020,
-               type = fileTyp,
-               year = 2020)
+
+DF2020 <- cast_all(file = file2020,
+                   type = fileTyp2020,
+                   year = 2020)
 ```
+
+Running `cast_all()` will also add a new row for granularity `land` which has code `0`. The output from the above example can then be merged to a file and saved to the file type one wishes. To bind all the output, you can use the base R `rbind()` function or `rbindlist()` function from `data.table` package.
+
+```{r cast, eval=FALSE}
+
+bigDF <- rbind(DF2019, DF2020)
+
+```
+
+To save the final result, `save_geo()` function can be used as explained above.
