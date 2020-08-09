@@ -11,10 +11,11 @@ merge_geo(files, output = c("complete", "all", "change", "duplicate"))
 
 \item{output}{Data output which can be one of these:
 \itemize{
-\item \code{complete} : A list of all different outputs
 \item \code{all}      : Dataset for all data
 \item \code{change}   : Dataset that include only codes that have changed
-\item \code{duplicate}: Dataset for codes that have duplicated of previous codes
+\item \code{split}    : Dataset for codes that have been divided to at least two newer codes
+\item \code{merge}    : Dataset for at least two codes that are been merged into one
+\item \code{complete} : A list of all different outputs
 }}
 }
 \description{

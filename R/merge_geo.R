@@ -6,10 +6,11 @@
 #' @param files A list of objects to be merged. The order must be from lowest to highest year.
 #' @param output Data output which can be one of these:
 #' \itemize{
-#'   \item `complete` : A list of all different outputs
-#'   \item `all`      : Dataset for all data
+#'   \item `all`      : Dataset for all data. This is the default output
 #'   \item `change`   : Dataset that include only codes that have changed
-#'   \item `duplicate`: Dataset for codes that have duplicated of previous codes
+#'   \item `split`    : Dataset for codes that have been divided to at least two newer codes
+#'   \item `merge`    : Dataset for at least two codes that are been merged into one
+#'   \item `complete` : A list of all different outputs
 #' }
 #'
 #' @import data.table
@@ -48,7 +49,8 @@ merge_geo <- function(files, output = c("complete", "all", "change", "duplicate"
 
   joinDT <- rbindlist(join_dt)
 
-  ## Change once
+  ## Find all codes that have changed during
+  ## from the oldest code list to the most recent codes
   indChg <- ind[V1 - V2 == 1, ] #reference table
   chg_dt <- vector(mode = "list", length = nrow(indChg))
 
@@ -65,7 +67,8 @@ merge_geo <- function(files, output = c("complete", "all", "change", "duplicate"
 
   chgDT <- rbindlist(chg_dt)
 
-  ## Keep only those with valid codes for recent year
+  ## Keep only codes that are valid in the most recent year because
+  ## those that aren't indicate they have multiple changes
   recentCodes <- unique(files[[fileMx]]$DT$code)
   currDT <- chgDT[code  %in% recentCodes, ]
 
@@ -81,9 +84,12 @@ merge_geo <- function(files, output = c("complete", "all", "change", "duplicate"
     dtx <- changeDT[-(indX)]
     dtz <- dtx[!is.na(prev), ]
 
-    ## check duplicate for find_change() function.
-    ## and keep only those that are in newest geo due to multiple changes
+    ## - Check duplicate for find_change() function.
+    ## - Cuplicate can be due to codes in the previous year are split
+    ## into 2 or more codes in the current year
+    ## - Keep only those that are in newest geo due to multiple changes
     dupInx <- dtz[, .I[(duplicated(prev) | duplicated(prev, fromLast = TRUE))]]
+
     ## split to 2 DT with and without duplicated 'prev'
     uniDT <- dtz[-dupInx]
     dupDT <- dtz[dupInx]
@@ -94,12 +100,18 @@ merge_geo <- function(files, output = c("complete", "all", "change", "duplicate"
     keepCodes <- dupCodes[keepInd]
     dupUni <- dupDT[code %in% keepCodes, ]
 
+    ## - Get the previous codes that are merged into one area
+    ## in the current code
+    mrgInx <- dtz[, .I[(duplicated(code) | duplicated(code, fromLast = TRUE))]]
+    mrgDT <- dtz[mrgInx]
+
     ## Merge back to the other DT without duplicated previous codes
     CDT <- rbindlist(list(uniDT, dupUni))
     setkey(CDT, code)
   } else {
-    CDT <- changeDT
+    CDT <- changeDT[!is.na(prev)]
     dupDT <- 0
+    mrgDT <- 0
   }
 
   ## Merge everything to recent geo list
@@ -120,12 +132,17 @@ merge_geo <- function(files, output = c("complete", "all", "change", "duplicate"
 
   setkey(geoDT, code, year)
 
+  completeDT <- list(split = dupDT, merge = mrgDT, change = CDT, all = geoDT)
+
+  ## Default output
+  if (length(output) > 1) output = "all"
   DTout <- switch(output,
-                  "complete" = list(dupDT = dupDT, chgDT = CDT, allDT = geoDT),
-                  "all" = allDT,
+                  "all" = geoDT,
                   "change" = CDT,
-                  "duplicate" = dupDT,
-                  list(dupDT = dupDT, chgDT = CDT, allDT = geoDT))
+                  "split" = dupDT,
+                  "merge" = mrgDT,
+                  "complete" = completeDT
+                  )
 
   return(DTout[])
 
