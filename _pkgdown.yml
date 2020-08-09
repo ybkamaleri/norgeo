@@ -1,0 +1,10 @@
+home:
+ links:
+ - text: SSB website
+   href: https://www.ssb.no/offentlig-sektor/kommunekatalog
+
+template:
+  params:
+    bootswatch: cosmo
+
+destination: docs
