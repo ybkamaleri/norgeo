@@ -93,18 +93,15 @@ merge_geo(files = komfiles, output = "change")
 
 The output created from `merge_geo()` i.e `DF`, can be saved in a
 database management system (DBMS) which include Access and SQLite, or as
-ordinary files such as Excel or text file. Database file be be available
-prior to saving it as a database table.
+ordinary files such as Excel or text file.
 
 ``` r
-dbpath = "C:/Users/ybka/dbms"
-dbname = "geo_ssb.accdb"
+fpath = "C:/Users/ybka/dbms"
 
 save_geo(tblname = "tblTest",
          obj = DT,
-         des.path = dbpath,
-         file.type = "Access",
-         db.name = dbname)
+         des.path = fpath,
+         file.type = "Excel")
 ```
 
 ## Add granularity
@@ -155,4 +152,16 @@ bigDF <- rbind(DF2019, DF2020)
 ```
 
 To save the final result, `save_geo()` function can be used as explained
-above.
+above. Database file must be available prior to saving it as a database
+table. In the example below it’s `geo_ssb.accdb`.
+
+``` r
+dbpath = "C:/Users/ybka/dbms"
+dbname = "geo_ssb.accdb"
+
+save_geo(tblname = "tblGeo",
+         obj = bigDT,
+         des.path = dbpath,
+         file.type = "Access",
+         db.name = dbname)
+```
