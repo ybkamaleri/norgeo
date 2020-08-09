@@ -150,6 +150,29 @@ save_geo(tblname = "tblGeo",
          db.name = dbname)
 ```
 
+## Change codes
+
+The steps above depends on two type of data ie. current valid codes which is in a `csv` format and codes that have changed in a `xlsx` format. When table for code changes isn't available, we have to create one to be able to use the `add_change()` function. For example granularity *bydel* has no table of code change in SSB website.
+
+To create the table from the available `csv` files, we have to decide a reference column other than geo code such as `names`. Therefore this function should be used with caution. The output can be save as `xlsx` or `csv`.
+
+```{r eval=FALSE}
+files = c("ssb_bydel_jan2004.csv",
+          "ssb_bydel_jan2018.csv",
+          "ssb_bydel_jan2020.csv")
+years = c(2004, 2018, 2020)
+folder = "C:/geo/bydel"
+des = "C:/geo/bydel/output"
+
+get_change(files=files,
+           years=years,
+           type="bydel",
+           folder.path=folder,
+           save="xls",
+           des.path=des)
+```
+
+
 ## File structure {#file-structure}
 
 I would suggest to structure your files in different folders as show below:
