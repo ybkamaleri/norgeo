@@ -1,8 +1,8 @@
 #' Get change from complete geo list
 #'
 #' Create table for code changes when table tracking the changes isn't already available from SSB.
-#' This function will be using a reference colums other than geo code ie. names. Therefore this
-#' function should be used with precaution. The output can be save as `xlsx` or `csv`.
+#' This function will be using a reference colum other than geo code ie. names. Therefore this
+#' function should be used with caution. The output can be save as `xlsx` or `csv`.
 #'
 #' @param files A list of files to find geo codes changes
 #' @param years A list of years for these files

@@ -5,14 +5,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Track geo code changes of different granularity levels in Norway • norgeo</title>
+<title>Track geo code changes in all regional granularity in Norway • norgeo</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Track geo code changes of different granularity levels in Norway">
-<meta property="og:description" content="Identifying when geo codes have changed and how many changes have taken place
+<script src="pkgdown.js"></script><meta property="og:title" content="Track geo code changes in all regional granularity in Norway">
+<meta property="og:description" content="Regional granularity levels in Norway which are depicted by different codes, 
+             have undergone several changes over the years. 
+             Identifying when codes have changed and how many changes have taken place
              can be troublesome. This package will help to identify these changes and when the changes
              have taken place. One of the limitation of this package is that it is heavily depending 
              on the codes available from SSB website. ">
@@ -74,7 +76,7 @@
 <a href="#norgeo" class="anchor"></a>norgeo</h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The aim of <code>norgeo</code> package is to be able to track changes of geo codes for different granularity levels in Norway. This is based on information and tables available on SSB <a href="https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020">website</a>. Therefore, the use of this package might be limited to the data available from SSB.</p>
+<p>Regional granularity levels in Norway which are depicted by different codes, have undergone several changes over the years. Identifying when codes have changed and how many changes have taken place can be troublesome. This package will help to identify these changes and when the changes have taken place. One of the limitation of this package is that it is heavily depending on the codes available from SSB website which can be accessed from their <a href="https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020">website</a>. Else the row data should mimic the row data structure from SSB.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -85,7 +87,7 @@
 <div id="track-code-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#track-code-changes" class="anchor"></a>Track code changes</h2>
-<p>You have to download the files from SSB and save it as a <code>csv</code> file. For the code changes, they have to be copied pasted in an Excel. These code changes can be found under <em>Endringer</em> tab in the website. It’s advisable to name the file with a specific word to differentiate the file from the <code>csv</code> files. I would recommed to add the word <code>change</code>. For example <code>fylke_change_jan2018.xlsx</code> and the downloaded <code>csv</code> file will be <code>fylke_jan2028.csv</code>. It’s also advisable to add the year to all files to easily differentiate them when running the code.</p>
+<p>You have to download the files from SSB and save it as a <code>csv</code> file. For the code changes, they have to be copied and pasted into an Excel file. These code changes can be found under <em>Endringer</em> tab in the website. It’s advisable to name the file with a specific word to differentiate the file from the <code>csv</code> files. I would recommed to add the word <code>change</code>. For example <code>fylke_change_jan2018.xlsx</code> and the downloaded <code>csv</code> file will be <code>fylke_jan2018.csv</code>. It’s also advisable to add the year to all files to easily differentiate them when running the code. Check the suggested structure <a href="#file-structure">here</a> for naming files.</p>
 <div id="add-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#add-changes" class="anchor"></a>Add changes</h3>
@@ -184,6 +186,25 @@
          <span class="kw">des.path</span> <span class="kw">=</span> <span class="no">dbpath</span>,
          <span class="kw">file.type</span> <span class="kw">=</span> <span class="st">"Access"</span>,
          <span class="kw">db.name</span> <span class="kw">=</span> <span class="no">dbname</span>)</pre></div>
+</div>
+<div id="change-codes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#change-codes" class="anchor"></a>Change codes</h2>
+<p>The steps above depends on two type of data ie. current valid codes which is in a <code>csv</code> format and codes that have changed in a <code>xlsx</code> format. When table for code changes isn’t available, we have to create one to be able to use the <code><a href="reference/add_change.html">add_change()</a></code> function. For example granularity <em>bydel</em> has no table of code change in SSB website.</p>
+<p>To create the table from the available <code>csv</code> files, we have to decide a reference column other than geo code such as <code>names</code>. Therefore this function should be used with caution. The output can be save as <code>xlsx</code> or <code>csv</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="r"><span class="no">files</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ssb_bydel_jan2004.csv"</span>,
+          <span class="st">"ssb_bydel_jan2018.csv"</span>,
+          <span class="st">"ssb_bydel_jan2020.csv"</span>)
+<span class="no">years</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2004</span>, <span class="fl">2018</span>, <span class="fl">2020</span>)
+<span class="no">folder</span> <span class="kw">=</span> <span class="st">"C:/geo/bydel"</span>
+<span class="no">des</span> <span class="kw">=</span> <span class="st">"C:/geo/bydel/output"</span>
+
+<span class="fu"><a href="reference/get_change.html">get_change</a></span>(<span class="kw">files</span><span class="kw">=</span><span class="no">files</span>,
+           <span class="kw">years</span><span class="kw">=</span><span class="no">years</span>,
+           <span class="kw">type</span><span class="kw">=</span><span class="st">"bydel"</span>,
+           <span class="kw">folder.path</span><span class="kw">=</span><span class="no">folder</span>,
+           <span class="kw">save</span><span class="kw">=</span><span class="st">"xls"</span>,
+           <span class="kw">des.path</span><span class="kw">=</span><span class="no">des</span>)</pre></div>
 </div>
 <div id="file-structure" class="section level2">
 <h2 class="hasAnchor">
