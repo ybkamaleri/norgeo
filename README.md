@@ -25,7 +25,7 @@ installed automatically prior to installing `norgeo`.
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
-remotes::install.packages("folkehelseprofil/norgeo")
+remotes::install_github("folkehelseprofil/norgeo")
 ```
 
 ## Track code changes
@@ -180,7 +180,7 @@ granularity *bydel* has no table of code change in SSB website.
 
 To create the table from the available `csv` files, we have to decide a
 reference column other than geo code such as `names`. Therefore this
-function should be used with caution. The output can be save as `xlsx`
+function should be used with caution. The output can be saved as `xlsx`
 or `csv`.
 
 ``` r
