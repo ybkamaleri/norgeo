@@ -1,5 +1,5 @@
 Package: norgeo
-Title: Track geo code changes of different granularity levels in Norway
+Title: Track geo code changes in all regional granularity in Norway
 Version: 0.1.1
 Authors@R: 
     person(given = "Yusman",
@@ -7,7 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "ybka@fhi.no"
            )
-Description: Identifying when geo codes have changed and how many changes have taken place
+Description: Regional granularity levels in Norway which are depicted by different codes, 
+             have undergone several changes over the years. 
+             Identifying when codes have changed and how many changes have taken place
              can be troublesome. This package will help to identify these changes and when the changes
              have taken place. One of the limitation of this package is that it is heavily depending 
              on the codes available from SSB website. 

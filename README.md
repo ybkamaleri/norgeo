@@ -5,12 +5,15 @@
 
 <!-- badges: end -->
 
-The aim of `norgeo` package is to be able to track changes of geo codes
-for different granularity levels in Norway. This is based on information
-and tables available on SSB
+Regional granularity levels in Norway which are depicted by different
+codes, have undergone several changes over the years. Identifying when
+codes have changed and how many changes have taken place can be
+troublesome. This package will help to identify these changes and when
+the changes have taken place. One of the limitation of this package is
+that it is heavily depending on the codes available from SSB website
+which can be accessed from their
 [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
-Therefore, the use of this package might be limited to the data
-available from SSB.
+Else the row data should mimic the row data structure from SSB.
 
 ## Installation
 
@@ -28,13 +31,14 @@ remotes::install.packages("folkehelseprofil/norgeo")
 ## Track code changes
 
 You have to download the files from SSB and save it as a `csv` file. For
-the code changes, they have to be copied pasted in an Excel. These code
-changes can be found under *Endringer* tab in the website. It’s
-advisable to name the file with a specific word to differentiate the
-file from the `csv` files. I would recommed to add the word `change`.
-For example `fylke_change_jan2018.xlsx` and the downloaded `csv` file
-will be `fylke_jan2028.csv`. It’s also advisable to add the year to all
-files to easily differentiate them when running the code.
+the code changes, they have to be copied and pasted into an Excel file.
+These code changes can be found under *Endringer* tab in the website.
+It’s advisable to name the file with a specific word to differentiate
+the file from the `csv` files. I would recommed to add the word
+`change`. For example `fylke_change_jan2018.xlsx` and the downloaded
+`csv` file will be `fylke_jan2018.csv`. It’s also advisable to add the
+year to all files to easily differentiate them when running the code.
+Check the suggested structure [here](#file-structure) for naming files.
 
 ### Add changes
 
