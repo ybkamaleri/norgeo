@@ -165,3 +165,10 @@ save_geo(tblname = "tblGeo",
          file.type = "Access",
          db.name = dbname)
 ```
+
+## File structure
+
+I would suggest to structure your files in different folders as show
+below:
+
+![File structure](man/figures/geo_dir2.PNG)

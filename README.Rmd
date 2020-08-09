@@ -142,3 +142,15 @@ save_geo(tblname = "tblGeo",
          file.type = "Access",
          db.name = dbname)
 ```
+
+## File structure
+
+I would suggest to structure your files in different folders as show below:
+
+```{r image, include = FALSE}
+knitr::opts_chunk$set(
+  fig.path = "man/figures/"
+)
+```
+
+![File structure](man/figures/geo_dir2.PNG)
