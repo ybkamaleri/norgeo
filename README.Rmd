@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The aim of `norgeo` package is to be able to track changes to the geo codes in Norway. This is based on information and tables available on SSB [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020). Therefore, the use of this package might be limited to the data available from SSB.
+The aim of `norgeo` package is to be able to track changes of geo codes for different granularity levels in Norway. This is based on information and tables available on SSB [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020). Therefore, the use of this package might be limited to the data available from SSB.
 
 ## Installation
 
