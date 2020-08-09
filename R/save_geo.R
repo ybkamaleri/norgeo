@@ -50,7 +50,8 @@ save_geo <- function(tblname = NULL,
 
   if (innTyp == "text"){
     xlFile <- paste0(des.path, "/", tblname, ".csv")
-    utils::write.csv2(obj, file = xlFile)
+    data.table::fwrite(obj, file = xlFile, sep = ";")
+    ## utils::write.csv2(obj, file = xlFile)
   }
 
 
