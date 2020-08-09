@@ -14,4 +14,5 @@ utils::globalVariables(c("curr",
                          "name",
                          "precode",
                          "types",
-                         "files"))
+                         "files",
+                         "granularity"))

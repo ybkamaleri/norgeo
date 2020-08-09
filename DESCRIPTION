@@ -1,5 +1,5 @@
 Package: norgeo
-Title: Track changes for geo codes for different granularity levels in Norway.
+Title: Track geo code changes of different granularity levels in Norway
 Version: 0.1.1
 Authors@R: 
     person(given = "Yusman",
@@ -8,15 +8,16 @@ Authors@R:
            email = "ybka@fhi.no"
            )
 Description: Identifying when geo codes have changed and how many changes have taken place
-can be troublesome. This package will helps to identify these changes and when the changes
-have taken place. This package is heavily depending on the codes available from SSB website. 
+             can be troublesome. This package will help to identify these changes and when the changes
+             have taken place. One of the limitation of this package is that it is heavily depending 
+             on the codes available from SSB website. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports: 
-    data.table (>= 1.13.0,
+    data.table (>= 1.13.0),
     fs,
     readxl,
     odbc,
