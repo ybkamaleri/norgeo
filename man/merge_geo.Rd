@@ -11,7 +11,7 @@ merge_geo(files, output = c("complete", "all", "change", "duplicate"))
 
 \item{output}{Data output which can be one of these:
 \itemize{
-\item \code{all}      : Dataset for all data
+\item \code{all}      : Dataset for all data. This is the default output
 \item \code{change}   : Dataset that include only codes that have changed
 \item \code{split}    : Dataset for codes that have been divided to at least two newer codes
 \item \code{merge}    : Dataset for at least two codes that are been merged into one

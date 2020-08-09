@@ -121,6 +121,6 @@ add_change <- function(
   otherCols <- setdiff(names(DT), mainCols)
   setcolorder(DT, c(mainCols, otherCols))
 
-  list(DT = DT[], xl = xlTbl[], change = fileChg, code = fileGeo)
+  list(DT = DT[], xl = xlTbl[], change = fileChg, code = fileGeo, type = type)
 
 }

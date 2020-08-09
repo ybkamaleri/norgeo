@@ -132,6 +132,10 @@ merge_geo <- function(files, output = c("complete", "all", "change", "duplicate"
 
   setkey(geoDT, code, year)
 
+  ## Add granularity column
+  granTyp <- files[[1]]$type
+  geoDT$granularity <- granTyp
+
   completeDT <- list(split = dupDT, merge = mrgDT, change = CDT, all = geoDT)
 
   ## Default output
