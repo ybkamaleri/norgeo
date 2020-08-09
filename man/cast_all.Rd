@@ -4,7 +4,7 @@
 \alias{cast_all}
 \title{Add lower granularity to all files}
 \usage{
-cast_all(file, type, year, keep.col)
+cast_all(file, type, year, keep.col = c("code", "name"))
 }
 \arguments{
 \item{file}{Files names with complete path to the files}

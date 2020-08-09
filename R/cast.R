@@ -22,9 +22,9 @@
 #' @import data.table
 #' @export
 
-cast_all <- function(file, type, year, keep.col){
+cast_all <- function(file, type, year, keep.col = c("code", "name")){
 
-  tblFile <- data.table::data.table(file = files, type = types)
+  tblFile <- data.table::data.table(file = file, type = type)
 
   ## allocate template for memory use
   listDT <- vector(mode = "list", length = nrow(tblFile))
@@ -43,7 +43,7 @@ cast_all <- function(file, type, year, keep.col){
 
   }
 
-  DT <- rbindlist(listDT)
+  DT <- rbindlist(listDT, fill = TRUE)
 
   return(DT[])
 }
@@ -86,10 +86,15 @@ cast_geo <- function(file, type, year, folder.path = NULL, keep.col = c("code", 
 
   dt <- data.table::fread(fName, fill = TRUE)
 
+  ## Check keep.col exist
+  colX <- sum(is.element(keep.col, names(dt)))
+  if (colX == 0) stop("Selected columns to keep doesn't exist!")
+
+  ## keep the selected columns
   outCol <- setdiff(names(dt), keep.col)
   dt[, (outCol) := NULL]
 
-  dt[, `:=`(border = year, geo = type)]
+  dt[, `:=`(border = year, granularity = type)]
 
   ## Fylke has no lower granularity, so skip this
   type <- tolower(type)
