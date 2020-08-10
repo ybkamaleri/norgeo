@@ -1,16 +1,16 @@
-#' Find changes from previus year
+#' Find changes from previous year
 #'
-#' Which codes that have changed since previous codes
+#' Which codes have changed since one of the previous years
 #'
 #' @inheritParams merge_multi
 #' @export
 
 find_change <- function(newCode, preCode, raw = TRUE){
 
-  dt1 <- newCode[["DT"]]
+  dt1 <- newCode[["data"]]
 
   if (raw){
-    dt2 <- preCode[["DT"]]
+    dt2 <- preCode[["data"]]
   } else {
     dt2 <- preCode
   }

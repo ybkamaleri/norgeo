@@ -40,7 +40,7 @@ an Excel file. The \code{.csv} and \code{.xlsx} files will than be merged by run
 \details{
 The following dataset will be generated:
 \itemize{
-\item DT     : The whole merged dataset
+\item data   : The whole merged dataset
 \item xl     : The xlsx file
 \item change : Path where the change file is if \code{raw = FALSE}
 \item code   : Path where the \code{csv} file is if \code{raw = FALSE}

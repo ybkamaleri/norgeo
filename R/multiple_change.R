@@ -17,16 +17,16 @@ merge_multi <- function(newCode = NULL, preCode = NULL, raw = TRUE){
   if (raw){
     elMix <- check_element(newCode, preCode)
   } else {
-    vecNew <- newCode[["DT"]]$prev
+    vecNew <- newCode[["data"]]$prev
     indelm <- is.element(vecNew, preCode[["code"]])
     elMix <- data.table(chg = vecNew[indelm])
   }
 
-  dtNew <- newCode[["DT"]]
+  dtNew <- newCode[["data"]]
   altNew <- dtNew[prev  %in% elMix$chg, ]
 
   if (raw){
-    dtPre <- preCode[["DT"]]
+    dtPre <- preCode[["data"]]
     altPre <- dtPre[code  %in% elMix$chg, ]
   } else {
    altPre <- preCode
@@ -57,8 +57,8 @@ merge_multi <- function(newCode = NULL, preCode = NULL, raw = TRUE){
 
 check_element <- function(newCode, preCode){
 
-  DT <- newCode[["DT"]]
-  dt <- preCode[["DT"]]
+  DT <- newCode[["data"]]
+  dt <- preCode[["data"]]
   vecNew <- DT$prev
   vecOld <- dt[!is.na(year), code]
   chg <- is.element(vecOld, vecNew)
