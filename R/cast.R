@@ -5,8 +5,8 @@
 #'
 #' @param file Files names with complete path to the files
 #' @param type Types equivalent to the file names. Must be the same order with file names
-#' @inheritParams add_change
-#' @inheritParams cast_geo
+#' @inheritParams geo_set
+#' @inheritParams cast_code
 #'
 #' @examples
 #' \dontrun{
@@ -16,13 +16,13 @@
 #'
 #' types = c("fylke","kommune","bydel")
 #'
-#' DT <- cast_all(files=files, type=types, year=2020)
+#' DT <- geo_cast(files=files, type=types, year=2020)
 #' }
 #'
 #' @import data.table
 #' @export
 
-cast_all <- function(file, type, year, keep.col = c("code", "name")){
+geo_cast <- function(file, type, year, keep.col = c("code", "name")){
 
   tblFile <- data.table::data.table(file = file, type = type)
 
@@ -34,7 +34,7 @@ cast_all <- function(file, type, year, keep.col = c("code", "name")){
     fileName <- tblFile[i, file]
     typeName <- tblFile[i, type]
 
-    dt <- cast_geo(file = fileName,
+    dt <- cast_code(file = fileName,
                    type = typeName,
                    year = year,
                    keep.col = keep.col)
@@ -69,7 +69,7 @@ cast_all <- function(file, type, year, keep.col = c("code", "name")){
 #'
 #' @param file File names
 #' @param keep.col Exisiting column names to be kept
-#' @inheritParams add_change
+#' @inheritParams geo_set
 #'
 #' @examples
 #'
@@ -80,13 +80,13 @@ cast_all <- function(file, type, year, keep.col = c("code", "name")){
 #' keep.col = c("code", "name")
 #' folder = "C:/Users/geo/grunnkrets"
 #'
-#' DT <- cast_geo(file = file, type = type, year = year, folder.path = folder.path)
+#' DT <- cast_code(file = file, type = type, year = year, folder.path = folder.path)
 #' }
 #'
 #' @import data.table
 #' @export
 
-cast_geo <- function(file, type, year, folder.path = NULL, keep.col = c("code", "name")){
+cast_code <- function(file, type, year, folder.path = NULL, keep.col = c("code", "name")){
 
   if (is.null(folder.path)){
     fName <- file

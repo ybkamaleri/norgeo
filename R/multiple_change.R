@@ -5,8 +5,8 @@
 #' in 2018 from previous code columns.
 #' For example the code 30240317 (in 2020) was 2190317 (2019) but previously was 2190314 (2018)
 #'
-#' @param newCode Object produced from `add_change` for newer codes
-#' @param preCode Object produced from `add_change` for previous codes
+#' @param newCode Object produced from `geo_set` for newer codes
+#' @param preCode Object produced from `geo_set` for previous codes
 #' @param raw     If FALSE then specify a data.table object
 #'
 #' @import data.table

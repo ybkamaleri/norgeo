@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • norgeo</title>
+<title>Set geo codes changes — geo_set • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Set geo codes changes — geo_set" />
+<meta property="og:description" content="The downloaded file of geo codes for respective granularity from SSB in csv
+format and codes that have changed copied from Endringer tab and pasted into
+an Excel file. The .csv and .xlsx files will than be merged by running this function." />
 
 
 
@@ -108,17 +110,74 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Set geo codes changes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/geo_set.R'><code>R/geo_set.R</code></a></small>
+    <div class="hidden name"><code>geo_set.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>The downloaded file of geo codes for respective granularity from SSB in <code>csv</code>
+format and codes that have changed copied from <em>Endringer</em> tab and pasted into
+an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be merged by running this function.</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>geo_set</span>(
+  <span class='kw'>grep.file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>grep.change</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span>),
+  <span class='kw'>folder.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>filegeo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>filechg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>grep.file</th>
+      <td><p>Felles navn til filene. Funker med bare noen ord eg. "jan2019"</p></td>
+    </tr>
+    <tr>
+      <th>grep.change</th>
+      <td><p>Navn til endringsfil eg. "change"</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>Året geokoder gjelder</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Hvilket nivå f.eks fylke, kommune osv.</p></td>
+    </tr>
+    <tr>
+      <th>folder.path</th>
+      <td><p>Sti til mappen hvor filene ligger</p></td>
+    </tr>
+    <tr>
+      <th>filegeo</th>
+      <td><p>CSV fil for alle geokoder</p></td>
+    </tr>
+    <tr>
+      <th>filechg</th>
+      <td><p>Excel fil for kode endringer</p></td>
+    </tr>
+    <tr>
+      <th>raw</th>
+      <td><p>If TRUE then specify direct filename in <code>filegeo</code> and <code>filechg</code></p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Følgende dataset produseres:</p><ul>
+<li><p>DT     : The whole merged dataset</p></li>
+<li><p>xl     : The xlsx file</p></li>
+<li><p>change : Path where the change file is if <code>raw = FALSE</code></p></li>
+<li><p>code   : Path where the <code>csv</code> file is if <code>raw = FALSE</code></p></li>
+<li><p>type   : The granularity level</p></li>
+</ul>
 
 
   </div>
