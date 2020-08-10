@@ -96,22 +96,22 @@
 <span class="no">folder</span> <span class="kw">&lt;-</span> <span class="st">"F:/org/kommune"</span>
 
 <span class="no">kom2018</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2018"</span>,
-                      <span class="st">"change"</span>,
-                      <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2018</span>,
-                      <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
-                      <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
+                   <span class="st">"change"</span>,
+                   <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2018</span>,
+                   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
+                   <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
 
 <span class="no">kom2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2019"</span>,
-                      <span class="st">"change"</span>,
-                      <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>,
-                      <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
-                      <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
+                   <span class="st">"change"</span>,
+                   <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>,
+                   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
+                   <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
 
 <span class="no">kom2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2020"</span>,
-                      <span class="st">"change"</span>,
-                      <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2020</span>,
-                      <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
-                      <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)</pre></div>
+                   <span class="st">"change"</span>,
+                   <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2020</span>,
+                   <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
+                   <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)</pre></div>
 </div>
 <div id="merge-changes" class="section level3">
 <h3 class="hasAnchor">
@@ -130,6 +130,8 @@
 <!-- end list --><div class="sourceCode" id="cb3"><pre class="r">
 <span class="no">komfiles</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">kom2018</span>, <span class="no">kom2019</span>, <span class="no">kom2020</span>)
 <span class="no">DF</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_merge.html">geo_merge</a></span>(<span class="kw">files</span> <span class="kw">=</span> <span class="no">komfiles</span>)
+
+<span class="co"># show only codes that have changed</span>
 <span class="fu"><a href="reference/geo_merge.html">geo_merge</a></span>(<span class="kw">files</span> <span class="kw">=</span> <span class="no">komfiles</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"change"</span>)</pre></div>
 </div>
 <div id="save-codes" class="section level3">
@@ -139,7 +141,7 @@
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">fpath</span> <span class="kw">=</span> <span class="st">"C:/Users/ybka/dbms"</span>
 
 <span class="fu"><a href="reference/geo_save.html">geo_save</a></span>(<span class="kw">tblname</span> <span class="kw">=</span> <span class="st">"tblTest"</span>,
-         <span class="kw">obj</span> <span class="kw">=</span> <span class="no">DT</span>,
+         <span class="kw">obj</span> <span class="kw">=</span> <span class="no">DF</span>,
          <span class="kw">des.path</span> <span class="kw">=</span> <span class="no">fpath</span>,
          <span class="kw">file.type</span> <span class="kw">=</span> <span class="st">"Excel"</span>)</pre></div>
 </div>
@@ -182,7 +184,7 @@
 <span class="no">dbname</span> <span class="kw">=</span> <span class="st">"geo_ssb.accdb"</span>
 
 <span class="fu"><a href="reference/geo_save.html">geo_save</a></span>(<span class="kw">tblname</span> <span class="kw">=</span> <span class="st">"tblGeo"</span>,
-         <span class="kw">obj</span> <span class="kw">=</span> <span class="no">bigDT</span>,
+         <span class="kw">obj</span> <span class="kw">=</span> <span class="no">bigDF</span>,
          <span class="kw">des.path</span> <span class="kw">=</span> <span class="no">dbpath</span>,
          <span class="kw">file.type</span> <span class="kw">=</span> <span class="st">"Access"</span>,
          <span class="kw">db.name</span> <span class="kw">=</span> <span class="no">dbname</span>)</pre></div>
@@ -199,7 +201,7 @@
 <span class="no">folder</span> <span class="kw">=</span> <span class="st">"C:/geo/bydel"</span>
 <span class="no">des</span> <span class="kw">=</span> <span class="st">"C:/geo/bydel/output"</span>
 
-<span class="fu"><a href="reference/get_change.html">get_change</a></span>(<span class="kw">files</span><span class="kw">=</span><span class="no">files</span>,
+<span class="fu">geo_change</span>(<span class="kw">files</span><span class="kw">=</span><span class="no">files</span>,
            <span class="kw">years</span><span class="kw">=</span><span class="no">years</span>,
            <span class="kw">type</span><span class="kw">=</span><span class="st">"bydel"</span>,
            <span class="kw">folder.path</span><span class="kw">=</span><span class="no">folder</span>,

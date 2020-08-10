@@ -166,7 +166,7 @@ years = c(2004, 2018, 2020)
 folder = "C:/geo/bydel"
 des = "C:/geo/bydel/output"
 
-get_change(files=files,
+geo_change(files=files,
            years=years,
            type="bydel",
            folder.path=folder,
@@ -177,12 +177,12 @@ get_change(files=files,
 
 ## File structure {#file-structure}
 
-I would suggest to structure your files in different folders as show below:
-
-```{r image, include = FALSE}
+```{r image, include = FALSE, eval=FALSE}
 knitr::opts_chunk$set(
   fig.path = "man/figures/"
 )
+
 ```
+I would suggest to structure your files in different folders as show below:
 
 ![File structure](man/figures/geo_dir2.PNG)
