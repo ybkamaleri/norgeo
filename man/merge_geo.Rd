@@ -4,7 +4,7 @@
 \alias{merge_geo}
 \title{Merge all geo codes}
 \usage{
-merge_geo(files, output = c("complete", "all", "change", "duplicate"))
+merge_geo(files, output = c("all", "change", "split", "merge", "complete"))
 }
 \arguments{
 \item{files}{A list of objects to be merged. The order must be from lowest to highest year.}
