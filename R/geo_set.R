@@ -20,7 +20,6 @@
 #' @param folder.path Folder path to the files
 #' @param filegeo Specify `csv` file for geocode if grep.file is empty
 #' @param filechg Specify `xlsx` file name and location if `grep.change` is empty
-#' @param raw     If TRUE then specify direct filename in \code{filegeo} and \code{filechg}
 #'
 #' @import data.table
 #' @export
@@ -36,8 +35,7 @@ geo_set <- function(grep.file = NULL,
                              "grunnkrets"),
                     folder.path = NULL,
                     filegeo = NULL,
-                    filechg = NULL,
-                    raw = FALSE
+                    filechg = NULL
                     ){
 
 
@@ -46,6 +44,17 @@ geo_set <- function(grep.file = NULL,
     if (!is.null(filegeo) & !is.null(grep.file))
     {stop("Only one of them need info ie. filegeo or grep.file")}
 
+    raw = FALSE
+    if (!is.null(filegeo)) {
+        fileGeo = filegeo
+        raw = TRUE
+    }
+    
+    if (!is.null(filechg)) {
+        fileChg = filechg
+        raw = TRUE
+    }
+    
     ## Files
     if (raw){
 
