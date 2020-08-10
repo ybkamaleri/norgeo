@@ -23,7 +23,12 @@
 #'
 #' @export
 
-geo_merge <- function(files, output = c("all", "change", "split", "merge", "complete")){
+geo_merge <- function(files,
+                      output = c("all",
+                                 "change",
+                                 "split",
+                                 "merge",
+                                 "complete")){
 
     if (inherits(files, "list") == 0) stop("Object for 'files' should be a list", call. = TRUE)
 
@@ -69,7 +74,7 @@ geo_merge <- function(files, output = c("all", "change", "split", "merge", "comp
 
     ## Keep only codes that are valid in the most recent year because
     ## those that aren't indicate they have multiple changes
-    recentCodes <- unique(files[[fileMx]]$DT$code)
+    recentCodes <- unique(files[[fileMx]]$data$code)
     currDT <- chgDT[code  %in% recentCodes, ]
 
     ## Merge all changes ie. multiple and change once
@@ -78,14 +83,14 @@ geo_merge <- function(files, output = c("all", "change", "split", "merge", "comp
 
     ## Clean up duplicated raws if exist and
     ## delete codes that have not changed ie. column for 'prev' is NA
-    CDT <- clean_dup(x = changeDT)
+    dtClean <- clean_dup(xDT = changeDT, xCodes = recentCodes)
 
     ## Merge everything to recent geo list
     ## ---------------------------------------
-    dupCodesChg <- unique(CDT$code)## codes that are allready in the changes table
+    dupCodesChg <- unique(dtClean$CDT$code)## codes that are allready in the changes table
     ## keep only codes in recent geo list that aren't in the changes table
-    otherDT <- files[[fileMx]]$DT[!(code  %in% dupCodesChg), ]
-    geoDT <- rbindlist(list(otherDT, CDT), fill = TRUE)
+    otherDT <- files[[fileMx]]$data[!(code  %in% dupCodesChg), ]
+    geoDT <- rbindlist(list(otherDT, dtClean$CDT), fill = TRUE)
     setkey(geoDT, code, year)
 
     ## Recode mulitple codes that haven't been converted to recent geo code
@@ -102,15 +107,16 @@ geo_merge <- function(files, output = c("all", "change", "split", "merge", "comp
     granTyp <- files[[1]]$type
     geoDT$granularity <- granTyp
 
-    completeDT <- list(split = dupDT, merge = mrgDT, change = CDT, all = geoDT)
+    completeDT <- list(split = dtClean$dupDT, merge = dtClean$mrgDT, change = dtClean$CDT, all = geoDT)
 
     ## Default output
     if (length(output) > 1) output = "all"
+
     DTout <- switch(output,
                     "all" = geoDT,
-                    "change" = CDT,
-                    "split" = dupDT,
-                    "merge" = mrgDT,
+                    "change" = dtClean$CDT,
+                    "split" = dtClean$dupDT,
+                    "merge" = dtClean$mrgDT,
                     "complete" = completeDT
                     )
 
@@ -122,12 +128,12 @@ geo_merge <- function(files, output = c("all", "change", "split", "merge", "comp
 
 ## Clean up duplicated raws if exist and
 ## delete codes that have not changed ie. column for 'prev' is NA
-clean_dup <- function(x){
+clean_dup <- function(xDT, xCodes){
 
-    indX <- changeDT[, .I[duplicated(changeDT)]]
+    indX <- xDT[, .I[duplicated(xDT)]]
 
-    if (indX > 0){
-        dtx <- changeDT[-(indX)]
+    if (length(indX) > 0L){
+        dtx <- xDT[-(indX)]
         dtz <- dtx[!is.na(prev), ]
 
         ## - Check duplicate for find_change() function.
@@ -142,7 +148,9 @@ clean_dup <- function(x){
 
         ## Clean duplicated codes if codes aren't in newest geo
         dupCodes <- unique(dupDT$code)
-        keepInd <- is.element(dupCodes, recentCodes)
+        ## keep duplicated only if it's in the newest codelist
+        ## other codes that aren't have multiple changes
+        keepInd <- is.element(dupCodes, xCodes)
         keepCodes <- dupCodes[keepInd]
         dupUni <- dupDT[code %in% keepCodes, ]
 
@@ -155,10 +163,10 @@ clean_dup <- function(x){
         CDT <- rbindlist(list(uniDT, dupUni))
         setkey(CDT, code)
     } else {
-        CDT <- changeDT[!is.na(prev)]
+        CDT <- xDT[!is.na(prev)]
         dupDT <- 0
         mrgDT <- 0
     }
 
-    return(CDT)
+    list(CDT = CDT, dupDT = dupDT, mrgDT = mrgDT)
 }

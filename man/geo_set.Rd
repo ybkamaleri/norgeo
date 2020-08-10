@@ -11,36 +11,33 @@ geo_set(
   type = c("land", "fylke", "kommune", "bydel", "grunnkrets"),
   folder.path = NULL,
   filegeo = NULL,
-  filechg = NULL,
-  raw = FALSE
+  filechg = NULL
 )
 }
 \arguments{
-\item{grep.file}{Felles navn til filene. Funker med bare noen ord eg. "jan2019"}
+\item{grep.file}{Common file name for the selected period eg. "jan2019"}
 
-\item{grep.change}{Navn til endringsfil eg. "change"}
+\item{grep.change}{Common name for \code{xlsx} file for code change eg. "change"}
 
-\item{year}{Året geokoder gjelder}
+\item{year}{Year of the selected code list}
 
-\item{type}{Hvilket nivå f.eks fylke, kommune osv.}
+\item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{folder.path}{Sti til mappen hvor filene ligger}
+\item{folder.path}{Folder path to the files}
 
-\item{filegeo}{CSV fil for alle geokoder}
+\item{filegeo}{Specify \code{csv} file for geocode if grep.file is empty}
 
-\item{filechg}{Excel fil for kode endringer}
-
-\item{raw}{If TRUE then specify direct filename in \code{filegeo} and \code{filechg}}
+\item{filechg}{Specify \code{xlsx} file name and location if \code{grep.change} is empty}
 }
 \description{
-The downloaded file of geo codes for respective granularity from SSB in \code{csv}
-format and codes that have changed copied from \emph{Endringer} tab and pasted into
+The downloaded file of geo codes for specific year from SSB is saved in \code{csv}
+format. The codes that have changed are copied from \emph{Endringer} tab and pasted into
 an Excel file. The \code{.csv} and \code{.xlsx} files will than be merged by running this function.
 }
 \details{
-Følgende dataset produseres:
+The following dataset will be generated:
 \itemize{
-\item DT     : The whole merged dataset
+\item data   : The whole merged dataset
 \item xl     : The xlsx file
 \item change : Path where the change file is if \code{raw = FALSE}
 \item code   : Path where the \code{csv} file is if \code{raw = FALSE}

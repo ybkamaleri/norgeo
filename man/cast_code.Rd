@@ -9,11 +9,11 @@ cast_code(file, type, year, folder.path = NULL, keep.col = c("code", "name"))
 \arguments{
 \item{file}{File names}
 
-\item{type}{Hvilket nivå f.eks fylke, kommune osv.}
+\item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{year}{Året geokoder gjelder}
+\item{year}{Year of the selected code list}
 
-\item{folder.path}{Sti til mappen hvor filene ligger}
+\item{folder.path}{Folder path to the files}
 
 \item{keep.col}{Exisiting column names to be kept}
 }

@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="Set geo codes changes — geo_set" />
-<meta property="og:description" content="The downloaded file of geo codes for respective granularity from SSB in csv
-format and codes that have changed copied from Endringer tab and pasted into
+<meta property="og:description" content="The downloaded file of geo codes for specific year from SSB is saved in csv
+format. The codes that have changed are copied from Endringer tab and pasted into
 an Excel file. The .csv and .xlsx files will than be merged by running this function." />
 
 
@@ -74,7 +74,7 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -116,8 +116,8 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
     </div>
 
     <div class="ref-description">
-    <p>The downloaded file of geo codes for respective granularity from SSB in <code>csv</code>
-format and codes that have changed copied from <em>Endringer</em> tab and pasted into
+    <p>The downloaded file of geo codes for specific year from SSB is saved in <code>csv</code>
+format. The codes that have changed are copied from <em>Endringer</em> tab and pasted into
 an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be merged by running this function.</p>
     </div>
 
@@ -128,8 +128,7 @@ an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be m
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span>),
   <span class='kw'>folder.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>filegeo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>filechg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>filechg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -137,42 +136,38 @@ an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be m
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>grep.file</th>
-      <td><p>Felles navn til filene. Funker med bare noen ord eg. "jan2019"</p></td>
+      <td><p>Common file name for the selected period eg. "jan2019"</p></td>
     </tr>
     <tr>
       <th>grep.change</th>
-      <td><p>Navn til endringsfil eg. "change"</p></td>
+      <td><p>Common name for <code>xlsx</code> file for code change eg. "change"</p></td>
     </tr>
     <tr>
       <th>year</th>
-      <td><p>Året geokoder gjelder</p></td>
+      <td><p>Year of the selected code list</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Hvilket nivå f.eks fylke, kommune osv.</p></td>
+      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
     </tr>
     <tr>
       <th>folder.path</th>
-      <td><p>Sti til mappen hvor filene ligger</p></td>
+      <td><p>Folder path to the files</p></td>
     </tr>
     <tr>
       <th>filegeo</th>
-      <td><p>CSV fil for alle geokoder</p></td>
+      <td><p>Specify <code>csv</code> file for geocode if grep.file is empty</p></td>
     </tr>
     <tr>
       <th>filechg</th>
-      <td><p>Excel fil for kode endringer</p></td>
-    </tr>
-    <tr>
-      <th>raw</th>
-      <td><p>If TRUE then specify direct filename in <code>filegeo</code> and <code>filechg</code></p></td>
+      <td><p>Specify <code>xlsx</code> file name and location if <code>grep.change</code> is empty</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Følgende dataset produseres:</p><ul>
-<li><p>DT     : The whole merged dataset</p></li>
+    <p>The following dataset will be generated:</p><ul>
+<li><p>data   : The whole merged dataset</p></li>
 <li><p>xl     : The xlsx file</p></li>
 <li><p>change : Path where the change file is if <code>raw = FALSE</code></p></li>
 <li><p>code   : Path where the <code>csv</code> file is if <code>raw = FALSE</code></p></li>

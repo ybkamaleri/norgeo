@@ -13,9 +13,9 @@ read_ssb(
 )
 }
 \arguments{
-\item{folder.path}{Sti til mappen hvor filene ligger}
+\item{folder.path}{Folder path to the files}
 
-\item{type}{Hvilket nivå f.eks fylke, kommune osv.}
+\item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
 \item{sep}{The separate symbols in the CSV file. Use ".." if lazy to check}
 

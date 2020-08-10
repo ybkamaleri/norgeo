@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • norgeo</title>
+<title>Get change from complete geo list — geo_change • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get change from complete geo list — geo_change" />
+<meta property="og:description" content="Create table for code changes when table tracking the changes isn't already available from SSB.
+This function will be using a reference colum other than geo code ie. names. Therefore this
+function should be used with caution. The output can be save as xlsx or csv." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,102 +108,69 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get change from complete geo list</h1>
+    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/geo_change.R'><code>R/geo_change.R</code></a></small>
+    <div class="hidden name"><code>geo_change.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Create table for code changes when table tracking the changes isn't already available from SSB.
+This function will be using a reference colum other than geo code ie. names. Therefore this
+function should be used with caution. The output can be save as <code>xlsx</code> or <code>csv</code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>geo_change</span>(
+  <span class='no'>files</span>,
+  <span class='no'>years</span>,
+  <span class='no'>type</span>,
+  <span class='no'>folder.path</span>,
+  <span class='kw'>save</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"no"</span>, <span class='st'>"xls"</span>, <span class='st'>"csv"</span>),
+  <span class='no'>des.path</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="cast_code.html">cast_code()</a></code> </p>
-        </td>
-        <td><p>Add lower granularity when applicable</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_change.html">find_change()</a></code> </p>
-        </td>
-        <td><p>Find changes from previous year</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_cast.html">geo_cast()</a></code> </p>
-        </td>
-        <td><p>Add lower granularity to all files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_change.html">geo_change()</a></code> </p>
-        </td>
-        <td><p>Get change from complete geo list</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_merge.html">geo_merge()</a></code> </p>
-        </td>
-        <td><p>Merge all geo codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_save.html">geo_save()</a></code> </p>
-        </td>
-        <td><p>Save geo codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_set.html">geo_set()</a></code> </p>
-        </td>
-        <td><p>Set geo codes changes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="merge_multi.html">merge_multi()</a></code> </p>
-        </td>
-        <td><p>Multiple changes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="norgeo.html">norgeo</a></code> </p>
-        </td>
-        <td><p>norgeo : A package for tracking geo codes changes in Norway</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_ssb.html">read_ssb()</a></code> </p>
-        </td>
-        <td><p>Read raw CSV files from SSB to R object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="select_ssb.html">select_ssb()</a></code> </p>
-        </td>
-        <td><p>Select files</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>files</th>
+      <td><p>A list of files to find geo codes changes</p></td>
+    </tr>
+    <tr>
+      <th>years</th>
+      <td><p>A list of years for these files</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
+    </tr>
+    <tr>
+      <th>folder.path</th>
+      <td><p>Folder path to the files</p></td>
+    </tr>
+    <tr>
+      <th>save</th>
+      <td><p>Which format to use to save the output</p></td>
+    </tr>
+    <tr>
+      <th>des.path</th>
+      <td><p>Destination folder where the file to be saved</p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ssb_bydel_jan2004.csv"</span>, <span class='st'>"ssb_bydel_jan2018.csv"</span>, <span class='st'>"ssb_bydel_jan2020.csv"</span>)
+<span class='no'>years</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2004</span>, <span class='fl'>2018</span>, <span class='fl'>2020</span>)
+<span class='no'>folder</span> <span class='kw'>=</span> <span class='st'>"C:/geo/bydel"</span>
+<span class='no'>des</span> <span class='kw'>=</span> <span class='st'>"C:/geo/bydel/output"</span>
+
+<span class='fu'>geo_change</span>(<span class='kw'>files</span><span class='kw'>=</span><span class='no'>files</span>, <span class='kw'>years</span><span class='kw'>=</span><span class='no'>years</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"bydel"</span>,<span class='kw'>folder.path</span><span class='kw'>=</span><span class='no'>folder</span>, <span class='kw'>save</span><span class='kw'>=</span><span class='st'>"xls"</span>, <span class='kw'>des.path</span><span class='kw'>=</span><span class='no'>des</span>)
+}</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

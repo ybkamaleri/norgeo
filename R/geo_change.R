@@ -20,13 +20,13 @@
 #' folder = "C:/geo/bydel"
 #' des = "C:/geo/bydel/output"
 #'
-#' get_change(files=files, years=years, type="bydel",folder.path=folder, save="xls", des.path=des)
+#' geo_change(files=files, years=years, type="bydel",folder.path=folder, save="xls", des.path=des)
 #' }
 #'
 #' @export
 
 
-get_change <- function(files,
+geo_change <- function(files,
                        years,
                        type,
                        folder.path,

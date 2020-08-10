@@ -53,22 +53,22 @@ added. The codes below show how the function is used:
 folder <- "F:/org/kommune"
 
 kom2018 <- geo_set("jan2018",
-                      "change",
-                      year = 2018,
-                      type = "kommune",
-                      folder.path = folder)
+                   "change",
+                   year = 2018,
+                   type = "kommune",
+                   folder.path = folder)
 
 kom2019 <- geo_set("jan2019",
-                      "change",
-                      year = 2019,
-                      type = "kommune",
-                      folder.path = folder)
+                   "change",
+                   year = 2019,
+                   type = "kommune",
+                   folder.path = folder)
 
 kom2020 <- geo_set("jan2020",
-                      "change",
-                      year = 2020,
-                      type = "kommune",
-                      folder.path = folder)
+                   "change",
+                   year = 2020,
+                   type = "kommune",
+                   folder.path = folder)
 ```
 
 ### Merge changes
@@ -90,6 +90,8 @@ includes:
 
 komfiles <- list(kom2018, kom2019, kom2020)
 DF <- geo_merge(files = komfiles)
+
+# show only codes that have changed
 geo_merge(files = komfiles, output = "change")
 ```
 
@@ -103,7 +105,7 @@ ordinary files such as Excel or text file.
 fpath = "C:/Users/ybka/dbms"
 
 geo_save(tblname = "tblTest",
-         obj = DT,
+         obj = DF,
          des.path = fpath,
          file.type = "Excel")
 ```
@@ -164,7 +166,7 @@ dbpath = "C:/Users/ybka/dbms"
 dbname = "geo_ssb.accdb"
 
 geo_save(tblname = "tblGeo",
-         obj = bigDT,
+         obj = bigDF,
          des.path = dbpath,
          file.type = "Access",
          db.name = dbname)
@@ -191,7 +193,7 @@ years = c(2004, 2018, 2020)
 folder = "C:/geo/bydel"
 des = "C:/geo/bydel/output"
 
-get_change(files=files,
+geo_change(files=files,
            years=years,
            type="bydel",
            folder.path=folder,

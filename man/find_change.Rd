@@ -2,7 +2,7 @@
 % Please edit documentation in R/find_change.R
 \name{find_change}
 \alias{find_change}
-\title{Find changes from previus year}
+\title{Find changes from previous year}
 \usage{
 find_change(newCode, preCode, raw = TRUE)
 }
@@ -14,5 +14,5 @@ find_change(newCode, preCode, raw = TRUE)
 \item{raw}{If FALSE then specify a data.table object}
 }
 \description{
-Which codes that have changed since previous codes
+Which codes have changed since one of the previous years
 }

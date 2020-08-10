@@ -618,22 +618,22 @@ body {
 <span id="cb2-2"><a href="#cb2-2"></a>folder &lt;-<span class="st"> &quot;F:/org/kommune&quot;</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
 <span id="cb2-4"><a href="#cb2-4"></a>kom2018 &lt;-<span class="st"> </span><span class="kw">geo_set</span>(<span class="st">&quot;jan2018&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>                      <span class="st">&quot;change&quot;</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>                      <span class="dt">year =</span> <span class="dv">2018</span>,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>                      <span class="dt">type =</span> <span class="st">&quot;kommune&quot;</span>,</span>
-<span id="cb2-8"><a href="#cb2-8"></a>                      <span class="dt">folder.path =</span> folder)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>                   <span class="st">&quot;change&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>                   <span class="dt">year =</span> <span class="dv">2018</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>                   <span class="dt">type =</span> <span class="st">&quot;kommune&quot;</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>                   <span class="dt">folder.path =</span> folder)</span>
 <span id="cb2-9"><a href="#cb2-9"></a></span>
 <span id="cb2-10"><a href="#cb2-10"></a>kom2019 &lt;-<span class="st"> </span><span class="kw">geo_set</span>(<span class="st">&quot;jan2019&quot;</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>                      <span class="st">&quot;change&quot;</span>,</span>
-<span id="cb2-12"><a href="#cb2-12"></a>                      <span class="dt">year =</span> <span class="dv">2019</span>,</span>
-<span id="cb2-13"><a href="#cb2-13"></a>                      <span class="dt">type =</span> <span class="st">&quot;kommune&quot;</span>,</span>
-<span id="cb2-14"><a href="#cb2-14"></a>                      <span class="dt">folder.path =</span> folder)</span>
+<span id="cb2-11"><a href="#cb2-11"></a>                   <span class="st">&quot;change&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>                   <span class="dt">year =</span> <span class="dv">2019</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>                   <span class="dt">type =</span> <span class="st">&quot;kommune&quot;</span>,</span>
+<span id="cb2-14"><a href="#cb2-14"></a>                   <span class="dt">folder.path =</span> folder)</span>
 <span id="cb2-15"><a href="#cb2-15"></a></span>
 <span id="cb2-16"><a href="#cb2-16"></a>kom2020 &lt;-<span class="st"> </span><span class="kw">geo_set</span>(<span class="st">&quot;jan2020&quot;</span>,</span>
-<span id="cb2-17"><a href="#cb2-17"></a>                      <span class="st">&quot;change&quot;</span>,</span>
-<span id="cb2-18"><a href="#cb2-18"></a>                      <span class="dt">year =</span> <span class="dv">2020</span>,</span>
-<span id="cb2-19"><a href="#cb2-19"></a>                      <span class="dt">type =</span> <span class="st">&quot;kommune&quot;</span>,</span>
-<span id="cb2-20"><a href="#cb2-20"></a>                      <span class="dt">folder.path =</span> folder)</span></code></pre></div>
+<span id="cb2-17"><a href="#cb2-17"></a>                   <span class="st">&quot;change&quot;</span>,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>                   <span class="dt">year =</span> <span class="dv">2020</span>,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>                   <span class="dt">type =</span> <span class="st">&quot;kommune&quot;</span>,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>                   <span class="dt">folder.path =</span> folder)</span></code></pre></div>
 <h3 id="merge-changes">Merge changes</h3>
 <p>To merge all these files into a big dataset, use <code>geo_merge()</code> function. Important to note that input for <code>geo_merge()</code> must be a <strong>list</strong> and they are arranged from oldest to most recent codes. Available output includes:</p>
 <ul>
@@ -647,13 +647,15 @@ body {
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2"></a>komfiles &lt;-<span class="st"> </span><span class="kw">list</span>(kom2018, kom2019, kom2020)</span>
 <span id="cb3-3"><a href="#cb3-3"></a>DF &lt;-<span class="st"> </span><span class="kw">geo_merge</span>(<span class="dt">files =</span> komfiles)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">geo_merge</span>(<span class="dt">files =</span> komfiles, <span class="dt">output =</span> <span class="st">&quot;change&quot;</span>)</span></code></pre></div>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># show only codes that have changed</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">geo_merge</span>(<span class="dt">files =</span> komfiles, <span class="dt">output =</span> <span class="st">&quot;change&quot;</span>)</span></code></pre></div>
 <h3 id="save-codes">Save codes</h3>
 <p>The output created from <code>geo_merge()</code> i.e <code>DF</code>, can be saved in a database management system (DBMS) which include Access and SQLite, or as ordinary files such as Excel or text file.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>fpath =<span class="st"> &quot;C:/Users/ybka/dbms&quot;</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="kw">geo_save</span>(<span class="dt">tblname =</span> <span class="st">&quot;tblTest&quot;</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>         <span class="dt">obj =</span> DT,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>         <span class="dt">obj =</span> DF,</span>
 <span id="cb4-5"><a href="#cb4-5"></a>         <span class="dt">des.path =</span> fpath,</span>
 <span id="cb4-6"><a href="#cb4-6"></a>         <span class="dt">file.type =</span> <span class="st">&quot;Excel&quot;</span>)</span></code></pre></div>
 <h2 id="add-granularity">Add granularity</h2>
@@ -692,7 +694,7 @@ body {
 <span id="cb7-2"><a href="#cb7-2"></a>dbname =<span class="st"> &quot;geo_ssb.accdb&quot;</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="kw">geo_save</span>(<span class="dt">tblname =</span> <span class="st">&quot;tblGeo&quot;</span>,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>         <span class="dt">obj =</span> bigDT,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>         <span class="dt">obj =</span> bigDF,</span>
 <span id="cb7-6"><a href="#cb7-6"></a>         <span class="dt">des.path =</span> dbpath,</span>
 <span id="cb7-7"><a href="#cb7-7"></a>         <span class="dt">file.type =</span> <span class="st">&quot;Access&quot;</span>,</span>
 <span id="cb7-8"><a href="#cb7-8"></a>         <span class="dt">db.name =</span> dbname)</span></code></pre></div>
@@ -706,7 +708,7 @@ body {
 <span id="cb8-5"><a href="#cb8-5"></a>folder =<span class="st"> &quot;C:/geo/bydel&quot;</span></span>
 <span id="cb8-6"><a href="#cb8-6"></a>des =<span class="st"> &quot;C:/geo/bydel/output&quot;</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">get_change</span>(<span class="dt">files=</span>files,</span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">geo_change</span>(<span class="dt">files=</span>files,</span>
 <span id="cb8-9"><a href="#cb8-9"></a>           <span class="dt">years=</span>years,</span>
 <span id="cb8-10"><a href="#cb8-10"></a>           <span class="dt">type=</span><span class="st">&quot;bydel&quot;</span>,</span>
 <span id="cb8-11"><a href="#cb8-11"></a>           <span class="dt">folder.path=</span>folder,</span>
