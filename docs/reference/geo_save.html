@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • norgeo</title>
+<title>Save geo codes — geo_save • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Save geo codes — geo_save" />
+<meta property="og:description" content="Geo codes can be saved either in a database management system (DBMS) or
+as an Excel or text file." />
 
 
 
@@ -108,17 +109,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Save geo codes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/save_geo.R'><code>R/save_geo.R</code></a></small>
+    <div class="hidden name"><code>geo_save.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>Geo codes can be saved either in a database management system (DBMS) or
+as an Excel or text file.</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>geo_save</span>(
+  <span class='kw'>tblname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>obj</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>des.path</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Access"</span>, <span class='st'>"SQLite"</span>, <span class='st'>"Excel"</span>, <span class='st'>"Text"</span>),
+  <span class='kw'>db.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>tblname</th>
+      <td><p>Name of the table to be saved as</p></td>
+    </tr>
+    <tr>
+      <th>obj</th>
+      <td><p>Object name to be saved</p></td>
+    </tr>
+    <tr>
+      <th>des.path</th>
+      <td><p>Destination folder where the file to be saved</p></td>
+    </tr>
+    <tr>
+      <th>file.type</th>
+      <td><p>Choose file type as Access, SQLite, Excel or Text</p></td>
+    </tr>
+    <tr>
+      <th>db.name</th>
+      <td><p>When choosing a DBMS then specify the database name</p></td>
+    </tr>
+    </table>
 
 
   </div>
