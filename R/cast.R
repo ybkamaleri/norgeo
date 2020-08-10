@@ -5,7 +5,7 @@
 #'
 #' @param file Files names with complete path to the files
 #' @param type Types equivalent to the file names. Must be the same order with file names
-#' @inheritParams add_change
+#' @inheritParams geo_set
 #' @inheritParams cast_geo
 #'
 #' @examples
@@ -69,7 +69,7 @@ cast_all <- function(file, type, year, keep.col = c("code", "name")){
 #'
 #' @param file File names
 #' @param keep.col Exisiting column names to be kept
-#' @inheritParams add_change
+#' @inheritParams geo_set
 #'
 #' @examples
 #'

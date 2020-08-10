@@ -40,25 +40,25 @@ You have to download the files from SSB and save it as a `csv` file. For the cod
 
 ### Add changes
 
-The `add_change()` function is the most important function to start with. This function will create an object that is easily used by other available functions in `norgeo`. This is where raw data in `csv` and `xlsx` formats will be merged. Additional information will also be added. The codes below show how the function is used:
+The `geo_set()` function is the most important function to start with. This function will create an object that is easily used by other available functions in `norgeo`. This is where raw data in `csv` and `xlsx` formats will be merged. Additional information will also be added. The codes below show how the function is used:
 
 ```{r add-change, eval=FALSE}
 ## specify the folder where kommune files are
 folder <- "F:/org/kommune"
 
-kom2018 <- add_change("jan2018",
+kom2018 <- geo_set("jan2018",
                       "change",
                       year = 2018,
                       type = "kommune",
                       folder.path = folder)
 
-kom2019 <- add_change("jan2019",
+kom2019 <- geo_set("jan2019",
                       "change",
                       year = 2019,
                       type = "kommune",
                       folder.path = folder)
 
-kom2020 <- add_change("jan2020",
+kom2020 <- geo_set("jan2020",
                       "change",
                       year = 2020,
                       type = "kommune",
@@ -152,7 +152,7 @@ save_geo(tblname = "tblGeo",
 
 ## Change codes
 
-The steps above depends on two type of data ie. current valid codes which is in a `csv` format and codes that have changed in a `xlsx` format. When table for code changes isn't available, we have to create one to be able to use the `add_change()` function. For example granularity *bydel* has no table of code change in SSB website.
+The steps above depends on two type of data ie. current valid codes which is in a `csv` format and codes that have changed in a `xlsx` format. When table for code changes isn't available, we have to create one to be able to use the `geo_set()` function. For example granularity *bydel* has no table of code change in SSB website.
 
 To create the table from the available `csv` files, we have to decide a reference column other than geo code such as `names`. Therefore this function should be used with caution. The output can be saved as `xlsx` or `csv`.
 

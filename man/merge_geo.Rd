@@ -20,7 +20,7 @@ merge_geo(files, output = c("all", "change", "split", "merge", "complete"))
 }
 \description{
 Create a table with all geo change and year. The files for the argument must be
-the output object from \code{add_change()} function.
+the output object from \code{geo_set()} function.
 }
 \examples{
 

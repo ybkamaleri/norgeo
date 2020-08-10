@@ -1,7 +1,7 @@
 #' Merge all geo codes
 #'
 #' Create a table with all geo change and year. The files for the argument must be
-#' the output object from `add_change()` function.
+#' the output object from `geo_set()` function.
 #'
 #' @param files A list of objects to be merged. The order must be from lowest to highest year.
 #' @param output Data output which can be one of these:

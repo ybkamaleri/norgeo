@@ -8,7 +8,7 @@
 #' @param years A list of years for these files
 #' @param save Which format to use to save the output
 #' @param des.path Destination folder where the file to be saved
-#' @inheritParams add_change
+#' @inheritParams geo_set
 #'
 #' @import data.table
 #'

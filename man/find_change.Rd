@@ -7,9 +7,9 @@
 find_change(newCode, preCode, raw = TRUE)
 }
 \arguments{
-\item{newCode}{Object produced from \code{add_change} for newer codes}
+\item{newCode}{Object produced from \code{geo_set} for newer codes}
 
-\item{preCode}{Object produced from \code{add_change} for previous codes}
+\item{preCode}{Object produced from \code{geo_set} for previous codes}
 
 \item{raw}{If FALSE then specify a data.table object}
 }
