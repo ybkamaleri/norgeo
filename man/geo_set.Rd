@@ -11,8 +11,7 @@ geo_set(
   type = c("land", "fylke", "kommune", "bydel", "grunnkrets"),
   folder.path = NULL,
   filegeo = NULL,
-  filechg = NULL,
-  raw = FALSE
+  filechg = NULL
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ geo_set(
 \item{filegeo}{Specify \code{csv} file for geocode if grep.file is empty}
 
 \item{filechg}{Specify \code{xlsx} file name and location if \code{grep.change} is empty}
-
-\item{raw}{If TRUE then specify direct filename in \code{filegeo} and \code{filechg}}
 }
 \description{
 The downloaded file of geo codes for specific year from SSB is saved in \code{csv}

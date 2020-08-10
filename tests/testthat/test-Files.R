@@ -4,7 +4,6 @@ test_that("File reference error", {
 
     expect_error(geo_set(filegeo = "file1.csv",
                          filechg = c("file2.xlsx", "file3.xlsx"),
-                         raw = TRUE,
                          year = 2019
                          ), "File not found", ignore.case = TRUE)
 })
@@ -14,7 +13,6 @@ test_that("Year missing", {
 
     expect_error(geo_set(filegeo = "file1.csv",
                          filechg = c("file2.xlsx", "file3.xlsx"),
-                         raw = TRUE
                          ), "Year", ignore.case = TRUE)
 })
 

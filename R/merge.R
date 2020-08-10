@@ -83,7 +83,7 @@ geo_merge <- function(files,
 
     ## Clean up duplicated raws if exist and
     ## delete codes that have not changed ie. column for 'prev' is NA
-    dtClean <- clean_dup(x = changeDT, xCodes = recentCodes)
+    dtClean <- clean_dup(xDT = changeDT, xCodes = recentCodes)
 
     ## Merge everything to recent geo list
     ## ---------------------------------------
