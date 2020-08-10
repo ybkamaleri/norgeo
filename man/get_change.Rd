@@ -18,9 +18,9 @@ get_change(
 
 \item{years}{A list of years for these files}
 
-\item{type}{Hvilket nivå f.eks fylke, kommune osv.}
+\item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{folder.path}{Sti til mappen hvor filene ligger}
+\item{folder.path}{Folder path to the files}
 
 \item{save}{Which format to use to save the output}
 

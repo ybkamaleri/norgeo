@@ -6,7 +6,7 @@
 #'
 #' The following dataset will be generated:
 #' \itemize{
-#'   \item DT     : The whole merged dataset
+#'   \item data   : The whole merged dataset
 #'   \item xl     : The xlsx file
 #'   \item change : Path where the change file is if \code{raw = FALSE}
 #'   \item code   : Path where the `csv` file is if \code{raw = FALSE}
@@ -60,12 +60,12 @@ geo_set <- function(grep.file = NULL,
 
         fileGeo <- ssb$allfile
         fileChg <- ssb$chgfile
-
     }
+
 
     fileErr <- length(fileGeo) + length(fileChg)
     if (fileErr != 2) {stop("File not found or too many! run `select_ssb()`")}
-
+    
     ## Changes files - must be an Excel file
     ## -------------------------------------
     xlTbl <- readxl::read_excel(fileChg)
@@ -92,7 +92,7 @@ geo_set <- function(grep.file = NULL,
     xlTbl[, year := year, ]
 
     ## replace missing string with last observed carried forward (locf)
-    setnafill(xlTbl, type = "locf", cols = "curr") #only for numeric
+    data.table::setnafill(xlTbl, type = "locf", cols = "curr") #only for numeric
     ## For string
     while(length(ind <- which(is.na(xlTbl$currName))) > 0){
         xlTbl$currName[ind] <- xlTbl$currName[ind - 1]
@@ -121,6 +121,10 @@ geo_set <- function(grep.file = NULL,
     otherCols <- setdiff(names(DT), mainCols)
     setcolorder(DT, c(mainCols, otherCols))
 
-    list(DT = DT[], xl = xlTbl[], change = fileChg, code = fileGeo, type = type)
+    list(data = DT[],
+         xl = xlTbl[],
+         change = fileChg,
+         code = fileGeo,
+         type = type)
 
 }

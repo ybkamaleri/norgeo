@@ -11,7 +11,7 @@ geo_cast(file, type, year, keep.col = c("code", "name"))
 
 \item{type}{Types equivalent to the file names. Must be the same order with file names}
 
-\item{year}{Året geokoder gjelder}
+\item{year}{Year of the selected code list}
 
 \item{keep.col}{Exisiting column names to be kept}
 }

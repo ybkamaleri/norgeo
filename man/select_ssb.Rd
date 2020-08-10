@@ -7,11 +7,11 @@
 select_ssb(grep.file = NULL, grep.change = NULL, folder.path = NULL)
 }
 \arguments{
-\item{grep.file}{Felles navn til filene. Funker med bare noen ord eg. "jan2019"}
+\item{grep.file}{Common file name for the selected period eg. "jan2019"}
 
-\item{grep.change}{Navn til endringsfil eg. "change"}
+\item{grep.change}{Common name for \code{xlsx} file for code change eg. "change"}
 
-\item{folder.path}{Sti til mappen hvor filene ligger}
+\item{folder.path}{Folder path to the files}
 }
 \description{
 Use \code{regex} to select files
