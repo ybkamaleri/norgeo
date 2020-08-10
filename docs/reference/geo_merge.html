@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • norgeo</title>
+<title>Merge all geo codes — geo_merge • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Merge all geo codes — geo_merge" />
+<meta property="og:description" content="Create a table with all geo change and year. The files for the argument must be
+the output object from geo_set() function." />
 
 
 
@@ -108,19 +109,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Merge all geo codes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/merge_geo.R'><code>R/merge_geo.R</code></a></small>
+    <div class="hidden name"><code>geo_merge.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>Create a table with all geo change and year. The files for the argument must be
+the output object from <code><a href='geo_set.html'>geo_set()</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>geo_merge</span>(<span class='no'>files</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"all"</span>, <span class='st'>"change"</span>, <span class='st'>"split"</span>, <span class='st'>"merge"</span>, <span class='st'>"complete"</span>))</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>files</th>
+      <td><p>A list of objects to be merged. The order must be from lowest to highest year.</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>Data output which can be one of these:</p><ul>
+<li><p><code>all</code>      : Dataset for all data. This is the default output</p></li>
+<li><p><code>change</code>   : Dataset that include only codes that have changed</p></li>
+<li><p><code>split</code>    : Dataset for codes that have been divided to at least two newer codes</p></li>
+<li><p><code>merge</code>    : Dataset for at least two codes that are been merged into one</p></li>
+<li><p><code>complete</code> : A list of all different outputs</p></li>
+</ul></td>
+    </tr>
+    </table>
 
 
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>DT</span> <span class='kw'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>kommune2018</span>, <span class='no'>kommune2019</span>, <span class='no'>kommune2020</span>))
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

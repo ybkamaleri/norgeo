@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -91,23 +91,23 @@
 <div id="add-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#add-changes" class="anchor"></a>Add changes</h3>
-<p>The <code><a href="reference/add_change.html">add_change()</a></code> function is the most important function to start with. This function will create an object that is easily used by other available functions in <code>norgeo</code>. This is where raw data in <code>csv</code> and <code>xlsx</code> formats will be merged. Additional information will also be added. The codes below show how the function is used:</p>
+<p>The <code><a href="reference/geo_set.html">geo_set()</a></code> function is the most important function to start with. This function will create an object that is easily used by other available functions in <code>norgeo</code>. This is where raw data in <code>csv</code> and <code>xlsx</code> formats will be merged. Additional information will also be added. The codes below show how the function is used:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="co">## specify the folder where kommune files are</span>
 <span class="no">folder</span> <span class="kw">&lt;-</span> <span class="st">"F:/org/kommune"</span>
 
-<span class="no">kom2018</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/add_change.html">add_change</a></span>(<span class="st">"jan2018"</span>,
+<span class="no">kom2018</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2018"</span>,
                       <span class="st">"change"</span>,
                       <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2018</span>,
                       <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
                       <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
 
-<span class="no">kom2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/add_change.html">add_change</a></span>(<span class="st">"jan2019"</span>,
+<span class="no">kom2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2019"</span>,
                       <span class="st">"change"</span>,
                       <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>,
                       <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
                       <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
 
-<span class="no">kom2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/add_change.html">add_change</a></span>(<span class="st">"jan2020"</span>,
+<span class="no">kom2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2020"</span>,
                       <span class="st">"change"</span>,
                       <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2020</span>,
                       <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
@@ -116,7 +116,7 @@
 <div id="merge-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#merge-changes" class="anchor"></a>Merge changes</h3>
-<p>To merge all these files into a big dataset, use <code><a href="reference/merge_geo.html">merge_geo()</a></code> function. Important to note that input for <code><a href="reference/merge_geo.html">merge_geo()</a></code> must be a <strong>list</strong> and they are arranged from oldest to most recent codes. Available output includes:</p>
+<p>To merge all these files into a big dataset, use <code><a href="reference/geo_merge.html">geo_merge()</a></code> function. Important to note that input for <code><a href="reference/geo_merge.html">geo_merge()</a></code> must be a <strong>list</strong> and they are arranged from oldest to most recent codes. Available output includes:</p>
 <ul>
 <li>
 <code>all</code> : All merged codes. This is the default</li>
@@ -129,16 +129,16 @@
 </ul>
 <!-- end list --><div class="sourceCode" id="cb3"><pre class="r">
 <span class="no">komfiles</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">kom2018</span>, <span class="no">kom2019</span>, <span class="no">kom2020</span>)
-<span class="no">DF</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/merge_geo.html">merge_geo</a></span>(<span class="kw">files</span> <span class="kw">=</span> <span class="no">komfiles</span>)
-<span class="fu"><a href="reference/merge_geo.html">merge_geo</a></span>(<span class="kw">files</span> <span class="kw">=</span> <span class="no">komfiles</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"change"</span>)</pre></div>
+<span class="no">DF</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_merge.html">geo_merge</a></span>(<span class="kw">files</span> <span class="kw">=</span> <span class="no">komfiles</span>)
+<span class="fu"><a href="reference/geo_merge.html">geo_merge</a></span>(<span class="kw">files</span> <span class="kw">=</span> <span class="no">komfiles</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"change"</span>)</pre></div>
 </div>
 <div id="save-codes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#save-codes" class="anchor"></a>Save codes</h3>
-<p>The output created from <code><a href="reference/merge_geo.html">merge_geo()</a></code> i.e <code>DF</code>, can be saved in a database management system (DBMS) which include Access and SQLite, or as ordinary files such as Excel or text file.</p>
+<p>The output created from <code><a href="reference/geo_merge.html">geo_merge()</a></code> i.e <code>DF</code>, can be saved in a database management system (DBMS) which include Access and SQLite, or as ordinary files such as Excel or text file.</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">fpath</span> <span class="kw">=</span> <span class="st">"C:/Users/ybka/dbms"</span>
 
-<span class="fu"><a href="reference/save_geo.html">save_geo</a></span>(<span class="kw">tblname</span> <span class="kw">=</span> <span class="st">"tblTest"</span>,
+<span class="fu"><a href="reference/geo_save.html">geo_save</a></span>(<span class="kw">tblname</span> <span class="kw">=</span> <span class="st">"tblTest"</span>,
          <span class="kw">obj</span> <span class="kw">=</span> <span class="no">DT</span>,
          <span class="kw">des.path</span> <span class="kw">=</span> <span class="no">fpath</span>,
          <span class="kw">file.type</span> <span class="kw">=</span> <span class="st">"Excel"</span>)</pre></div>
@@ -147,7 +147,7 @@
 <div id="add-granularity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-granularity" class="anchor"></a>Add granularity</h2>
-<p>The function <code><a href="reference/cast_all.html">cast_all()</a></code> will add lower granularity to all files when applicable. It means for <em>kommune</em> files, a new <code>fylke</code> column will be added, while column <code>fylke</code> and <code>kommune</code> will be added to a <em>bydel</em> and <em>grunnkrets</em> files.</p>
+<p>The function <code><a href="reference/geo_cast.html">geo_cast()</a></code> will add lower granularity to all files when applicable. It means for <em>kommune</em> files, a new <code>fylke</code> column will be added, while column <code>fylke</code> and <code>kommune</code> will be added to a <em>bydel</em> and <em>grunnkrets</em> files.</p>
 <div class="sourceCode" id="cb5"><pre class="r">
 <span class="co">## Geo 2019</span>
 <span class="no">file2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"F:/Geo/fylke/fylke_jan2019.csv"</span>,
@@ -158,7 +158,7 @@
 <span class="no">fileTyp2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"grunnkrets"</span>)
 
 
-<span class="no">DF2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cast_all.html">cast_all</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">file2019</span>,
+<span class="no">DF2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_cast.html">geo_cast</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">file2019</span>,
                    <span class="kw">type</span> <span class="kw">=</span> <span class="no">fileTyp2019</span>,
                    <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>)
 
@@ -171,17 +171,17 @@
 <span class="no">fileTyp2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"grunnkrets"</span>)
 
 
-<span class="no">DF2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cast_all.html">cast_all</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">file2020</span>,
+<span class="no">DF2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_cast.html">geo_cast</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">file2020</span>,
                    <span class="kw">type</span> <span class="kw">=</span> <span class="no">fileTyp2020</span>,
                    <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2020</span>)</pre></div>
-<p>Running <code><a href="reference/cast_all.html">cast_all()</a></code> will also add a new row for granularity <code>land</code> which has code <code>0</code>. The output from the above example can then be merged to a file and saved to the file type one wishes. To bind all the output, you can use the base R <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> function or <code>rbindlist()</code> function from <code>data.table</code> package.</p>
+<p>Running <code><a href="reference/geo_cast.html">geo_cast()</a></code> will also add a new row for granularity <code>land</code> which has code <code>0</code>. The output from the above example can then be merged to a file and saved to the file type one wishes. To bind all the output, you can use the base R <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> function or <code>rbindlist()</code> function from <code>data.table</code> package.</p>
 <div class="sourceCode" id="cb6"><pre class="r">
 <span class="no">bigDF</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">DF2019</span>, <span class="no">DF2020</span>)</pre></div>
-<p>To save the final result, <code><a href="reference/save_geo.html">save_geo()</a></code> function can be used as explained above. Database file must be available prior to saving it as a database table. In the example below it’s <code>geo_ssb.accdb</code>.</p>
+<p>To save the final result, <code><a href="reference/geo_save.html">geo_save()</a></code> function can be used as explained above. Database file must be available prior to saving it as a database table. In the example below it’s <code>geo_ssb.accdb</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="no">dbpath</span> <span class="kw">=</span> <span class="st">"C:/Users/ybka/dbms"</span>
 <span class="no">dbname</span> <span class="kw">=</span> <span class="st">"geo_ssb.accdb"</span>
 
-<span class="fu"><a href="reference/save_geo.html">save_geo</a></span>(<span class="kw">tblname</span> <span class="kw">=</span> <span class="st">"tblGeo"</span>,
+<span class="fu"><a href="reference/geo_save.html">geo_save</a></span>(<span class="kw">tblname</span> <span class="kw">=</span> <span class="st">"tblGeo"</span>,
          <span class="kw">obj</span> <span class="kw">=</span> <span class="no">bigDT</span>,
          <span class="kw">des.path</span> <span class="kw">=</span> <span class="no">dbpath</span>,
          <span class="kw">file.type</span> <span class="kw">=</span> <span class="st">"Access"</span>,
@@ -190,7 +190,7 @@
 <div id="change-codes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#change-codes" class="anchor"></a>Change codes</h2>
-<p>The steps above depends on two type of data ie. current valid codes which is in a <code>csv</code> format and codes that have changed in a <code>xlsx</code> format. When table for code changes isn’t available, we have to create one to be able to use the <code><a href="reference/add_change.html">add_change()</a></code> function. For example granularity <em>bydel</em> has no table of code change in SSB website.</p>
+<p>The steps above depends on two type of data ie. current valid codes which is in a <code>csv</code> format and codes that have changed in a <code>xlsx</code> format. When table for code changes isn’t available, we have to create one to be able to use the <code><a href="reference/geo_set.html">geo_set()</a></code> function. For example granularity <em>bydel</em> has no table of code change in SSB website.</p>
 <p>To create the table from the available <code>csv</code> files, we have to decide a reference column other than geo code such as <code>names</code>. Therefore this function should be used with caution. The output can be saved as <code>xlsx</code> or <code>csv</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="no">files</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ssb_bydel_jan2004.csv"</span>,
           <span class="st">"ssb_bydel_jan2018.csv"</span>,

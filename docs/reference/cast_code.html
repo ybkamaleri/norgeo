@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • norgeo</title>
+<title>Add lower granularity when applicable — cast_code • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Add lower granularity when applicable — cast_code" />
+<meta property="og:description" content="This function will add lower granularity to the current granularity when applicable.
+It means that when casting a kommune file, then columns for fylke will be added.
+For grunnkrets file then both kommune and fylke code will be added. This is based on
+the available table that can be downloaded from SSB. The file should be in a CSV format." />
 
 
 
@@ -108,19 +111,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Add lower granularity when applicable</h1>
+    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/cast.R'><code>R/cast.R</code></a></small>
+    <div class="hidden name"><code>cast_code.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>This function will add lower granularity to the current granularity when applicable.
+It means that when casting a kommune file, then columns for fylke will be added.
+For grunnkrets file then both kommune and fylke code will be added. This is based on
+the available table that can be downloaded from SSB. The file should be in a CSV format.</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>cast_code</span>(<span class='no'>file</span>, <span class='no'>type</span>, <span class='no'>year</span>, <span class='kw'>folder.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>keep.col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"code"</span>, <span class='st'>"name"</span>))</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>File names</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Hvilket nivå f.eks fylke, kommune osv.</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>Året geokoder gjelder</p></td>
+    </tr>
+    <tr>
+      <th>folder.path</th>
+      <td><p>Sti til mappen hvor filene ligger</p></td>
+    </tr>
+    <tr>
+      <th>keep.col</th>
+      <td><p>Exisiting column names to be kept</p></td>
+    </tr>
+    </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>file</span> <span class='kw'>=</span> <span class='st'>"ssb_grunnkrets_jan2020.csv"</span>
+<span class='no'>type</span> <span class='kw'>=</span> <span class='st'>"grunnkrets"</span>
+<span class='no'>year</span> <span class='kw'>=</span> <span class='fl'>2020</span>
+<span class='no'>keep.col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"code"</span>, <span class='st'>"name"</span>)
+<span class='no'>folder</span> <span class='kw'>=</span> <span class='st'>"C:/Users/geo/grunnkrets"</span>
 
+<span class='no'>DT</span> <span class='kw'>&lt;-</span> <span class='fu'>cast_code</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>file</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='no'>type</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='no'>year</span>, <span class='kw'>folder.path</span> <span class='kw'>=</span> <span class='no'>folder.path</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
