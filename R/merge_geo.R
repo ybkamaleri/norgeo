@@ -18,12 +18,12 @@
 #' @examples
 #'
 #' \dontrun{
-#' DT <- merge_geo(list(kommune2018, kommune2019, kommune2020))
+#' DT <- geo_merge(list(kommune2018, kommune2019, kommune2020))
 #' }
 #'
 #' @export
 
-merge_geo <- function(files, output = c("all", "change", "split", "merge", "complete")){
+geo_merge <- function(files, output = c("all", "change", "split", "merge", "complete")){
 
     if (inherits(files, "list") == 0) stop("Object for 'files' should be a list", call. = TRUE)
 

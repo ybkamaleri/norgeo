@@ -68,7 +68,7 @@ kom2020 <- geo_set("jan2020",
 
 ### Merge changes
 
-To merge all these files into a big dataset, use `merge_geo()` function. Important to note that input for `merge_geo()` must be a **list** and they are arranged from oldest to most recent codes. Available output includes:
+To merge all these files into a big dataset, use `geo_merge()` function. Important to note that input for `geo_merge()` must be a **list** and they are arranged from oldest to most recent codes. Available output includes:
 
   - `all`    : All merged codes. This is the default
   - `change` : Only codes that have changed
@@ -78,14 +78,14 @@ To merge all these files into a big dataset, use `merge_geo()` function. Importa
 ```{r merge-geo, eval=FALSE}
 
 komfiles <- list(kom2018, kom2019, kom2020)
-DF <- merge_geo(files = komfiles)
-merge_geo(files = komfiles, output = "change")
+DF <- geo_merge(files = komfiles)
+geo_merge(files = komfiles, output = "change")
 
 ```
 
 ### Save codes
 
-The output created from `merge_geo()` i.e `DF`, can be saved in a database management system (DBMS) which include Access and SQLite, or as ordinary files such as Excel or text file.
+The output created from `geo_merge()` i.e `DF`, can be saved in a database management system (DBMS) which include Access and SQLite, or as ordinary files such as Excel or text file.
 
 ```{r db, eval=FALSE}
 fpath = "C:/Users/ybka/dbms"
