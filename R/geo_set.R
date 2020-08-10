@@ -1,10 +1,10 @@
 #' Set geo codes changes
 #'
-#' The downloaded file of geo codes for respective granularity from SSB in `csv`
-#' format and codes that have changed copied from *Endringer* tab and pasted into
+#' The downloaded file of geo codes for specific year from SSB is saved in `csv`
+#' format. The codes that have changed are copied from *Endringer* tab and pasted into
 #' an Excel file. The `.csv` and `.xlsx` files will than be merged by running this function.
 #'
-#' Følgende dataset produseres:
+#' The following dataset will be generated:
 #' \itemize{
 #'   \item DT     : The whole merged dataset
 #'   \item xl     : The xlsx file
@@ -13,21 +13,20 @@
 #'   \item type   : The granularity level
 #' }
 #'
-#' @param grep.file Felles navn til filene. Funker med bare noen ord eg. "jan2019"
-#' @param grep.change Navn til endringsfil eg. "change"
-#' @param year    Året geokoder gjelder
-#' @param type    Hvilket nivå f.eks fylke, kommune osv.
-#' @param folder.path   Sti til mappen hvor filene ligger
-#' @param filegeo CSV fil for alle geokoder
-#' @param filechg Excel fil for kode endringer
+#' @param grep.file Common file name for the selected period eg. "jan2019"
+#' @param grep.change Common name for `xlsx` file for code change eg. "change"
+#' @param year    Year of the selected code list
+#' @param type    Type of regional granularity ie. fylke, kommune etc.
+#' @param folder.path Folder path to the files
+#' @param filegeo Specify `csv` file for geocode if grep.file is empty
+#' @param filechg Specify `xlsx` file name and location if `grep.change` is empty
 #' @param raw     If TRUE then specify direct filename in \code{filegeo} and \code{filechg}
 #'
 #' @import data.table
 #' @export
 
 
-geo_set <- function(
-                    grep.file = NULL,
+geo_set <- function(grep.file = NULL,
                     grep.change = NULL,
                     year = NULL,
                     type = c("land",
