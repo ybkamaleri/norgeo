@@ -90,7 +90,7 @@ The output created from `geo_merge()` i.e `DF`, can be saved in a database manag
 ```{r db, eval=FALSE}
 fpath = "C:/Users/ybka/dbms"
 
-save_geo(tblname = "tblTest",
+geo_save(tblname = "tblTest",
          obj = DT,
          des.path = fpath,
          file.type = "Excel")
@@ -137,13 +137,13 @@ bigDF <- rbind(DF2019, DF2020)
 
 ```
 
-To save the final result, `save_geo()` function can be used as explained above. Database file must be available prior to saving it as a database table. In the example below it's `geo_ssb.accdb`.
+To save the final result, `geo_save()` function can be used as explained above. Database file must be available prior to saving it as a database table. In the example below it's `geo_ssb.accdb`.
 
 ```{r DBMS, eval=FALSE}
 dbpath = "C:/Users/ybka/dbms"
 dbname = "geo_ssb.accdb"
 
-save_geo(tblname = "tblGeo",
+geo_save(tblname = "tblGeo",
          obj = bigDT,
          des.path = dbpath,
          file.type = "Access",

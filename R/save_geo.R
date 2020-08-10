@@ -11,7 +11,7 @@
 #'
 #' @export
 
-save_geo <- function(tblname = NULL,
+geo_save <- function(tblname = NULL,
                      obj = NULL,
                      des.path = FALSE,
                      file.type = c("Access", "SQLite", "Excel", "Text"),
