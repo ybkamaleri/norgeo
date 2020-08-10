@@ -47,22 +47,22 @@ The `geo_set()` function is the most important function to start with. This func
 folder <- "F:/org/kommune"
 
 kom2018 <- geo_set("jan2018",
-                      "change",
-                      year = 2018,
-                      type = "kommune",
-                      folder.path = folder)
+                   "change",
+                   year = 2018,
+                   type = "kommune",
+                   folder.path = folder)
 
 kom2019 <- geo_set("jan2019",
-                      "change",
-                      year = 2019,
-                      type = "kommune",
-                      folder.path = folder)
+                   "change",
+                   year = 2019,
+                   type = "kommune",
+                   folder.path = folder)
 
 kom2020 <- geo_set("jan2020",
-                      "change",
-                      year = 2020,
-                      type = "kommune",
-                      folder.path = folder)
+                   "change",
+                   year = 2020,
+                   type = "kommune",
+                   folder.path = folder)
 
 ```
 
@@ -79,6 +79,8 @@ To merge all these files into a big dataset, use `geo_merge()` function. Importa
 
 komfiles <- list(kom2018, kom2019, kom2020)
 DF <- geo_merge(files = komfiles)
+
+# show only codes that have changed
 geo_merge(files = komfiles, output = "change")
 
 ```
@@ -91,7 +93,7 @@ The output created from `geo_merge()` i.e `DF`, can be saved in a database manag
 fpath = "C:/Users/ybka/dbms"
 
 geo_save(tblname = "tblTest",
-         obj = DT,
+         obj = DF,
          des.path = fpath,
          file.type = "Excel")
 ```
@@ -144,7 +146,7 @@ dbpath = "C:/Users/ybka/dbms"
 dbname = "geo_ssb.accdb"
 
 geo_save(tblname = "tblGeo",
-         obj = bigDT,
+         obj = bigDF,
          des.path = dbpath,
          file.type = "Access",
          db.name = dbname)
