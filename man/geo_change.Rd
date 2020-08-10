@@ -5,12 +5,13 @@
 \title{Get change from complete geo list}
 \usage{
 geo_change(
-  files,
-  years,
-  type,
-  folder.path,
-  save = c("no", "xls", "csv"),
-  des.path
+  files = NULL,
+  years = NULL,
+  type = NULL,
+  key.col = NULL,
+  folder.path = NULL,
+  file.type = c("none", "xls", "csv"),
+  des.path = NULL
 )
 }
 \arguments{
@@ -20,16 +21,18 @@ geo_change(
 
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
+\item{key.col}{Column name for merging eg. \code{name}}
+
 \item{folder.path}{Folder path to the files}
 
-\item{save}{Which format to use to save the output}
+\item{file.type}{Which format to save the output}
 
 \item{des.path}{Destination folder where the file to be saved}
 }
 \description{
 Create table for code changes when table tracking the changes isn't already available from SSB.
 This function will be using a reference colum other than geo code ie. names. Therefore this
-function should be used with caution. The output can be save as \code{xlsx} or \code{csv}.
+function should be used with caution. The output can be as \code{xlsx} or \code{csv} file.
 }
 \examples{
 
@@ -39,7 +42,7 @@ years = c(2004, 2018, 2020)
 folder = "C:/geo/bydel"
 des = "C:/geo/bydel/output"
 
-geo_change(files=files, years=years, type="bydel",folder.path=folder, save="xls", des.path=des)
+geo_change(files=files, years=years, type="bydel",folder.path=folder, file.type="xls", des.path=des)
 }
 
 }
