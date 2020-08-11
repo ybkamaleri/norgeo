@@ -78,14 +78,14 @@ geo_change <- function(files = NULL,
 
         if (file.type == "none"){
 
-            listDT[[i]] <- chgDT
+            listDT[[i]] <- DT
 
         } else {
 
             if (is.null(des.path)) stop("Destination folder to save file is missing!")
             tempName <- paste0(type, "_change_", newYr)
             fileName <- file.path(des.path, tempName)
-            write_tbl(fileName, file.type) #from utils.R
+            write_tbl(DT, fileName, file.type) #from utils.R
         }
     }
 
