@@ -95,20 +95,20 @@
 <div class="sourceCode" id="cb2"><pre class="r"><span class="co">## specify the folder where kommune files are</span>
 <span class="no">folder</span> <span class="kw">&lt;-</span> <span class="st">"F:/org/kommune"</span>
 
-<span class="no">kom2018</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2018"</span>,
-                   <span class="st">"change"</span>,
+<span class="no">kom2018</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="kw">grep.file</span> <span class="kw">=</span> <span class="st">"jan2018"</span>,
+                   <span class="kw">grep.change</span> <span class="kw">=</span> <span class="st">"change"</span>,
                    <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2018</span>,
                    <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
                    <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
 
-<span class="no">kom2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2019"</span>,
-                   <span class="st">"change"</span>,
+<span class="no">kom2019</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="kw">grep.file</span> <span class="kw">=</span> <span class="st">"jan2019"</span>,
+                   <span class="kw">grep.change</span> <span class="kw">=</span> <span class="st">"change"</span>,
                    <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>,
                    <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
                    <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)
 
-<span class="no">kom2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="st">"jan2020"</span>,
-                   <span class="st">"change"</span>,
+<span class="no">kom2020</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/geo_set.html">geo_set</a></span>(<span class="kw">grep.file</span> <span class="kw">=</span> <span class="st">"jan2020"</span>,
+                   <span class="kw">grep.change</span> <span class="kw">=</span> <span class="st">"change"</span>,
                    <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2020</span>,
                    <span class="kw">type</span> <span class="kw">=</span> <span class="st">"kommune"</span>,
                    <span class="kw">folder.path</span> <span class="kw">=</span> <span class="no">folder</span>)</pre></div>
@@ -194,19 +194,20 @@
 <a href="#change-codes" class="anchor"></a>Change codes</h2>
 <p>The steps above depends on two type of data ie. current valid codes which is in a <code>csv</code> format and codes that have changed in a <code>xlsx</code> format. When table for code changes isn’t available, we have to create one to be able to use the <code><a href="reference/geo_set.html">geo_set()</a></code> function. For example granularity <em>bydel</em> has no table of code change in SSB website.</p>
 <p>To create the table from the available <code>csv</code> files, we have to decide a reference column other than geo code such as <code>names</code>. Therefore this function should be used with caution. The output can be saved as <code>xlsx</code> or <code>csv</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="no">files</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ssb_bydel_jan2004.csv"</span>,
-          <span class="st">"ssb_bydel_jan2018.csv"</span>,
-          <span class="st">"ssb_bydel_jan2020.csv"</span>)
-<span class="no">years</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2004</span>, <span class="fl">2018</span>, <span class="fl">2020</span>)
-<span class="no">folder</span> <span class="kw">=</span> <span class="st">"C:/geo/bydel"</span>
-<span class="no">des</span> <span class="kw">=</span> <span class="st">"C:/geo/bydel/output"</span>
+<div class="sourceCode" id="cb8"><pre class="r">files = c("ssb_bydel_jan2004.csv",
+          "ssb_bydel_jan2018.csv",
+          "ssb_bydel_jan2020.csv")
+years = c(2004, 2018, 2020)
+folder = "C:/geo/bydel"
+des = "C:/geo/bydel/output"
 
-<span class="fu">geo_change</span>(<span class="kw">files</span><span class="kw">=</span><span class="no">files</span>,
-           <span class="kw">years</span><span class="kw">=</span><span class="no">years</span>,
-           <span class="kw">type</span><span class="kw">=</span><span class="st">"bydel"</span>,
-           <span class="kw">folder.path</span><span class="kw">=</span><span class="no">folder</span>,
-           <span class="kw">save</span><span class="kw">=</span><span class="st">"xls"</span>,
-           <span class="kw">des.path</span><span class="kw">=</span><span class="no">des</span>)</pre></div>
+geo_change(files = files,
+           years = years,
+           type = "bydel",
+           key.col = "name"
+           folder.path = folder,
+           save = "xls",
+           des.path = des)</pre></div>
 </div>
 <div id="file-structure" class="section level2">
 <h2 class="hasAnchor">

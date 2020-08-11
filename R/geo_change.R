@@ -1,12 +1,14 @@
 #' Get change from complete geo list
 #'
-#' Create table for code changes when table tracking the changes isn't already available from SSB.
-#' This function will be using a reference colum other than geo code ie. names. Therefore this
-#' function should be used with caution. The output can be as `xlsx` or `csv` file.
+#' Create table for code changes when table that track the changes isn't already available from SSB.
+#' A reference column name for merging id other than geo code is needed. The
+#' most relevant will be `name` column which is more likely relatively consistent over the
+#' years. Therefore this function should be used with caution.
+#' The output can be as `xlsx` or `csv` file.
 #'
 #' @param files A list of files to find geo codes changes
 #' @param years A list of years for these files
-#' @param key.col Column name for merging eg. `name`
+#' @param key.col Column name as an id for merging eg. `name`
 #' @param file.type Which format to save the output
 #' @param des.path Destination folder where the file to be saved
 #' @inheritParams geo_set
@@ -32,8 +34,10 @@ geo_change <- function(files = NULL,
                        type = NULL,
                        key.col = NULL,
                        folder.path = NULL,
-                       file.type = c("none", "xls", "csv"),
+                       file.type = c("none", "xlsx", "csv"),
                        des.path = NULL){
+
+    if (is.null(key.col)) stop("You must specify column name as an ID for merging!")
 
     xl <- grepl("xl", file.type, ignore.case = TRUE)
     if (xl) file.type = "xls"
@@ -73,6 +77,7 @@ geo_change <- function(files = NULL,
                            )
 
         if (file.type == "none"){
+
             listDT[[i]] <- chgDT
 
         } else {
@@ -80,7 +85,7 @@ geo_change <- function(files = NULL,
             if (is.null(des.path)) stop("Destination folder to save file is missing!")
             tempName <- paste0(type, "_change_", newYr)
             fileName <- file.path(des.path, tempName)
-            write_tbl(fileName, file.type)
+            write_tbl(fileName, file.type) #from utils.R
         }
     }
 

@@ -10,7 +10,7 @@ geo_change(
   type = NULL,
   key.col = NULL,
   folder.path = NULL,
-  file.type = c("none", "xls", "csv"),
+  file.type = c("none", "xlsx", "csv"),
   des.path = NULL
 )
 }
@@ -21,7 +21,7 @@ geo_change(
 
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
-\item{key.col}{Column name for merging eg. \code{name}}
+\item{key.col}{Column name as an id for merging eg. \code{name}}
 
 \item{folder.path}{Folder path to the files}
 
@@ -30,9 +30,11 @@ geo_change(
 \item{des.path}{Destination folder where the file to be saved}
 }
 \description{
-Create table for code changes when table tracking the changes isn't already available from SSB.
-This function will be using a reference colum other than geo code ie. names. Therefore this
-function should be used with caution. The output can be as \code{xlsx} or \code{csv} file.
+Create table for code changes when table that track the changes isn't already available from SSB.
+A reference column name for merging id other than geo code is needed. The
+most relevant will be \code{name} column which is more likely relatively consistent over the
+years. Therefore this function should be used with caution.
+The output can be as \code{xlsx} or \code{csv} file.
 }
 \examples{
 

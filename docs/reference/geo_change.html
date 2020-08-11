@@ -40,9 +40,11 @@
 
 
 <meta property="og:title" content="Get change from complete geo list — geo_change" />
-<meta property="og:description" content="Create table for code changes when table tracking the changes isn't already available from SSB.
-This function will be using a reference colum other than geo code ie. names. Therefore this
-function should be used with caution. The output can be save as xlsx or csv." />
+<meta property="og:description" content="Create table for code changes when table that track the changes isn't already available from SSB.
+A reference column name for merging id other than geo code is needed. The
+most relevant will be name column which is more likely relatively consistent over the
+years. Therefore this function should be used with caution.
+The output can be as xlsx or csv file." />
 
 
 
@@ -116,18 +118,21 @@ function should be used with caution. The output can be save as xlsx or csv." />
     </div>
 
     <div class="ref-description">
-    <p>Create table for code changes when table tracking the changes isn't already available from SSB.
-This function will be using a reference colum other than geo code ie. names. Therefore this
-function should be used with caution. The output can be save as <code>xlsx</code> or <code>csv</code>.</p>
+    <p>Create table for code changes when table that track the changes isn't already available from SSB.
+A reference column name for merging id other than geo code is needed. The
+most relevant will be <code>name</code> column which is more likely relatively consistent over the
+years. Therefore this function should be used with caution.
+The output can be as <code>xlsx</code> or <code>csv</code> file.</p>
     </div>
 
     <pre class="usage"><span class='fu'>geo_change</span>(
-  <span class='no'>files</span>,
-  <span class='no'>years</span>,
-  <span class='no'>type</span>,
-  <span class='no'>folder.path</span>,
-  <span class='kw'>save</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"no"</span>, <span class='st'>"xls"</span>, <span class='st'>"csv"</span>),
-  <span class='no'>des.path</span>
+  <span class='kw'>files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>years</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>key.col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>folder.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>file.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"xlsx"</span>, <span class='st'>"csv"</span>),
+  <span class='kw'>des.path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -146,12 +151,16 @@ function should be used with caution. The output can be save as <code>xlsx</code
       <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
     </tr>
     <tr>
+      <th>key.col</th>
+      <td><p>Column name as an id for merging eg. <code>name</code></p></td>
+    </tr>
+    <tr>
       <th>folder.path</th>
       <td><p>Folder path to the files</p></td>
     </tr>
     <tr>
-      <th>save</th>
-      <td><p>Which format to use to save the output</p></td>
+      <th>file.type</th>
+      <td><p>Which format to save the output</p></td>
     </tr>
     <tr>
       <th>des.path</th>
@@ -168,7 +177,7 @@ function should be used with caution. The output can be save as <code>xlsx</code
 <span class='no'>folder</span> <span class='kw'>=</span> <span class='st'>"C:/geo/bydel"</span>
 <span class='no'>des</span> <span class='kw'>=</span> <span class='st'>"C:/geo/bydel/output"</span>
 
-<span class='fu'>geo_change</span>(<span class='kw'>files</span><span class='kw'>=</span><span class='no'>files</span>, <span class='kw'>years</span><span class='kw'>=</span><span class='no'>years</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"bydel"</span>,<span class='kw'>folder.path</span><span class='kw'>=</span><span class='no'>folder</span>, <span class='kw'>save</span><span class='kw'>=</span><span class='st'>"xls"</span>, <span class='kw'>des.path</span><span class='kw'>=</span><span class='no'>des</span>)
+<span class='fu'>geo_change</span>(<span class='kw'>files</span><span class='kw'>=</span><span class='no'>files</span>, <span class='kw'>years</span><span class='kw'>=</span><span class='no'>years</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"bydel"</span>,<span class='kw'>folder.path</span><span class='kw'>=</span><span class='no'>folder</span>, <span class='kw'>file.type</span><span class='kw'>=</span><span class='st'>"xls"</span>, <span class='kw'>des.path</span><span class='kw'>=</span><span class='no'>des</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

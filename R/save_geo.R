@@ -43,15 +43,16 @@ geo_save <- function(tblname = NULL,
 
   }
 
+
+
   if (innTyp == "excel"){
-    xlFile <- paste0(des.path, "/", tblname, ".xlsx")
-    writexl::write_xlsx(obj, path = xlFile)
+    xlFile <- paste0(des.path, "/", tblname)
+    write_tbl(xlFile, "xls")
   }
 
   if (innTyp == "text"){
-    xlFile <- paste0(des.path, "/", tblname, ".csv")
-    data.table::fwrite(obj, file = xlFile, sep = ";")
-    ## utils::write.csv2(obj, file = xlFile)
+    xlFile <- paste0(des.path, "/", tblname)
+    write_tbl(xlFile, "csv")
   }
 
 
