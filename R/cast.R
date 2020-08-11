@@ -113,7 +113,7 @@ cast_code <- function(file, type, year, folder.path = NULL, keep.col = c("code",
     ## Create reference tables
     kommune <- data.table(v1 = "fylke", v2 = 2)
     bydel <- data.table(v1 = c("kommune", "fylke"), v2 = c(2, 4))
-    grunnkrets <- data.table(v1 = c("kommune", "fylke"), v2 = c(4, 6))
+    grunnkrets <- data.table(v1 = c("bydel", "kommune", "fylke"), v2 = c(2, 4, 6))
     refTab <- list(kommune = kommune, bydel = bydel, grunnkrets = grunnkrets)
 
     numRow <- nrow(refTab[[type]])
