@@ -198,7 +198,7 @@ geo_change(files = files,
            type = "bydel",
            key.col = "name"
            folder.path = folder,
-           save = "xls",
+           file.type = "Excel",
            des.path = des)
 ```
 

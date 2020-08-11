@@ -10,7 +10,7 @@ geo_change(
   type = NULL,
   key.col = NULL,
   folder.path = NULL,
-  file.type = c("none", "xlsx", "csv"),
+  file.type = c("none", "Excel", "Text"),
   des.path = NULL
 )
 }
@@ -25,7 +25,7 @@ geo_change(
 
 \item{folder.path}{Folder path to the files}
 
-\item{file.type}{Which format to save the output}
+\item{file.type}{Which format to save the output. Option are Excel or Text.}
 
 \item{des.path}{Destination folder where the file to be saved}
 }

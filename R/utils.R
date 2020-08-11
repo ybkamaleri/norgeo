@@ -12,19 +12,30 @@ NULL
 
 
 
-# write data
+## write data
 ## fname is like "~/dir/to/save/filename"
-write_tbl <- function(fname, format){
+write_tbl <- function(x, fname, format){
 
-    if (format == "xls"){
+    if (format == "excel"){
           xlFile <- paste0(fname, ".xlsx")
-          writexl::write_xlsx(obj, path = xlFile)
+          writexl::write_xlsx(x, path = xlFile)
     }
 
-    if (format == "csv"){
+    if (format == "text"){
          xlFile <- paste0(fname, ".csv")
-         data.table::fwrite(obj, file = xlFile, sep = ";")
-    ## utils::write.csv2(obj, file = xlFile)
+         data.table::fwrite(x, file = xlFile, sep = ";")
+    ## utils::write.csv2(x, file = xlFile)
     }
+}
 
+
+
+## When file has complete path than no need for folder
+file_folder <- function(file, folder = NULL){
+
+  if (is.null(folder)){
+    outFile <- file
+  } else {
+    outFile <- file.path(folder, file)
+  }
 }
