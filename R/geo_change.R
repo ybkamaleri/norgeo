@@ -9,7 +9,7 @@
 #' @param files A list of files to find geo codes changes
 #' @param years A list of years for these files
 #' @param key.col Column name as an id for merging eg. `name`
-#' @param file.type Which format to save the output
+#' @param file.type Which format to save the output. Option are Excel or Text.
 #' @param des.path Destination folder where the file to be saved
 #' @inheritParams geo_set
 #'
@@ -28,20 +28,22 @@
 #'
 #' @export
 
-
 geo_change <- function(files = NULL,
                        years = NULL,
                        type = NULL,
                        key.col = NULL,
                        folder.path = NULL,
-                       file.type = c("none", "xlsx", "csv"),
+                       file.type = c("none", "Excel", "Text"),
                        des.path = NULL){
 
     if (is.null(key.col)) stop("You must specify column name as an ID for merging!")
 
-    xl <- grepl("xl", file.type, ignore.case = TRUE)
-    if (xl) file.type = "xls"
-    file.type = tolower(file.type)
+    if (length(file.type) > 1) file.type = "none"
+    file.type  <- tolower(file.type)
+    outputFile <- switch(file.type,
+                         "excel" = ".xlsx",
+                         "text" = ".csv",
+                         "none")
 
     if (inherits(files, "list") == 0) {files <- unlist(files)}
     if (inherits(years, "list") == 0) {years <- unlist(years)}
@@ -76,39 +78,40 @@ geo_change <- function(files = NULL,
                            key.col = key.col
                            )
 
-        if (file.type == "none"){
 
-            listDT[[i]] <- DT
+      if (outputFile == "none"){
 
-        } else {
+        listDT[[i]] <- DT
 
-            if (is.null(des.path)) stop("Destination folder to save file is missing!")
-            tempName <- paste0(type, "_change_", newYr)
-            fileName <- file.path(des.path, tempName)
-            write_tbl(DT, fileName, file.type) #from utils.R
-        }
+      } else {
+
+        if (is.null(des.path)) stop("Destination folder to save file is missing!")
+        tempName <- paste0(type, "_change_", newYr)
+        fileName <- file.path(des.path, tempName)
+        write_tbl(DT, fileName, file.type) #from utils.R
+
+        listDT[[i]] <- list(normalizePath(paste0(fileName, outputFile), winslash = "/"))
+      }
     }
 
-    allDT <- rbindlist(listDT)
 
-    return(allDT[])
+  allDT <- rbindlist(listDT)
+
+  return(allDT)
 }
-
 
 
 ## Create reference table for change 1 x 1
 change_table <- function(dt, year, key.col){
 
-    newdt <- data.table::fread(dt$newD)
-    predt <- data.table::fread(dt$preD)
+    newdt <- data.table::fread(dt$newD, fill = TRUE)
+    predt <- data.table::fread(dt$preD, fill = TRUE)
 
     newdt[, year := year$y1]
     predt[, year := year$y2]
 
     newdt[predt, on = key.col, `:=`(preCode = i.code, preYear = i.year)]
 
-    chgDT <- newdt[!is.na(preCode)][]
-
-    return(chgDT)
+    chgDT <- newdt[code != preCode][]
 
 }

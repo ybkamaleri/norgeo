@@ -47,12 +47,12 @@ geo_save <- function(tblname = NULL,
 
   if (innTyp == "excel"){
     xlFile <- paste0(des.path, "/", tblname)
-    write_tbl(obj, xlFile, "xls")
+    write_tbl(obj, xlFile, innTyp)
   }
 
   if (innTyp == "text"){
     xlFile <- paste0(des.path, "/", tblname)
-    write_tbl(obj, xlFile, "csv")
+    write_tbl(obj, xlFile, innTyp)
   }
 
 
