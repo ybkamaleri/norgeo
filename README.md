@@ -10,10 +10,10 @@ codes, have undergone several changes over the years. Identifying when
 codes have changed and how many changes have taken place can be
 troublesome. This package will help to identify these changes and when
 the changes have taken place. One of the limitation of this package is
-that it is heavily depending on the codes available from SSB website
-which can be accessed from their
+that it is heavily depending on the codes available from SSB which can
+be accessed from their
 [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
-Else the row data should mimic the row data structure from SSB.
+To use other data than the data structure should mimic those from SSB.
 
 ## Installation
 
@@ -52,20 +52,20 @@ added. The codes below show how the function is used:
 ## specify the folder where kommune files are
 folder <- "F:/org/kommune"
 
-kom2018 <- geo_set("jan2018",
-                   "change",
+kom2018 <- geo_set(grep.file = "jan2018",
+                   grep.change = "change",
                    year = 2018,
                    type = "kommune",
                    folder.path = folder)
 
-kom2019 <- geo_set("jan2019",
-                   "change",
+kom2019 <- geo_set(grep.file = "jan2019",
+                   grep.change = "change",
                    year = 2019,
                    type = "kommune",
                    folder.path = folder)
 
-kom2020 <- geo_set("jan2020",
-                   "change",
+kom2020 <- geo_set(grep.file = "jan2020",
+                   grep.change = "change",
                    year = 2020,
                    type = "kommune",
                    folder.path = folder)
@@ -193,12 +193,13 @@ years = c(2004, 2018, 2020)
 folder = "C:/geo/bydel"
 des = "C:/geo/bydel/output"
 
-geo_change(files=files,
-           years=years,
-           type="bydel",
-           folder.path=folder,
-           save="xls",
-           des.path=des)
+geo_change(files = files,
+           years = years,
+           type = "bydel",
+           key.col = "name"
+           folder.path = folder,
+           save = "xls",
+           des.path = des)
 ```
 
 ## File structure

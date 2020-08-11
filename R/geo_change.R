@@ -1,12 +1,15 @@
 #' Get change from complete geo list
 #'
-#' Create table for code changes when table tracking the changes isn't already available from SSB.
-#' This function will be using a reference colum other than geo code ie. names. Therefore this
-#' function should be used with caution. The output can be save as `xlsx` or `csv`.
+#' Create table for code changes when table that track the changes isn't already available from SSB.
+#' A reference column name for merging id other than geo code is needed. The
+#' most relevant will be `name` column which is more likely relatively consistent over the
+#' years. Therefore this function should be used with caution.
+#' The output can be as `xlsx` or `csv` file.
 #'
 #' @param files A list of files to find geo codes changes
 #' @param years A list of years for these files
-#' @param save Which format to use to save the output
+#' @param key.col Column name as an id for merging eg. `name`
+#' @param file.type Which format to save the output
 #' @param des.path Destination folder where the file to be saved
 #' @inheritParams geo_set
 #'
@@ -20,80 +23,92 @@
 #' folder = "C:/geo/bydel"
 #' des = "C:/geo/bydel/output"
 #'
-#' geo_change(files=files, years=years, type="bydel",folder.path=folder, save="xls", des.path=des)
+#' geo_change(files=files, years=years, type="bydel",folder.path=folder, file.type="xls", des.path=des)
 #' }
 #'
 #' @export
 
 
-geo_change <- function(files,
-                       years,
-                       type,
-                       folder.path,
-                       save = c("no", "xls", "csv"),
-                       des.path){
+geo_change <- function(files = NULL,
+                       years = NULL,
+                       type = NULL,
+                       key.col = NULL,
+                       folder.path = NULL,
+                       file.type = c("none", "xlsx", "csv"),
+                       des.path = NULL){
 
-  if (missing(save)) save = "no"
-  xl <- grepl("xl", save, ignore.case = TRUE)
-  if (xl) save = "xls"
-  save = tolower(save)
+    if (is.null(key.col)) stop("You must specify column name as an ID for merging!")
 
-  if (inherits(files, "list") == 0) {files <- unlist(files)}
-  if (inherits(years, "list") == 0) {years <- unlist(years)}
+    xl <- grepl("xl", file.type, ignore.case = TRUE)
+    if (xl) file.type = "xls"
+    file.type = tolower(file.type)
 
-  nFiles <- length(files)
-  nYears <- length(years)
+    if (inherits(files, "list") == 0) {files <- unlist(files)}
+    if (inherits(years, "list") == 0) {years <- unlist(years)}
 
-  nChk <- identical(nFiles, nYears)
-  if (isFALSE(nChk)) stop("Number of files and years are not equal!")
+    nFiles <- length(files)
+    nYears <- length(years)
 
-  cjtbl <- CJ(1:nFiles, 1:nYears)
-  reftbl <- cjtbl[V2 - V1 == 1, ]
+    nChk <- identical(nFiles, nYears)
+    if (isFALSE(nChk)) stop("Number of files and years are not equal!")
 
-  ## Make empty list for memory allocation
-  listDT <- vector(mode = "list", length = nrow(reftbl))
+    cjtbl <- CJ(1:nFiles, 1:nYears)
+    reftbl <- cjtbl[V2 - V1 == 1, ]
 
-  for (i in seq_len(nrow(reftbl))){
+    ## Make empty list for memory allocation
+    listDT <- vector(mode = "list", length = nrow(reftbl))
 
-    newRef <- reftbl[[2]][i]
-    preRef <- reftbl[[1]][i]
+    for (i in seq_len(nrow(reftbl))) {
 
-    newFile <- file.path(folder.path, files[newRef])
-    preFile <- file.path(folder.path, files[preRef])
+        newRef <- reftbl[[2]][i]
+        preRef <- reftbl[[1]][i]
 
-    newdt <- data.table::fread(newFile, fill = TRUE)
-    predt <- data.table::fread(preFile, fill = TRUE)
+        newFile <- file.path(folder.path, files[newRef])
+        preFile <- file.path(folder.path, files[preRef])
 
-    newdt[, year := years[newRef]]
-    predt[, year := years[preRef]]
+        newYr <- years[newRef]
+        preYr <- years[preRef]
 
-    ## Find codes that have changed
-    codeChg <- setdiff(newdt$code, predt$code)
+        DT <- change_table(dt = list(newD = newFile,
+                                     preD = preFile),
+                           year = list(y1 = newYr,
+                                       y2 = preYr),
+                           key.col = key.col
+                           )
 
-    ## merge by reference ie. 2018 to 2020 data
-    newdt[predt, on = "name", `:=`(precode = i.code, preyr = i.year)]
+        if (file.type == "none"){
 
-    ## Filter those names that have changed codes
-    newCol <- paste0("jan", years[newRef])
-    preCol <- paste0("jan", years[preRef])
-    chgDT <- newdt[code %in% codeChg, ]
+            listDT[[i]] <- chgDT
 
-    chgDT[, (newCol) := paste(code, name, sep = " - ")]
-    chgDT[, (preCol) := paste(precode, name, sep = " - ")]
+        } else {
 
-    colDel <- setdiff(names(chgDT), c(newCol, preCol))
-    chgDT[, (colDel) := NULL]
-
-    if (save == "no"){
-      listDT[[i]] <- chgDT
-    } else {
-      tempName <- paste0(type, "_change_", newCol, ".xlsx")
-      fileName <- file.path(des.path, tempName)
-      openxlsx::write.xlsx(chgDT, fileName)
+            if (is.null(des.path)) stop("Destination folder to save file is missing!")
+            tempName <- paste0(type, "_change_", newYr)
+            fileName <- file.path(des.path, tempName)
+            write_tbl(fileName, file.type) #from utils.R
+        }
     }
-  }
 
-  allDT <- rbindlist(listDT)
+    allDT <- rbindlist(listDT)
 
-  return(allDT[])
+    return(allDT[])
+}
+
+
+
+## Create reference table for change 1 x 1
+change_table <- function(dt, year, key.col){
+
+    newdt <- data.table::fread(dt$newD)
+    predt <- data.table::fread(dt$preD)
+
+    newdt[, year := year$y1]
+    predt[, year := year$y2]
+
+    newdt[predt, on = key.col, `:=`(preCode = i.code, preYear = i.year)]
+
+    chgDT <- newdt[!is.na(preCode)][]
+
+    return(chgDT)
+
 }
