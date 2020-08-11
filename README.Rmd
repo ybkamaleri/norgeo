@@ -21,9 +21,9 @@ undergone several changes over the years. Identifying when codes have changed
 and how many changes have taken place can be troublesome. This package will help
 to identify these changes and when the changes have taken place. One of the
 limitation of this package is that it is heavily depending on the codes
-available from SSB website which can be accessed from their
+available from SSB which can be accessed from their
 [website](https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020).
-Else the row data should mimic the row data structure from SSB.
+To use other data than the data structure should mimic those from SSB.
 
 ## Installation
 
