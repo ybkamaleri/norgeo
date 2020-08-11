@@ -36,63 +36,63 @@ geo_change <- function(files = NULL,
                        file.type = c("none", "Excel", "Text"),
                        des.path = NULL){
 
-    if (is.null(key.col)) stop("You must specify column name as an ID for merging!")
+  if (is.null(key.col)) stop("You must specify column name as an ID for merging!")
 
-    if (length(file.type) > 1) file.type = "none"
-    file.type  <- tolower(file.type)
-    outputFile <- switch(file.type,
-                         "excel" = ".xlsx",
-                         "text" = ".csv",
-                         "none")
+  if (length(file.type) > 1) file.type = "none"
+  file.type  <- tolower(file.type)
+  outputFile <- switch(file.type,
+                       "excel" = ".xlsx",
+                       "text" = ".csv",
+                       "none")
 
-    if (inherits(files, "list") == 0) {files <- unlist(files)}
-    if (inherits(years, "list") == 0) {years <- unlist(years)}
+  if (inherits(files, "list") == 0) {files <- unlist(files)}
+  if (inherits(years, "list") == 0) {years <- unlist(years)}
 
-    nFiles <- length(files)
-    nYears <- length(years)
+  nFiles <- length(files)
+  nYears <- length(years)
 
-    nChk <- identical(nFiles, nYears)
-    if (isFALSE(nChk)) stop("Number of files and years are not equal!")
+  nChk <- identical(nFiles, nYears)
+  if (isFALSE(nChk)) stop("Number of files and years are not equal!")
 
-    cjtbl <- CJ(1:nFiles, 1:nYears)
-    reftbl <- cjtbl[V2 - V1 == 1, ]
+  cjtbl <- CJ(1:nFiles, 1:nYears)
+  reftbl <- cjtbl[V2 - V1 == 1, ]
 
-    ## Make empty list for memory allocation
-    listDT <- vector(mode = "list", length = nrow(reftbl))
+  ## Make empty list for memory allocation
+  listDT <- vector(mode = "list", length = nrow(reftbl))
 
-    for (i in seq_len(nrow(reftbl))) {
+  for (i in seq_len(nrow(reftbl))) {
 
-        newRef <- reftbl[[2]][i]
-        preRef <- reftbl[[1]][i]
+    newRef <- reftbl[[2]][i]
+    preRef <- reftbl[[1]][i]
 
-        newFile <- file.path(folder.path, files[newRef])
-        preFile <- file.path(folder.path, files[preRef])
+    newFile <- file_folder(files[newRef], folder.path)
+    preFile <- file_folder(files[preRef], folder.path)
 
-        newYr <- years[newRef]
-        preYr <- years[preRef]
+    newYr <- years[newRef]
+    preYr <- years[preRef]
 
-        DT <- change_table(dt = list(newD = newFile,
-                                     preD = preFile),
-                           year = list(y1 = newYr,
-                                       y2 = preYr),
-                           key.col = key.col
-                           )
+    DT <- change_table(dt = list(newD = newFile,
+                                 preD = preFile),
+                       year = list(y1 = newYr,
+                                   y2 = preYr),
+                       key.col = key.col
+                       )
 
 
-      if (outputFile == "none"){
+    if (outputFile == "none"){
 
-        listDT[[i]] <- DT
+      listDT[[i]] <- DT
 
-      } else {
+    } else {
 
-        if (is.null(des.path)) stop("Destination folder to save file is missing!")
-        tempName <- paste0(type, "_change_", newYr)
-        fileName <- file.path(des.path, tempName)
-        write_tbl(DT, fileName, file.type) #from utils.R
+      if (is.null(des.path)) stop("Destination folder to save file is missing!")
+      tempName <- paste0(type, "_change_", newYr)
+      fileName <- file.path(des.path, tempName)
+      write_tbl(DT, fileName, file.type) #from utils.R
 
-        listDT[[i]] <- list(normalizePath(paste0(fileName, outputFile), winslash = "/"))
-      }
+      listDT[[i]] <- list(normalizePath(paste0(fileName, outputFile), winslash = "/"))
     }
+  }
 
 
   allDT <- rbindlist(listDT)
@@ -104,14 +104,14 @@ geo_change <- function(files = NULL,
 ## Create reference table for change 1 x 1
 change_table <- function(dt, year, key.col){
 
-    newdt <- data.table::fread(dt$newD, fill = TRUE)
-    predt <- data.table::fread(dt$preD, fill = TRUE)
+  newdt <- data.table::fread(dt$newD, fill = TRUE)
+  predt <- data.table::fread(dt$preD, fill = TRUE)
 
-    newdt[, year := year$y1]
-    predt[, year := year$y2]
+  newdt[, year := year$y1]
+  predt[, year := year$y2]
 
-    newdt[predt, on = key.col, `:=`(preCode = i.code, preYear = i.year)]
+  newdt[predt, on = key.col, `:=`(preCode = i.code, preYear = i.year)]
 
-    chgDT <- newdt[code != preCode][]
+  chgDT <- newdt[code != preCode][]
 
 }

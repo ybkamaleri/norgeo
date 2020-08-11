@@ -12,7 +12,7 @@ NULL
 
 
 
-# write data
+## write data
 ## fname is like "~/dir/to/save/filename"
 write_tbl <- function(x, fname, format){
 
@@ -26,5 +26,16 @@ write_tbl <- function(x, fname, format){
          data.table::fwrite(x, file = xlFile, sep = ";")
     ## utils::write.csv2(x, file = xlFile)
     }
+}
 
+
+
+## When file has complete path than no need for folder
+file_folder <- function(file, folder = NULL){
+
+  if (is.null(folder)){
+    outFile <- file
+  } else {
+    outFile <- file.path(folder, file)
+  }
 }
