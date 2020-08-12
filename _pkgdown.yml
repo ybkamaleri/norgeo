@@ -7,4 +7,25 @@ template:
   params:
     bootswatch: cosmo
 
+reference:
+- title: "Main function"
+  desc: >
+    All function that start with `geo_`. The most important
+    of them is `geo_set`. This will set configuration to be
+    easily used in the next processes.
+- contents:
+  - geo_set
+  - geo_merge
+  - geo_cast
+  - geo_save
+  - geo_change
+- title: "Additional function"
+  desc: "Extra functions when needed for special cases"
+- contents:
+  - select_ssb
+  - read_ssb
+  - find_change
+  - merge_multi
+  - cast_code
+
 destination: docs

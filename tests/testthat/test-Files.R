@@ -24,3 +24,14 @@ test_that("Only one info needed", {
                          year = 2018,
                          filege = "file2.csv"), "Only one of them need", ignore.case = TRUE)
 })
+
+
+
+test_that("File has specified path", {
+
+  fName <- c("ssb_bydel_jan2018.csv", "ssb_bydel_jan2020.csv")
+  fPath <- "C:/geo_files/org_ssb/bydel"
+  allFile <- file.path(fPath, fName)
+
+  expect_identical(file_folder(fName, fPath), allFile)
+})

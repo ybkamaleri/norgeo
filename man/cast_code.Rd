@@ -26,13 +26,12 @@ the available table that can be downloaded from SSB. The file should be in a CSV
 \examples{
 
 \dontrun{
-file = "ssb_grunnkrets_jan2020.csv"
+file = "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
 type = "grunnkrets"
 year = 2020
-keep.col = c("code", "name")
-folder = "C:/Users/geo/grunnkrets"
+cols = c("code", "name")
 
-DT <- cast_code(file = file, type = type, year = year, folder.path = folder.path)
+DT <- cast_code(file = file, type = type, year = year, keep.col=cols)
 }
 
 }

@@ -36,6 +36,6 @@ file_folder <- function(file, folder = NULL){
   if (is.null(folder)){
     outFile <- file
   } else {
-    outFile <- file.path(folder, file)
+    outFile <- normalizePath(file.path(folder, file), winslash = "/")
   }
 }

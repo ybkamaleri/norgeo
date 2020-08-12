@@ -22,9 +22,17 @@
 #' @import data.table
 #' @export
 
-geo_cast <- function(file, type, year, keep.col = c("code", "name")){
+geo_cast <- function(file,
+                     type = NULL,
+                     year = NULL,
+                     keep.col = c("code", "name"),
+                     folder.path = NULL){
 
-  tblFile <- data.table::data.table(file = file, type = type)
+  if (length(file) != length(type))
+    stop("Length of file and type is different!")
+
+  allFiles <- file_folder(file, file.path)
+  tblFile <- data.table(file = allFiles, type = type)
 
   ## allocate template for memory use
   listDT <- vector(mode = "list", length = nrow(tblFile))
@@ -74,26 +82,26 @@ geo_cast <- function(file, type, year, keep.col = c("code", "name")){
 #' @examples
 #'
 #' \dontrun{
-#' file = "ssb_grunnkrets_jan2020.csv"
+#' file = "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
 #' type = "grunnkrets"
 #' year = 2020
-#' keep.col = c("code", "name")
-#' folder = "C:/Users/geo/grunnkrets"
+#' cols = c("code", "name")
 #'
-#' DT <- cast_code(file = file, type = type, year = year, folder.path = folder.path)
+#' DT <- cast_code(file = file, type = type, year = year, keep.col=cols)
 #' }
 #'
 #' @import data.table
 #' @export
 
-cast_code <- function(file, type, year, folder.path = NULL, keep.col = c("code", "name")){
+cast_code <- function(file,
+                      type,
+                      year,
+                      folder.path = NULL,
+                      keep.col = c("code", "name")
+                      ){
 
-  if (is.null(folder.path)){
-    fName <- file
-  } else {
-    fName <- file.path(folder.path, file)
+  fName <- file_folder(file, folder.path)
 
-  }
   dt <- data.table::fread(fName, fill = TRUE)
 
   ## Check keep.col exist
@@ -108,27 +116,28 @@ cast_code <- function(file, type, year, folder.path = NULL, keep.col = c("code",
 
   ## Fylke has no lower granularity, so skip this
   type <- tolower(type)
+
+  refTab <- switch(type,
+                   "kommune" = data.table(v1 = "fylke",
+                                          v2 = 2),
+                   "bydel" = data.table(v1 = c("fylke", "kommune"),
+                                        v2 = c(4, 2)),
+                   "grunnkrets" = data.table(v1 = c("fylke", "kommune", "bydel"),
+                                             v2 = c(6, 4, 2)),
+                   data.table(v1 = NULL,
+                              v2 = NULL)
+                   )
+
   if (type != "fylke"){
 
-    ## Create reference tables
-    kommune <- data.table(v1 = "fylke", v2 = 2)
-    bydel <- data.table(v1 = c("kommune", "fylke"), v2 = c(2, 4))
-    grunnkrets <- data.table(v1 = c("bydel", "kommune", "fylke"), v2 = c(2, 4, 6))
-    refTab <- list(kommune = kommune, bydel = bydel, grunnkrets = grunnkrets)
-
-    numRow <- nrow(refTab[[type]])
-
-    for (i in seq_len(numRow)){
-
-      colName <- refTab[[type]]$v1[i]
-      numD <- refTab[[type]]$v2[i]
+    for (i in seq_len(nrow(refTab))){
+      colName <- refTab$v1[i]
+      numD <- refTab$v2[i]
       subDigit <- paste0("\\d{", numD, "}$")
 
-      dt[, (colName) := as.numeric(gsub(subDigit, "", code))]
-
+      dt[, (colName) := as.numeric(gsub(subDigit, "", code))][]
     }
-
   }
 
-  return(dt[])
+  return(dt)
 }
