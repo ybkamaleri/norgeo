@@ -4,7 +4,7 @@
 \alias{geo_merge}
 \title{Merge all geo codes}
 \usage{
-geo_merge(files, output = c("all", "change", "complete"))
+geo_merge(files, output = c("all", "split", "merge", "change", "complete"))
 }
 \arguments{
 \item{files}{A list of objects to be merged. The order must be from lowest to highest year.}
@@ -13,6 +13,8 @@ geo_merge(files, output = c("all", "change", "complete"))
 \itemize{
 \item \code{all}      : Dataset for all data. This is the default output
 \item \code{change}   : Dataset that include only codes that have changed
+\item \code{split}    : Dataset for codes that have been divided to at least two newer codes
+\item \code{merge}    : Dataset for at least two codes that are been merged into one
 \item \code{complete} : A list of all different outputs
 }}
 }
@@ -24,6 +26,9 @@ the output object from \code{geo_set()} function.
 
 \dontrun{
 DT <- geo_merge(list(kommune2018, kommune2019, kommune2020))
+
+dts <- geo_merge(list(kommune2018, kommune2019, kommune2020), output = "split")
+
 }
 
 }

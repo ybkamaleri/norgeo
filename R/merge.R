@@ -20,6 +20,8 @@
 #' \dontrun{
 #' DT <- geo_merge(list(kommune2018, kommune2019, kommune2020))
 #'
+#' dts <- geo_merge(list(kommune2018, kommune2019, kommune2020), output = "split")
+#'
 #' }
 #'
 #' @export
