@@ -119,7 +119,7 @@ geo_merge <- function(files,
   ## Select split and merge codes with max year
   yearr = geoDT[!is.na(year), max(year)]
   geoDT[is.na(year), year  := yearr]
-  splitDT <- geoDT[year == yearr][duplicated(prev) | duplicated(prev, fromLast = TRUE)][]
+  splitDT <- geoDT[year == yearr][duplicated(prev) | duplicated(prev, fromLast = TRUE)][!is.na(prev)]
   mergeDT <- geoDT[year == yearr][duplicated(code) | duplicated(code, fromLast = TRUE)][]
 
   completeDT <- list(split = splitDT,
