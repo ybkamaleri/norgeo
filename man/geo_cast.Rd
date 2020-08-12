@@ -4,7 +4,13 @@
 \alias{geo_cast}
 \title{Add lower granularity to all files}
 \usage{
-geo_cast(file, type, year, keep.col = c("code", "name"))
+geo_cast(
+  file,
+  type = NULL,
+  year = NULL,
+  keep.col = c("code", "name"),
+  folder.path = NULL
+)
 }
 \arguments{
 \item{file}{Files names with complete path to the files}
@@ -14,6 +20,8 @@ geo_cast(file, type, year, keep.col = c("code", "name"))
 \item{year}{Year of the selected code list}
 
 \item{keep.col}{Exisiting column names to be kept}
+
+\item{folder.path}{Folder path to the files}
 }
 \description{
 Add all granularity levels. Here the structure is important.
