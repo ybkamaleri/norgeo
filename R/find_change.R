@@ -41,7 +41,7 @@ find_change <- function(newCode, preCode, raw = TRUE){
 ## Keep only colums that exist in both datasets
 delete_col <- function(x, col){
 
-  colSel <- col[is.element(col, x)]
+  colSel <- col[is.element(col, names(x))]
 
   if (length(colSel) > 0){
     x[, (colSel) := NULL]
