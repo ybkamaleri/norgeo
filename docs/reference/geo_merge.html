@@ -119,7 +119,7 @@ the output object from geo_set() function." />
 the output object from <code><a href='geo_set.html'>geo_set()</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_merge</span>(<span class='no'>files</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"all"</span>, <span class='st'>"change"</span>, <span class='st'>"split"</span>, <span class='st'>"merge"</span>, <span class='st'>"complete"</span>))</pre>
+    <pre class="usage"><span class='fu'>geo_merge</span>(<span class='no'>files</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"all"</span>, <span class='st'>"split"</span>, <span class='st'>"merge"</span>, <span class='st'>"change"</span>, <span class='st'>"complete"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,6 +145,9 @@ the output object from <code><a href='geo_set.html'>geo_set()</a></code> functio
     <pre class="examples"><div class='input'>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>DT</span> <span class='kw'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>kommune2018</span>, <span class='no'>kommune2019</span>, <span class='no'>kommune2020</span>))
+
+<span class='no'>dts</span> <span class='kw'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>kommune2018</span>, <span class='no'>kommune2019</span>, <span class='no'>kommune2020</span>), <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"split"</span>)
+
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

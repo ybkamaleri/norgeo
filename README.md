@@ -92,7 +92,7 @@ komfiles <- list(kom2018, kom2019, kom2020)
 DF <- geo_merge(files = komfiles)
 
 # show only codes that have changed
-geo_merge(files = komfiles, output = "change")
+DFS <- geo_merge(files = komfiles, output = "split")
 ```
 
 ### Save codes

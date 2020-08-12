@@ -19,108 +19,123 @@
 #'
 #' \dontrun{
 #' DT <- geo_merge(list(kommune2018, kommune2019, kommune2020))
+#'
+#' dts <- geo_merge(list(kommune2018, kommune2019, kommune2020), output = "split")
+#'
 #' }
 #'
 #' @export
 
 geo_merge <- function(files,
                       output = c("all",
-                                 "change",
                                  "split",
                                  "merge",
-                                 "complete")){
+                                 "change",
+                                 "complete")
+                      ){
 
-    if (inherits(files, "list") == 0) stop("Object for 'files' should be a list", call. = TRUE)
+  if (inherits(files, "list") == 0)
+    stop("Object for 'files' should be a list", call. = TRUE)
 
-    fileMx  <- length(files)
-    ## create cross join as a reference table
-    ind <- CJ(1:fileMx, 1:fileMx)
-    indSel <- ind[V1 != V2, ][V1 < fileMx, ][V1 < V2, ]
+  fileMx  <- length(files)
+  ## create cross join as a reference table
+  ind <- CJ(1:fileMx, 1:fileMx)
+  indSel <- ind[V1 != V2, ][V1 < fileMx, ][V1 < V2, ]
 
-    ## create empty list for multiple changes
-    join_dt <- vector(mode = "list", length = nrow(indSel))
+  ## create empty list for multiple changes
+  join_dt <- vector(mode = "list", length = nrow(indSel))
 
-    for (i in seq_len(nrow(indSel))){
+  for (i in seq_len(nrow(indSel))){
 
-        newFile <- indSel[[2]][i]
-        preFile <- indSel[[1]][i]
+    newFile <- indSel[[2]][i]
+    preFile <- indSel[[1]][i]
 
-        d <- merge_multi(newCode = files[[newFile]],
-                         preCode = files[[preFile]])
+    d <- merge_multi(newCode = files[[newFile]],
+                     preCode = files[[preFile]])
 
-        join_dt[[i]] <- d
+    join_dt[[i]] <- d
 
-    }
+  }
 
-    joinDT <- rbindlist(join_dt)
+  joinDT <- rbindlist(join_dt, fill = TRUE)
 
-    ## Find all codes that have changed during
-    ## from the oldest code list to the most recent codes
-    indChg <- ind[V1 - V2 == 1, ] #reference table
-    chg_dt <- vector(mode = "list", length = nrow(indChg))
+  ## Find all codes that have changed during
+  ## from the oldest code list to the most recent codes
+  indChg <- ind[V1 - V2 == 1, ] #reference table
+  chg_dt <- vector(mode = "list", length = nrow(indChg))
 
-    for (i in seq_len(nrow(indChg))){
+  for (i in seq_len(nrow(indChg))){
 
-        newFile <- indChg[[1]][i]
-        preFile <- indChg[[2]][i]
+    newFile <- indChg[[1]][i]
+    preFile <- indChg[[2]][i]
 
-        d <- find_change(newCode = files[[newFile]],
-                         preCode = files[[preFile]])
+    d <- find_change(newCode = files[[newFile]],
+                     preCode = files[[preFile]])
 
-        chg_dt[[i]] <- d
-    }
+    chg_dt[[i]] <- d
+  }
 
-    chgDT <- rbindlist(chg_dt)
+  chgDT <- rbindlist(chg_dt, fill = TRUE)
 
-    ## Keep only codes that are valid in the most recent year because
-    ## those that aren't indicate they have multiple changes
-    recentCodes <- unique(files[[fileMx]]$data$code)
-    currDT <- chgDT[code  %in% recentCodes, ]
+  ## Keep only codes that are valid in the most recent year because
+  ## those that aren't indicate they have multiple changes
+  recentCodes <- unique(files[[fileMx]]$data$code)
+  currDT <- chgDT[code  %in% recentCodes, ]
 
-    ## Merge all changes ie. multiple and change once
-    changeDT <- rbindlist(list(joinDT, currDT))
-    setkey(changeDT, code)
+  ## Merge all changes ie. multiple and change once
+  changeDT <- rbindlist(list(joinDT, currDT), fill = TRUE)
+  setkey(changeDT, code)
 
-    ## Clean up duplicated raws if exist and
-    ## delete codes that have not changed ie. column for 'prev' is NA
-    dtClean <- clean_dup(xDT = changeDT, xCodes = recentCodes)
+  ## Clean up duplicated raws if exist and
+  ## delete codes that have not changed ie. column for 'prev' is NA
+  dtClean <- clean_dup(xDT = changeDT, xCodes = recentCodes)
 
-    ## Merge everything to recent geo list
-    ## ---------------------------------------
-    dupCodesChg <- unique(dtClean$CDT$code)## codes that are allready in the changes table
-    ## keep only codes in recent geo list that aren't in the changes table
-    otherDT <- files[[fileMx]]$data[!(code  %in% dupCodesChg), ]
-    geoDT <- rbindlist(list(otherDT, dtClean$CDT), fill = TRUE)
-    setkey(geoDT, code, year)
+  ## Merge everything to recent geo list
+  ## ---------------------------------------
+  dupCodesChg <- unique(dtClean$CDT$code)## codes that are allready in the changes table
+  ## keep only codes in recent geo list that aren't in the changes table
+  otherDT <- files[[fileMx]]$data[!(code  %in% dupCodesChg), ]
+  geoDT <- rbindlist(list(otherDT, dtClean$CDT), fill = TRUE)
+  setkey(geoDT, code, year)
 
-    ## Recode mulitple codes that haven't been converted to recent geo code
-    eks <- setdiff(geoDT$code, recentCodes) #get codes that aren't in recent geo
+  ## Recode mulitple codes that haven't been converted to recent geo code
+  eks <- setdiff(geoDT$code, recentCodes) #get codes that aren't in recent geo
 
-    for (i in eks){
-        currGeo <- geoDT[prev == i, ][["code"]]
-        geoDT[code == i, code := currGeo]
-    }
+  for (i in eks){
+    currGeo <- geoDT[prev == i, ][["code"]]
+    geoDT[code == i, code := currGeo]
+  }
 
-    setkey(geoDT, code, year)
+  setkey(geoDT, code, year)
 
-    ## Add granularity column
-    granTyp <- files[[1]]$type
-    geoDT$granularity <- granTyp
+  ## Add granularity column
+  granTyp <- files[[1]]$type
+  geoDT$granularity <- granTyp
 
-    completeDT <- list(split = dtClean$dupDT, merge = dtClean$mrgDT, change = dtClean$CDT, all = geoDT)
+  ## Default output
+  if (length(output) > 1) output = "all"
 
-    ## Default output
-    if (length(output) > 1) output = "all"
+  ## Get missing YEAR which means the codes have not changed
+  ## Select split and merge codes with max year
+  yearr = geoDT[!is.na(year), max(year)]
+  geoDT[is.na(year), year  := yearr]
+  splitDT <- geoDT[year == yearr][duplicated(prev) | duplicated(prev, fromLast = TRUE)][]
+  mergeDT <- geoDT[year == yearr][duplicated(code) | duplicated(code, fromLast = TRUE)][]
 
-    DTout <- switch(output,
-                    "all" = geoDT,
-                    "change" = dtClean$CDT,
-                    "split" = dtClean$dupDT,
-                    "merge" = dtClean$mrgDT,
-                    "complete" = completeDT
-                    )
+  completeDT <- list(split = splitDT,
+                     merge = mergeDT,
+                     change = dtClean$CDT,
+                     all = geoDT)
 
-    return(DTout[])
+  DTout <- switch(output,
+                  "all" = geoDT,
+                  "change" = dtClean$CDT,
+                  "split" = splitDT,
+                  "merge" = mergeDT,
+                  "complete" = completeDT
+                  )
+
+  return(DTout)
 
 }
 
@@ -130,43 +145,43 @@ geo_merge <- function(files,
 ## delete codes that have not changed ie. column for 'prev' is NA
 clean_dup <- function(xDT, xCodes){
 
-    indX <- xDT[, .I[duplicated(xDT)]]
+  indX <- xDT[, .I[duplicated(xDT)]]
 
-    if (length(indX) > 0L){
-        dtx <- xDT[-(indX)]
-        dtz <- dtx[!is.na(prev), ]
+  if (length(indX) > 0L){
+    dtx <- xDT[-(indX)]
+    dtz <- dtx[!is.na(prev), ]
 
-        ## - Check duplicate for find_change() function.
-        ## - Cuplicate can be due to codes in the previous year are split
-        ## into 2 or more codes in the current year
-        ## - Keep only those that are in newest geo due to multiple changes
-        dupInx <- dtz[, .I[(duplicated(prev) | duplicated(prev, fromLast = TRUE))]]
+    ## - Check duplicate for find_change() function.
+    ## - Cuplicate can be due to codes in the previous year are split
+    ## into 2 or more codes in the current year
+    ## - Keep only those that are in newest geo due to multiple changes
+    dupInx <- dtz[, .I[(duplicated(prev) | duplicated(prev, fromLast = TRUE))]]
 
-        ## split to 2 DT with and without duplicated 'prev'
-        uniDT <- dtz[-dupInx]
-        dupDT <- dtz[dupInx]
+    ## split to 2 DT with and without duplicated 'prev'
+    uniDT <- dtz[-dupInx]
+    dupDT <- dtz[dupInx]
 
-        ## Clean duplicated codes if codes aren't in newest geo
-        dupCodes <- unique(dupDT$code)
-        ## keep duplicated only if it's in the newest codelist
-        ## other codes that aren't have multiple changes
-        keepInd <- is.element(dupCodes, xCodes)
-        keepCodes <- dupCodes[keepInd]
-        dupUni <- dupDT[code %in% keepCodes, ]
+    ## Clean duplicated codes if codes aren't in newest geo
+    dupCodes <- unique(dupDT$code)
+    ## keep duplicated only if it's in the newest codelist
+    ## other codes that aren't have multiple changes
+    keepInd <- is.element(dupCodes, xCodes)
+    keepCodes <- dupCodes[keepInd]
+    dupUni <- dupDT[code %in% keepCodes, ]
 
-        ## - Get the previous codes that are merged into one area
-        ## in the current code
-        mrgInx <- dtz[, .I[(duplicated(code) | duplicated(code, fromLast = TRUE))]]
-        mrgDT <- dtz[mrgInx]
+    ## - Get the previous codes that are merged into one area
+    ## in the current code
+    mrgInx <- dtz[, .I[(duplicated(code) | duplicated(code, fromLast = TRUE))]]
+    mrgDT <- dtz[mrgInx]
 
-        ## Merge back to the other DT without duplicated previous codes
-        CDT <- rbindlist(list(uniDT, dupUni))
-        setkey(CDT, code)
-    } else {
-        CDT <- xDT[!is.na(prev)]
-        dupDT <- 0
-        mrgDT <- 0
-    }
+    ## Merge back to the other DT without duplicated previous codes
+    CDT <- rbindlist(list(uniDT, dupUni), fill = TRUE)
+    setkey(CDT, code)
+  } else {
+    CDT <- xDT[!is.na(prev)]
+    dupDT <- 0
+    mrgDT <- 0
+  }
 
-    list(CDT = CDT, dupDT = dupDT, mrgDT = mrgDT)
+  list(CDT = CDT, dupDT = dupDT, mrgDT = mrgDT)
 }

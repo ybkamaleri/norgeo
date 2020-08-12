@@ -81,7 +81,7 @@ komfiles <- list(kom2018, kom2019, kom2020)
 DF <- geo_merge(files = komfiles)
 
 # show only codes that have changed
-geo_merge(files = komfiles, output = "change")
+DFS <- geo_merge(files = komfiles, output = "split")
 
 ```
 
@@ -157,6 +157,7 @@ geo_save(tblname = "tblGeo",
 The steps above depends on two type of data ie. current valid codes which is in a `csv` format and codes that have changed in a `xlsx` format. When table for code changes isn't available, we have to create one to be able to use the `geo_set()` function. For example granularity *bydel* has no table of code change in SSB website.
 
 To create the table from the available `csv` files, we have to decide a reference column other than geo code such as `names`. Therefore this function should be used with caution. The output can be saved as `xlsx` or `csv`.
+
 
 ```{r chg, eval=FALSE}
 files = c("ssb_bydel_jan2004.csv",

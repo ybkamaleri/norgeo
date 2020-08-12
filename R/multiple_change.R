@@ -42,7 +42,7 @@ merge_multi <- function(newCode = NULL, preCode = NULL, raw = TRUE){
   allFile[, setdiff(names(allFile), keepCols) := NULL]
   setnames(allFile, keepCols[-1], newName)
 
-  fileOut <- rbindlist(list(allFile, altNew))
+  fileOut <- rbindlist(list(allFile, altNew), fill = TRUE)
   setkey(fileOut, code, year)
 
   return(fileOut[])

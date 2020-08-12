@@ -4,7 +4,7 @@
 \alias{geo_merge}
 \title{Merge all geo codes}
 \usage{
-geo_merge(files, output = c("all", "change", "split", "merge", "complete"))
+geo_merge(files, output = c("all", "split", "merge", "change", "complete"))
 }
 \arguments{
 \item{files}{A list of objects to be merged. The order must be from lowest to highest year.}
@@ -26,6 +26,9 @@ the output object from \code{geo_set()} function.
 
 \dontrun{
 DT <- geo_merge(list(kommune2018, kommune2019, kommune2020))
+
+dts <- geo_merge(list(kommune2018, kommune2019, kommune2020), output = "split")
+
 }
 
 }
