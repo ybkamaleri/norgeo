@@ -28,10 +28,11 @@ geo_cast <- function(file,
                      keep.col = c("code", "name"),
                      folder.path = NULL){
 
+
   if (length(file) != length(type))
     stop("Length of file and type is different!")
 
-  allFiles <- file_folder(file, file.path)
+  allFiles <- file_folder(file, folder.path)
   tblFile <- data.table(file = allFiles, type = type)
 
   ## allocate template for memory use
