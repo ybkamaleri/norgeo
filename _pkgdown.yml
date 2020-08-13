@@ -22,8 +22,7 @@ reference:
 - title: "Additional function"
   desc: "Extra functions when needed for special cases"
 - contents:
-  - select_ssb
-  - read_ssb
+  - read_csv
   - find_change
   - merge_multi
   - cast_code
