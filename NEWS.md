@@ -22,11 +22,13 @@ and will fix it to help external users.
 
 * The real first release version
 
-# norgeo before Aug 2020
+# norgeo 1.3.3
 
 Despite it was version 1.3.3 til then, unfortunately `norgeo` was actually
 premature since it hasn't been tested properly, but was released due to
 the need to use the function. So that was much too early and I have to
-pull it back and make rebirth of `norgeo` with a bit properly thought
+pull it back and make rebirth of `norgeo 0.9` with a bit properly thought
 function names and structure. But of course there are always errors and
-things that can be better...
+things that can be better... Anyway, `norgeo 1.3.3` before
+`norgeo 0.9.0` works but too ambitious to call it 1.3.3, but hopefully
+the second future version of `norgeo 1.3.3` will be much better :-)
