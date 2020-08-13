@@ -25,24 +25,12 @@ geo_save <- function(tblname = NULL,
   }
 
 
-  if (innTyp == "access"){
-
-    get_access(db.name = db.name,
-               db.path = des.path,
-               tblname = tblname,
-               obj = obj)
-  }
-
-
-  if (innTyp == "sqlite"){
-
-    get_sqlite(db.name = db.name,
-               db.path = des.path,
-               tblname = tblname,
-               obj = obj)
-
-  }
-
+  ## DBMS
+  get_dbms(db.name = db.name,
+           db.path = des.path,
+           tblname = tblname,
+           obj = obj,
+           dbms = innTyp)
 
 
   if (innTyp == "excel"){
@@ -59,25 +47,25 @@ geo_save <- function(tblname = NULL,
 }
 
 
-## Connect to ACCESS
-get_access <- function(db.name = NULL, db.path = NULL, tblname = NULL, obj = NULL){
 
+get_dbms <- function(db.name = NULL,
+                     db.path = NULL,
+                     tblname = NULL,
+                     obj = NULL,
+                     dbms = c("access", "sqlite")){
+
+  dbFile <- paste(db.path, db.name, sep = "/")
+
+  if (dbms == "access"){
     dbCon <- "Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq="
-    dbFile <- paste(db.path, db.name, sep = "/")
     cs <- paste0(dbCon, dbFile)
     con <- DBI::dbConnect(odbc::odbc(), .connection_string = cs)
-    DBI::dbWriteTable(con, tblname, obj, batch_rows = 1, overwrite = TRUE)
-    DBI::dbDisconnect(con)
+  }
 
-}
-
-
-## Connect to SQLite
-get_sqlite <- function(db.name = NULL, db.path = NULL, tblname = NULL, obj = NULL){
-
-    dbFile <- paste(db.path, db.name, sep = "/")
+  if (dbms == "sqlite"){
     con <- DBI::dbConnect(RSQLite::SQLite(), dbname = dbFile)
-    DBI::dbWriteTable(con, tblname, obj, batch_rows = 1, overwrite = TRUE)
-    DBI::dbDisconnect(con)
+  }
 
+  DBI::dbWriteTable(con, tblname, obj, batch_rows = 1, overwrite = TRUE)
+  DBI::dbDisconnect(con)
 }
