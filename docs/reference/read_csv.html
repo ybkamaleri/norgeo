@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • norgeo</title>
+<title>Read raw CSV files downloaded from SSB to R object — read_csv • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,12 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Read raw CSV files downloaded from SSB to R object — read_csv" />
+<meta property="og:description" content="Read all CSV files in the folder specified if you prefer not to use apply family.
+The objects can be available in the .GlobalEnv if argument global = TRUE.
+Important! Any existing objects of similar names will be replaced without warning.
+The object name will be something like &quot;kommune200825_01&quot; if granularity type is
+kommune specified in the type argument." />
 
 
 
@@ -58,7 +63,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,103 +125,58 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Read raw CSV files downloaded from SSB to R object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/file_setup.R'><code>R/file_setup.R</code></a></small>
+    <div class="hidden name"><code>read_csv.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Read all CSV files in the folder specified if you prefer not to use <code>apply</code> family.
+The objects can be available in the .GlobalEnv if argument <code>global = TRUE</code>.
+<strong>Important!</strong> Any existing objects of similar names will be replaced without warning.
+The object name will be something like "kommune200825_01" if granularity type is
+<code>kommune</code> specified in the <code>type</code> argument.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>read_csv</span>(
+  <span class='no'>folder.path</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>";"</span>, <span class='st'>","</span>),
+  <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>global</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-main-function" class="hasAnchor"><a href="#section-main-function" class="anchor"></a>Main function</h2>
-          <p class="section-desc"><p>All function that start with <code>geo_</code>. The most important of them is <code>geo_set</code>. This will set configuration to be easily used in the next processes.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="geo_set.html">geo_set()</a></code> </p>
-        </td>
-        <td><p>Set geo codes changes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_merge.html">geo_merge()</a></code> </p>
-        </td>
-        <td><p>Merge all geo codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_cast.html">geo_cast()</a></code> </p>
-        </td>
-        <td><p>Add lower granularity to all files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_save.html">geo_save()</a></code> </p>
-        </td>
-        <td><p>Save geo codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geo_change.html">geo_change()</a></code> </p>
-        </td>
-        <td><p>Get change from complete geo list</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-additional-function" class="hasAnchor"><a href="#section-additional-function" class="anchor"></a>Additional function</h2>
-          <p class="section-desc"><p>Extra functions when needed for special cases</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="read_csv.html">read_csv()</a></code> </p>
-        </td>
-        <td><p>Read raw CSV files downloaded from SSB to R object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_change.html">find_change()</a></code> </p>
-        </td>
-        <td><p>Find changes from previous year</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="merge_multi.html">merge_multi()</a></code> </p>
-        </td>
-        <td><p>Multiple changes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cast_code.html">cast_code()</a></code> </p>
-        </td>
-        <td><p>Add lower granularity when applicable</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>folder.path</th>
+      <td><p>Folder path to the files</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>The separate symbols in the CSV files ie. <code>;</code> or <code>,</code>. If you leave it blank then
+appropriate symbols will be selected automatically. But if you should specify <code>encoding</code> type
+then, you have to choose the right <code>sep</code> for the file.</p></td>
+    </tr>
+    <tr>
+      <th>encoding</th>
+      <td><p>Select the suitable encoding</p></td>
+    </tr>
+    <tr>
+      <th>global</th>
+      <td><p>If TRUE the objects will be available globally</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
