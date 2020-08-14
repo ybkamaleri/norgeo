@@ -27,6 +27,22 @@ reference:
   - merge_multi
   - cast_code
 
-news:
-  releases:
-   - text: "Version 0.9.0"
+navbar:
+  type: default
+  left:
+    - text: Guides
+      menu:
+        - text: Add changes
+          href: articles/code-change.html
+        - text: Cast granularity
+          href: articles/granularity.html
+        - text: Change table
+          href: articles/change-tbl.html
+
+    - text: News
+      href: news/index.html
+
+    - text: Reference
+      href: reference/index.html
+
+destination: docs

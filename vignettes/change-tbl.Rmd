@@ -1,0 +1,42 @@
+---
+title: "Change table"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Change table}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+Function `geo_set()` and `geo_merge()` depends on two type of data ie. current valid codes which is in a `.csv` format and codes that have changed in a `.xlsx` format. When table for code changes isn't available ie. the `.xlsx` file, we have to create one to be able to use the `geo_set()` function. For example granularity *bydel* has no table of code change in SSB website.
+
+To create a table from the available `.csv` files, we have to decide a reference column that most likely to be consistent across the files, such as `names`. Therefore this function should be used with caution. This is how you could use it.
+
+```{r change-table, eval=FALSE}
+
+files = c("ssb_bydel_jan2004.csv",
+          "ssb_bydel_jan2018.csv",
+          "ssb_bydel_jan2020.csv")
+years = c(2004, 2018, 2020)
+folder = "C:/geo/bydel"
+des = "C:/geo/bydel/output"
+
+geo_change(files = files,
+           years = years,
+           type = "bydel",
+           key.col = "name"
+           folder.path = folder,
+           file.type = "Excel",
+           des.path = des)
+
+```
+
+The output will be two files. One is all the codes from 2004 that have changed in 2018, and the other file is all the codes in 2018 that have changed in 2020.
