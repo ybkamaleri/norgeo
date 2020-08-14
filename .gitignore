@@ -39,6 +39,3 @@ vignettes/*.pdf
 .Renviron
 /start_pkg.R
 *.R#
-
-# Webste create by Travis CI
-docs/*
