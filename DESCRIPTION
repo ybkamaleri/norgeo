@@ -29,6 +29,7 @@ Imports:
     writexl,
     openxlsx
 Suggests: 
-    testthat
+    testthat,
+    pkgdown
 URL: https://github.com/folkehelseprofil/norgeo
 BugReports: https://github.com/folkehelseprofil/norgeo/issues
