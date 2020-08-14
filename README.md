@@ -3,6 +3,8 @@
 
 <!-- badges: start -->
 
+[![Build
+Status](https://travis-ci.org/ybkamaleri/norgeo.svg?branch=master)](https://travis-ci.org/ybkamaleri/norgeo)
 <!-- badges: end -->
 
 Regional granularity levels in Norway which are depicted by different

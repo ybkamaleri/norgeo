@@ -1,0 +1,21 @@
+---
+title: "Setup"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Setup}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This is how you prepare the dataset
+
+```{r setup}
+library(norgeo)
+```
