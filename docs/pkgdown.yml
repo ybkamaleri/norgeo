@@ -2,6 +2,8 @@ pandoc: 2.7.2
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
-  Setup: Setup.html
-last_built: 2020-08-14T11:55Z
+  change-tbl: change-tbl.html
+  code-change: code-change.html
+  granularity: granularity.html
+last_built: 2020-08-14T15:43Z
 
