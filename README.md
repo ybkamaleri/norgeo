@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![Build
-Status](https://travis-ci.org/ybkamaleri/norgeo.svg?branch=master)](https://travis-ci.org/ybkamaleri/norgeo)
+Status](https://travis-ci.com/folkehelseprofil/norgeo.svg?branch=master)](https://travis-ci.com/folkehelseprofil/norgeo)
 <!-- badges: end -->
 
 Regional granularity levels in Norway which are depicted by different
@@ -33,11 +33,11 @@ remotes::install_github("folkehelseprofil/norgeo")
 ## Usage
 
 All functions with `geo_` prefix are the main function for `norgeo`.
-Among them, `geo_set()` is the most important one for setting up object
-for further use. Other available functions aren’t really necessary to
-know, but they are available when needed. To learn how to use these
-function, please read the tutorial under
-[Guides](articles/code-change.html)
+Among them, `geo_set()` is the most important one to set up object
+accordingly for further use. Other available functions aren’t really
+necessary to know, but they are available when needed. They are mostly
+for internal use. To learn how to use these function, please read the
+tutorial under [Guides](articles/code-change.html)
 
 ## Output
 
@@ -54,7 +54,7 @@ enumeration units ie. *grunnkrets* with 14000 units\!
 
 ## File structure
 
-I would suggest to structure your files in different folders as show
+I would suggest to structure your files in different folders as shown
 below:
 
 ![File structure](man/figures/geo_dir2.PNG)
