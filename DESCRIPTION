@@ -29,6 +29,10 @@ Imports:
     writexl,
     openxlsx
 Suggests: 
-    testthat
+    testthat,
+    pkgdown,
+    knitr,
+    rmarkdown
 URL: https://github.com/folkehelseprofil/norgeo
 BugReports: https://github.com/folkehelseprofil/norgeo/issues
+VignetteBuilder: knitr

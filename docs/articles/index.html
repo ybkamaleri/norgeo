@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read raw CSV files from SSB to R object — read_ssb • norgeo</title>
+<title>Articles • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,7 @@
 
 
 
-<meta property="og:title" content="Read raw CSV files from SSB to R object — read_ssb" />
-<meta property="og:description" content="Read all CSV files in the folder specified. The objects can be available
-in the .GlobalEnv if argument global = TRUE. Important! Any existing
-objects of similar names will be replaced without warning.
-The object name will be something like &quot;kommune_01&quot; if
-kommune is specified in the type argument." />
+<meta property="og:title" content="Articles" />
 
 
 
@@ -63,7 +58,7 @@ kommune is specified in the type argument." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -82,29 +77,29 @@ kommune is specified in the type argument." />
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
+        <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
+    Guides
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">Version 0.9.0</li>
-    <li class="divider"></li>
     <li>
-      <a href="../news/index.html">Changelog</a>
+      <a href="../articles/code-change.html">Add changes</a>
+    </li>
+    <li>
+      <a href="../articles/granularity.html">Cast granularity</a>
+    </li>
+    <li>
+      <a href="../articles/change-tbl.html">Change table</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -127,58 +122,22 @@ kommune is specified in the type argument." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read raw CSV files from SSB to R object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/file_setup.R'><code>R/file_setup.R</code></a></small>
-    <div class="hidden name"><code>read_ssb.Rd</code></div>
+      <h1>Articles</h1>
     </div>
 
-    <div class="ref-description">
-    <p>Read all CSV files in the folder specified. The objects can be available
-in the .GlobalEnv if argument <code>global = TRUE</code>. <strong>Important!</strong> Any existing
-objects of similar names will be replaced without warning.
-The object name will be something like "kommune_01" if
-<code>kommune</code> is specified in the <code>type</code> argument.</p>
+    <div class="section ">
+      <h3>All vignettes</h3>
+      <p class="section-desc"></p>
+
+      <dl>
+        <dt><a href="change-tbl.html">Change table</a></dt>
+        <dd></dt>
+        <dt><a href="code-change.html">Code change</a></dt>
+        <dd></dt>
+        <dt><a href="granularity.html">Granularity</a></dt>
+        <dd></dt>
+      </dl>
     </div>
-
-    <pre class="usage"><span class='fu'>read_ssb</span>(
-  <span class='no'>folder.path</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>";"</span>, <span class='st'>"."</span>),
-  <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>global</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>folder.path</th>
-      <td><p>Folder path to the files</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
-    </tr>
-    <tr>
-      <th>sep</th>
-      <td><p>The separate symbols in the CSV file. Use ".." if lazy to check</p></td>
-    </tr>
-    <tr>
-      <th>encoding</th>
-      <td><p>Select the suitable encoding</p></td>
-    </tr>
-    <tr>
-      <th>global</th>
-      <td><p>If TRUE the objects will be available globally</p></td>
-    </tr>
-    </table>
-
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
   </div>
 </div>
 

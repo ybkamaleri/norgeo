@@ -1,0 +1,55 @@
+---
+title: "Granularity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Granularity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+The function `geo_cast()` will add lower granularity to all files when applicable. It means for *kommune* files, a new `fylke` column will be added, while column `fylke` and `kommune` will be added to a *bydel* and *grunnkrets* files.
+
+```{r granularity, eval=FALSE}
+
+## Geo 2019
+file2019 <- c("F:/Geo/fylke/fylke_jan2019.csv",
+              "F:/Geo/kommune/kommune_jan2019.csv",
+              "F:/Geo/bydel/bydel_jan2019.csv",
+              "F:/Geo/grunnkrets/grunnkrets_jan2019.csv")
+
+fileTyp2019 <- c("fylke", "kommune", "bydel", "grunnkrets")
+
+
+DF2019 <- geo_cast(file = file2019,
+                   type = fileTyp2019,
+                   year = 2019)
+
+## Geo 2020
+file2020 <- c("F:/Geo/fylke/fylke_jan2020.csv",
+              "F:/Geo/kommune/kommune_jan2020.csv",
+              "F:/Geo/bydel/bydel_jan2020.csv",
+              "F:/Geo/grunnkrets/grunnkrets_jan2020.csv")
+
+fileTyp2020 <- c("fylke", "kommune", "bydel", "grunnkrets")
+
+
+DF2020 <- geo_cast(file = file2020,
+                   type = fileTyp2020,
+                   year = 2020)
+```
+
+Running `geo_cast()` will also add a new row for granularity `land` which has code `0`. The output from the above example can then be merged to a file and saved to the file type one wishes. To bind all the output, you can use the base R `rbind()` function or `rbindlist()` function from `data.table` package.
+
+```{r cast, eval=FALSE}
+## merge alle dataene
+files <- list(DF2019, DF2020)
+allCast <- do.call("rbind", files)
+```
