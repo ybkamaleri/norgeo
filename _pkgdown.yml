@@ -30,6 +30,8 @@ reference:
 navbar:
   type: default
   left:
+    - icon: fa-home fa-lg
+      href: index.html
     - text: Guides
       menu:
         - text: Add changes
@@ -38,11 +40,9 @@ navbar:
           href: articles/granularity.html
         - text: Change table
           href: articles/change-tbl.html
-
-    - text: News
-      href: news/index.html
-
     - text: Reference
       href: reference/index.html
+    - text: News
+      href: news/index.html
 
 destination: docs
