@@ -112,7 +112,7 @@ the output object from geo_set() function." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/folkehelseprofil/norgeo/">
+  <a href="https://github.com/helseprofil/norgeo/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -131,7 +131,7 @@ the output object from geo_set() function." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Merge all geo codes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/folkehelseprofil/norgeo/blob/master/R/merge.R'><code>R/merge.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/norgeo/blob/master/R/merge.R'><code>R/merge.R</code></a></small>
     <div class="hidden name"><code>geo_merge.Rd</code></div>
     </div>
 
@@ -140,7 +140,7 @@ the output object from geo_set() function." />
 the output object from <code><a href='geo_set.html'>geo_set()</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_merge</span>(<span class='no'>files</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"all"</span>, <span class='st'>"split"</span>, <span class='st'>"merge"</span>, <span class='st'>"change"</span>, <span class='st'>"complete"</span>))</pre>
+    <pre class="usage"><span class='fu'>geo_merge</span>(<span class='kw'>files</span>, output = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"all"</span>, <span class='st'>"split"</span>, <span class='st'>"merge"</span>, <span class='st'>"change"</span>, <span class='st'>"complete"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,12 +164,14 @@ the output object from <code><a href='geo_set.html'>geo_set()</a></code> functio
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>DT</span> <span class='kw'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>kommune2018</span>, <span class='no'>kommune2019</span>, <span class='no'>kommune2020</span>))
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>kommune2018</span>, <span class='kw'>kommune2019</span>, <span class='kw'>kommune2020</span>))
 
-<span class='no'>dts</span> <span class='kw'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>kommune2018</span>, <span class='no'>kommune2019</span>, <span class='no'>kommune2020</span>), <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"split"</span>)
+<span class='kw'>dts</span> <span class='op'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>kommune2018</span>, <span class='kw'>kommune2019</span>, <span class='kw'>kommune2020</span>), output = <span class='st'>"split"</span>)
 
-}</div></pre>
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -185,7 +187,7 @@ the output object from <code><a href='geo_set.html'>geo_set()</a></code> functio
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

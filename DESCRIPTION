@@ -33,6 +33,6 @@ Suggests:
     pkgdown,
     knitr,
     rmarkdown
-URL: https://github.com/folkehelseprofil/norgeo
-BugReports: https://github.com/folkehelseprofil/norgeo/issues
+URL: https://github.com/helseprofil/norgeo
+BugReports: https://github.com/helseprofil/norgeo/issues
 VignetteBuilder: knitr
