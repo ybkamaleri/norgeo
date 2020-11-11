@@ -23,8 +23,6 @@ geo_change(
 
 \item{key.col}{Column name as an id for merging eg. \code{name}}
 
-\item{folder.path}{Folder path to the files}
-
 \item{file.type}{Which format to save the output. Option are Excel or Text.}
 
 \item{des.path}{Destination folder where the file to be saved}

@@ -13,8 +13,6 @@ read_csv(
 )
 }
 \arguments{
-\item{folder.path}{Folder path to the files}
-
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
 \item{sep}{The separate symbols in the CSV files ie. \verb{;} or \verb{,}. If you leave it blank then
