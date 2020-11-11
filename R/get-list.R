@@ -7,7 +7,7 @@
 #'
 #' @export
 
-geo_list <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
+get_list <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
                      year,
                      from = NULL){
 

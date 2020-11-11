@@ -6,6 +6,8 @@ All ongoing new ideas will be implemented here. So contibutions
 and bugs reports are very much welcome.
 
 - `geo_list` function to download geo levels via API from SSB.
+- `geo_change` function to download code changes via API.
+- `geo_set` function is now a wrapper function for `geo_list` and `geo_change`
 
 ## Tranck changes
 
