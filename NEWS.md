@@ -5,6 +5,8 @@
 All ongoing new ideas will be implemented here. So contibutions
 and bugs reports are very much welcome.
 
+- `geo_list` function to download geo levels via API from SSB.
+
 ## Tranck changes
 
 * `geo_merge()` function provide output for `split` and `merge` codes,
