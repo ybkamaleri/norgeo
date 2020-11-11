@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![Build
-Status](https://travis-ci.com/folkehelseprofil/norgeo.svg?branch=master)](https://travis-ci.com/folkehelseprofil/norgeo)
+Status](https://travis-ci.com/helseprofil/norgeo.svg?branch=master)](https://travis-ci.com/helseprofil/norgeo)
 <!-- badges: end -->
 
 Regional granularity levels in Norway which are depicted by different
@@ -20,14 +20,14 @@ To use other data than the data structure should mimic those from SSB.
 ## Installation
 
 `norgeo` package can be installed directly from **GitHub** page of
-[Folkehelseprofil](https://github.com/folkehelseprofil). You can run the
-code below for installation. It will use `remotes` package to access to
-the **GitHub**. If you haven’t installed it before, the package will be
+[Helseprofil](https://github.com/helseprofil). You can run the code
+below for installation. It will use `remotes` package to access to the
+**GitHub**. If you haven’t installed it before, the package will be
 installed automatically prior to installing `norgeo`.
 
 ``` r
 if(!require(remotes)) install.packages("remotes")
-remotes::install_github("folkehelseprofil/norgeo")
+remotes::install_github("helseprofil/norgeo")
 ```
 
 ## Usage

@@ -42,6 +42,12 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Guides
@@ -61,15 +67,15 @@
   </ul>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="news/index.html">News</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/folkehelseprofil/norgeo/">
+  <a href="https://github.com/helseprofil/norgeo/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -95,9 +101,11 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>norgeo</code> package can be installed directly from <strong>GitHub</strong> page of <a href="https://github.com/folkehelseprofil">Folkehelseprofil</a>. You can run the code below for installation. It will use <code>remotes</code> package to access to the <strong>GitHub</strong>. If you haven’t installed it before, the package will be installed automatically prior to installing <code>norgeo</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">remotes</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"folkehelseprofil/norgeo"</span>)</pre></div>
+<p><code>norgeo</code> package can be installed directly from <strong>GitHub</strong> page of <a href="https://github.com/helseprofil">Helseprofil</a>. You can run the code below for installation. It will use <code>remotes</code> package to access to the <strong>GitHub</strong>. If you haven’t installed it before, the package will be installed automatically prior to installing <code>norgeo</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co">if</span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="kw"><a href="https://remotes.r-lib.org">remotes</a></span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"helseprofil/norgeo"</span>)
+</pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -124,9 +132,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/folkehelseprofil/norgeo/">https://​github.com/​folkehelseprofil/​norgeo/​</a>
+<li>Browse source code at <br><a href="https://github.com/helseprofil/norgeo/">https://​github.com/​helseprofil/​norgeo/​</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/folkehelseprofil/norgeo/issues">https://​github.com/​folkehelseprofil/​norgeo/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/helseprofil/norgeo/issues">https://​github.com/​helseprofil/​norgeo/​issues</a>
 </li>
 <li>SSB website at <br><a href="https://www.ssb.no/offentlig-sektor/kommunekatalog">https://​www.ssb.no/​offentlig-sektor/​kommunekatalog</a>
 </li>
@@ -149,7 +157,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.com/folkehelseprofil/norgeo"><img src="https://travis-ci.com/folkehelseprofil/norgeo.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://travis-ci.com/helseprofil/norgeo"><img src="https://travis-ci.com/helseprofil/norgeo.svg?branch=master" alt="Build Status"></a></li>
 </ul>
 </div>
 </div>
@@ -161,7 +169,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
