@@ -8,7 +8,7 @@ geo_set(
   grep.file = NULL,
   grep.change = NULL,
   year = NULL,
-  type = c("land", "fylke", "kommune", "bydel", "grunnkrets"),
+  type = c("fylke", "kommune", "bydel", "grunnkrets"),
   folder.path = NULL,
   filegeo = NULL,
   filechg = NULL
