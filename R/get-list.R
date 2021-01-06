@@ -3,6 +3,7 @@
 #' This function will download the codes of selected geographical levels via API.
 #'
 #' @param from Year from
+#' @param date If TRUE then give complete date else year only
 #' @inheritParams geo_set
 #'
 #' @export
@@ -12,7 +13,8 @@ get_list <- function(type = c("fylke",
                               "bydel",
                               "grunnkrets"),
                      year = NULL,
-                     from = NULL){
+                     from = NULL,
+                     date = FALSE){
 
   type <- match.arg(type)
 
@@ -65,10 +67,17 @@ get_list <- function(type = c("fylke",
     indN <- grep("InRequestedRange", names(koDT))
     valN <- names(koDT)[indN]
     koDT[, setdiff(names(koDT), c(keepName, valN)) := NULL][]
-    data.table::setnames(koDT, old = valN, new = c("from", "validTo"))
+    data.table::setnames(koDT, old = valN, new = c("validFrom", "validTo"))
     data.table::setorderv(koDT, c("validTo", "code"))
   }
+  
+  if (isFALSE(date)){
+    dateVar <- c("validFrom", "validTo")
+    selectCol <- dateVar[is.element(dateVar, names(koDT))]
 
-  ## invisible(koDT)
+    for (j in selectCol)
+      set(koDT,, j = j, value = format(as.Date(koDT[[j]]), "%Y"))
+  }
+  
   koDT
 }
