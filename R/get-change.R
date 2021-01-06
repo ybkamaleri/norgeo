@@ -7,9 +7,12 @@
 #'
 #' @export
 
-get_change <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
+get_change <- function(type = c("fylke",
+                                "kommune",
+                                "bydel",
+                                "grunnkrets"),
                        year = NULL,
-                    from = NULL){
+                       from = NULL){
 
   type <- match.arg(type)
   
@@ -20,10 +23,10 @@ get_change <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
                   grunnkrets = 1)
 
   if (is.null(year))
-    year <- format(Sys.Date(), "%Y")
+    year <- as.integer(format(Sys.Date(), "%Y"))
 
   if (is.null(from))
-    from <- as.numeric(year) - 1
+    from <- year - 1
   
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
   klsUrl <- paste0(baseUrl, klass)
@@ -54,9 +57,6 @@ get_change <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
     chgGET <- httr::GET(chgUrl, query = chgQ)
     chgTxt <- httr::content(chgGET, as = "text")
 
-    ## #check if changes table exists eg. grunnkrets prior to 2014 or bydel
-    ## has.tbl <- grepl("has no change", chgTxt)
-    
     chgJS <- tryCatch({
       jsonlite::fromJSON(chgTxt)
     },
@@ -82,7 +82,7 @@ get_change <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
   cat("\n")
   DT <- data.table::rbindlist(listDT)
   
-  invisible(DT)
+  DT
   
 }
 

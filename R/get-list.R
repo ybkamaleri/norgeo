@@ -7,11 +7,17 @@
 #'
 #' @export
 
-get_list <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
-                     year,
+get_list <- function(type = c("fylke",
+                              "kommune",
+                              "bydel",
+                              "grunnkrets"),
+                     year = NULL,
                      from = NULL){
 
   type <- match.arg(type)
+
+  if(is.null(year))
+    year <- as.character(format(Sys.Date(), "%Y"))
   
   klass <- switch(type,
                   fylke = 104,
@@ -26,7 +32,6 @@ get_list <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
   kodeUrl <- paste0(klsUrl, ifelse(is.null(from), "/codesAt", "/codes"))
 
   ## use current dates if year is current year
-  year <- as.character(year)
   is.curYr <- identical(format(Sys.Date(), "%Y"), year)
   ## valid codes for current year should NOT start with 01.jan
   is.errYr <- identical(format(Sys.Date(), "%m-%d"), "01-01")
@@ -64,5 +69,6 @@ get_list <- function(type = c("fylke", "kommune", "bydel", "grunnkrets"),
     data.table::setorderv(koDT, c("validTo", "code"))
   }
 
-  invisible(koDT)
+  ## invisible(koDT)
+  koDT
 }
