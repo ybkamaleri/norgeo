@@ -6,8 +6,9 @@
 \usage{
 get_list(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
-  year,
-  from = NULL
+  year = NULL,
+  from = NULL,
+  date = FALSE
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ get_list(
 \item{year}{Year of the selected code list}
 
 \item{from}{Year from}
+
+\item{date}{If TRUE then give complete date else year only}
 }
 \description{
 This function will download the codes of selected geographical levels via API.

@@ -1,11 +1,22 @@
-
-dlist <- get_list("fylke", 2019);dlist
-dchg <- get_change("fylke", year = 2020, from = 2019);dchg
-dset <- geo_set("fylke", 2020);dset
+library(norgeo)
+dlist <- get_list("fylke", 2019)
+dlist
+dchg <- get_change("fylke", year = 2020, from = 2010)
+dchg
+dset <- geo_set("fylke", 2020)
+dset
 
 dc <- get_change("fylke", 2020)
-get_change("f", 2020, 2017)
+get_change("f", 2020, 2017)[]
 
-get_list("b", 2019, 2000)
+get_list("b", 2020, 2000)[]
+get_change("b", 2020, 2019)[]
 
-geo_set("fylke", 2021, 2000)
+geo_set("fylke", 2021, 2018)
+
+## Kommune
+komchg <- get_change("kom", year = 2020, from = 2019)
+komchg
+uniqueN(komchg$newCode)
+unique(komchg$newCode)
+komchg[duplicated(newCode), .N]

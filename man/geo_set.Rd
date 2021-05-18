@@ -4,7 +4,11 @@
 \alias{geo_set}
 \title{Set geo codes changes}
 \usage{
-geo_set(type = c("fylke", "kommune", "bydel", "grunnkrets"), year = NULL)
+geo_set(
+  type = c("fylke", "kommune", "bydel", "grunnkrets"),
+  year = NULL,
+  from = NULL
+)
 }
 \arguments{
 \item{type}{Type of regional granularity ie. fylke, kommune etc.}
@@ -12,13 +16,15 @@ geo_set(type = c("fylke", "kommune", "bydel", "grunnkrets"), year = NULL)
 \item{year}{Year of the selected code list}
 }
 \description{
-This is a wrapper function to get geo code list and code changes.
+This is a wrapper function to get geo code list and code changes. But code changes
+will only valid for every two years. To find codes changes for multiple years, use
+\code{get_change} function.
 }
 \details{
 The following dataset will be generated:
 \itemize{
 \item data   : The whole merged dataset
-\item xl     : The code changes
+\item change : The code changes
 \item type   : The granularity level
 }
 }
