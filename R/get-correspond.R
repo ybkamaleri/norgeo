@@ -61,7 +61,8 @@ get_correspond <- function(type = c(
     from = from,
     to = to,
     id = corr,
-    url = klsUrl
+    url = klsUrl,
+    dt = dt
   )
 }
 
@@ -69,7 +70,8 @@ get_correspond <- function(type = c(
 set_corr <- function(from = NULL,
                      to = NULL,
                      id = NULL,
-                     url = NULL) {
+                     url = NULL,
+                     dt = TRUE) {
   if (is.null(to)) {
     corrUrl <- paste0(url, "/correspondsAt")
     codeQry <- list(targetClassificationId = id, date = from)
