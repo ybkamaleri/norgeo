@@ -84,7 +84,7 @@ The output can be as xlsx or csv file." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ The output can be as xlsx or csv file." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/helseprofil/norgeo/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -146,15 +146,15 @@ years. Therefore this function should be used with caution.
 The output can be as <code>xlsx</code> or <code>csv</code> file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_change</span>(
-  files = <span class='kw'>NULL</span>,
-  years = <span class='kw'>NULL</span>,
-  type = <span class='kw'>NULL</span>,
-  key.col = <span class='kw'>NULL</span>,
-  folder.path = <span class='kw'>NULL</span>,
-  file.type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"Excel"</span>, <span class='st'>"Text"</span>),
-  des.path = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>geo_change</span><span class='op'>(</span>
+  files <span class='op'>=</span> <span class='cn'>NULL</span>,
+  years <span class='op'>=</span> <span class='cn'>NULL</span>,
+  type <span class='op'>=</span> <span class='cn'>NULL</span>,
+  key.col <span class='op'>=</span> <span class='cn'>NULL</span>,
+  folder.path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  file.type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"none"</span>, <span class='st'>"xls"</span>, <span class='st'>"csv"</span>, <span class='st'>"excel"</span><span class='op'>)</span>,
+  des.path <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,7 +181,7 @@ The output can be as <code>xlsx</code> or <code>csv</code> file.</p>
     </tr>
     <tr>
       <th>file.type</th>
-      <td><p>Which format to save the output. Option are Excel or Text.</p></td>
+      <td><p>Which format to save the output. Option are <code>xls</code> or <code>csv</code>.</p></td>
     </tr>
     <tr>
       <th>des.path</th>
@@ -191,15 +191,19 @@ The output can be as <code>xlsx</code> or <code>csv</code> file.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>files</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ssb_bydel_jan2004.csv"</span>, <span class='st'>"ssb_bydel_jan2018.csv"</span>, <span class='st'>"ssb_bydel_jan2020.csv"</span>)
-<span class='kw'>years</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2004</span>, <span class='fl'>2018</span>, <span class='fl'>2020</span>)
-<span class='kw'>folder</span> <span class='op'>=</span> <span class='st'>"C:/geo/bydel"</span>
-<span class='kw'>des</span> <span class='op'>=</span> <span class='st'>"C:/geo/bydel/output"</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ssb_bydel_jan2004.csv"</span>, <span class='st'>"ssb_bydel_jan2018.csv"</span>, <span class='st'>"ssb_bydel_jan2020.csv"</span><span class='op'>)</span>
+<span class='va'>years</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2004</span>, <span class='fl'>2018</span>, <span class='fl'>2020</span><span class='op'>)</span>
+<span class='va'>folder</span> <span class='op'>&lt;-</span> <span class='st'>"C:/geo/bydel"</span>
+<span class='va'>des</span> <span class='op'>&lt;-</span> <span class='st'>"C:/geo/bydel/output"</span>
 
-<span class='fu'>geo_change</span>(files=<span class='kw'>files</span>, years=<span class='kw'>years</span>, type=<span class='st'>"bydel"</span>,folder.path=<span class='kw'>folder</span>, file.type=<span class='st'>"xls"</span>, des.path=<span class='kw'>des</span>)
-}
+<span class='fu'>geo_change</span><span class='op'>(</span>
+  files <span class='op'>=</span> <span class='va'>files</span>,
+  years <span class='op'>=</span> <span class='va'>years</span>,
+  type <span class='op'>=</span> <span class='st'>"bydel"</span>,
+  folder.path <span class='op'>=</span> <span class='va'>folder</span>, file.type <span class='op'>=</span> <span class='st'>"xls"</span>, des.path <span class='op'>=</span> <span class='va'>des</span>
+<span class='op'>)</span>
+<span class='op'>}</span>
 
 </div></pre>
   </div>

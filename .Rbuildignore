@@ -6,3 +6,5 @@
 ^pkgdown$
 ^\.travis\.yml$
 ^README\.html$
+^memo$
+^.projectile

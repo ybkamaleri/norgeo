@@ -8,9 +8,10 @@ template:
     bootswatch: cosmo
 
 reference:
-- title: "Main function"
+- title: "Downloaded files"
   desc: >
-    All function that start with `geo_`. The most important
+    All functions that start with `geo_` are used to restructure
+    the downloaded files from SSB. The most important
     of them is `geo_set`. This will set configuration to be
     easily used in the next processes.
 - contents:
@@ -19,7 +20,15 @@ reference:
   - geo_cast
   - geo_save
   - geo_change
-- title: "Additional function"
+- title: "API data"
+  desc: >
+    All functions that start with `get_` are used to download data
+    via API.
+- contents:
+  - get_list
+  - get_change
+  - get_correspond
+- title: "Additional functions"
   desc: "Extra functions when needed for special cases"
 - contents:
   - read_csv

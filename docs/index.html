@@ -44,7 +44,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -76,7 +76,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/helseprofil/norgeo/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -102,15 +102,16 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p><code>norgeo</code> package can be installed directly from <strong>GitHub</strong> page of <a href="https://github.com/helseprofil">Helseprofil</a>. You can run the code below for installation. It will use <code>remotes</code> package to access to the <strong>GitHub</strong>. If you haven’t installed it before, the package will be installed automatically prior to installing <code>norgeo</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co">if</span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="kw"><a href="https://remotes.r-lib.org">remotes</a></span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"helseprofil/norgeo"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/norgeo"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>All functions with <code>geo_</code> prefix are the main function for <code>norgeo</code>. Among them, <code><a href="reference/geo_set.html">geo_set()</a></code> is the most important one to set up object accordingly for further use. Other available functions aren’t really necessary to know, but they are available when needed. They are mostly for internal use. To learn how to use these function, please read the tutorial under <a href="articles/code-change.html">Guides</a></p>
+<p>Data can either be downloaded directly from SSB website or via API. When you download the files manually then use the functions with <code>geo_</code> prefix while functions with <code>get_</code> prefix are used to get data via API.</p>
+<p>All functions with <code>geo_</code> prefix are the main function for <code>norgeo</code> downloaded files. Among them, <code><a href="reference/geo_set.html">geo_set()</a></code> is the most important one to set up object accordingly for further use. Other available functions aren’t really necessary to know, but they are available when needed. They are mostly for internal use. To learn how to use these function, please read the tutorial under <a href="articles/code-change.html">Guides</a></p>
+<p>To get all code changes directly via API can be done with <code><a href="reference/get_change.html">get_change()</a></code> function, while <code><a href="reference/geo_change.html">geo_change()</a></code> is used when you have downloaded the files manually.</p>
 </div>
 <div id="output" class="section level2">
 <h2 class="hasAnchor">

@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/helseprofil/norgeo/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,7 +85,7 @@
 
       
 
-      </header><script src="granularity_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Granularity</h1>
@@ -99,40 +99,38 @@
     
     
 <p>The function <code><a href="../reference/geo_cast.html">geo_cast()</a></code> will add lower granularity to all files when applicable. It means for <em>kommune</em> files, a new <code>fylke</code> column will be added, while column <code>fylke</code> and <code>kommune</code> will be added to a <em>bydel</em> and <em>grunnkrets</em> files.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="co">## Geo 2019</span>
-<span class="kw">file2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"F:/Geo/fylke/fylke_jan2019.csv"</span>,
+<span class="va">file2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F:/Geo/fylke/fylke_jan2019.csv"</span>,
               <span class="st">"F:/Geo/kommune/kommune_jan2019.csv"</span>,
               <span class="st">"F:/Geo/bydel/bydel_jan2019.csv"</span>,
-              <span class="st">"F:/Geo/grunnkrets/grunnkrets_jan2019.csv"</span>)
+              <span class="st">"F:/Geo/grunnkrets/grunnkrets_jan2019.csv"</span><span class="op">)</span>
 
-<span class="kw">fileTyp2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"grunnkrets"</span>)
+<span class="va">fileTyp2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"grunnkrets"</span><span class="op">)</span>
 
 
-<span class="kw">DF2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_cast.html">geo_cast</a></span>(file = <span class="kw">file2019</span>,
-                   type = <span class="kw">fileTyp2019</span>,
-                   year = <span class="fl">2019</span>)
+<span class="va">DF2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_cast.html">geo_cast</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">file2019</span>,
+                   type <span class="op">=</span> <span class="va">fileTyp2019</span>,
+                   year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>
 
 <span class="co">## Geo 2020</span>
-<span class="kw">file2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"F:/Geo/fylke/fylke_jan2020.csv"</span>,
+<span class="va">file2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F:/Geo/fylke/fylke_jan2020.csv"</span>,
               <span class="st">"F:/Geo/kommune/kommune_jan2020.csv"</span>,
               <span class="st">"F:/Geo/bydel/bydel_jan2020.csv"</span>,
-              <span class="st">"F:/Geo/grunnkrets/grunnkrets_jan2020.csv"</span>)
+              <span class="st">"F:/Geo/grunnkrets/grunnkrets_jan2020.csv"</span><span class="op">)</span>
 
-<span class="kw">fileTyp2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"grunnkrets"</span>)
+<span class="va">fileTyp2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"grunnkrets"</span><span class="op">)</span>
 
 
-<span class="kw">DF2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_cast.html">geo_cast</a></span>(file = <span class="kw">file2020</span>,
-                   type = <span class="kw">fileTyp2020</span>,
-                   year = <span class="fl">2020</span>)
-</pre></div>
+<span class="va">DF2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_cast.html">geo_cast</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">file2020</span>,
+                   type <span class="op">=</span> <span class="va">fileTyp2020</span>,
+                   year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></code></pre></div>
 <p>Running <code><a href="../reference/geo_cast.html">geo_cast()</a></code> will also add a new row for granularity <code>land</code> which has code <code>0</code>. The output from the above example can then be merged to a file and saved to the file type one wishes. To bind all the output, you can use the base R <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> function or <code>rbindlist()</code> function from <code>data.table</code> package.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co">## merge alle dataene</span>
-<span class="kw">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">DF2019</span>, <span class="kw">DF2020</span>)
-<span class="kw">allCast</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span>(<span class="st">"rbind"</span>, <span class="kw">files</span>)
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## merge alle dataene</span>
+<span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">DF2019</span>, <span class="va">DF2020</span><span class="op">)</span>
+<span class="va">allCast</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="st">"rbind"</span>, <span class="va">files</span><span class="op">)</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
