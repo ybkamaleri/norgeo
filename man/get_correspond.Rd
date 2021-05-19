@@ -8,7 +8,8 @@ get_correspond(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
   correspond = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
-  to = NULL
+  to = NULL,
+  dt = TRUE
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ get_correspond(
 \item{from}{Specify the starting year for range period. Current year is the default.}
 
 \item{to}{Specify the year to end the range period. Indefinite is used when not specified.}
+
+\item{dt}{Output as data.table}
 }
 \description{
 This function will get the corresponding geo code of specific granuality via API from SSB whenever available.

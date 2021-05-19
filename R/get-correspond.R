@@ -6,6 +6,7 @@
 #' @param correspond Lower granularity from the specified type arg.
 #' @param from Specify the starting year for range period. Current year is the default.
 #' @param to Specify the year to end the range period. Indefinite is used when not specified.
+#' @param dt Output as data.table
 #'
 #' @examples
 #' \dontrun{
@@ -27,7 +28,8 @@ get_correspond <- function(type = c(
                              "grunnkrets"
                            ),
                            from = NULL,
-                           to = NULL) {
+                           to = NULL,
+                           dt = TRUE) {
   type <- match.arg(type)
   klass <- switch(type,
     fylke = 104,
@@ -80,4 +82,10 @@ set_corr <- function(from = NULL,
   koTxt <- httr::content(koGET, as = "text")
   koJS <- jsonlite::fromJSON(koTxt)
   koDT <- koJS[["correspondenceItems"]]
+
+  if (dt) {
+    data.table::setDT(koDT)
+  }
+
+  return(koDT)
 }
