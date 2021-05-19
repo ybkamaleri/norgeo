@@ -6,7 +6,7 @@ setwd("../")
 library(pacman)
 pkgs <- c(
   "usethis", "roxygen2", "devtools", "rmarkdown", "knitr", "pkgdown", "here", "fs",
-  "data.table"
+  "data.table", "readxl", "openxlsx"
 )
 pacman::p_load(pkgs, character.only = TRUE)
 

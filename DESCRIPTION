@@ -27,6 +27,7 @@ Imports:
     magrittr,
     RSQLite,
     openxlsx,
+    writexl,
     httr,
     jsonlite
 Suggests: 

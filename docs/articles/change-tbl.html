@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/helseprofil/norgeo/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,8 +85,7 @@
 
       
 
-      </header><script src="change-tbl_files/header-attrs-2.5/header-attrs.js"></script><link href="change-tbl_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="change-tbl_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Change table</h1>
@@ -101,21 +100,21 @@
     
 <p>Function <code><a href="../reference/geo_set.html">geo_set()</a></code> and <code><a href="../reference/geo_merge.html">geo_merge()</a></code> depends on two type of data ie. current valid codes which is in a <code>.csv</code> format and codes that have changed in a <code>.xlsx</code> format. When table for code changes isn’t available ie. the <code>.xlsx</code> file, we have to create one to be able to use the <code><a href="../reference/geo_set.html">geo_set()</a></code> function. For example granularity <em>bydel</em> has no table of code change in SSB website.</p>
 <p>To create a table from the available <code>.csv</code> files, we have to decide a reference column that most likely to be consistent across the files, such as <code>names</code>. Therefore this function should be used with caution. This is how you could use it.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>files <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ssb_bydel_jan2004.csv"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">"ssb_bydel_jan2018.csv"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">"ssb_bydel_jan2020.csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>years <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2004</span>, <span class="dv">2018</span>, <span class="dv">2020</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>folder <span class="ot">=</span> <span class="st">"C:/geo/bydel"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>des <span class="ot">=</span> <span class="st">"C:/geo/bydel/output"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">geo_change</span>(<span class="at">files =</span> files,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">years =</span> years,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="st">"bydel"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">key.col =</span> <span class="st">"name"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">folder.path =</span> folder,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">file.type =</span> <span class="st">"Excel"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">des.path =</span> des)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"></a>
+<a class="sourceLine" id="cb1-2" title="2">files =<span class="st"> </span><span class="kw">c</span>(<span class="st">"ssb_bydel_jan2004.csv"</span>,</a>
+<a class="sourceLine" id="cb1-3" title="3">          <span class="st">"ssb_bydel_jan2018.csv"</span>,</a>
+<a class="sourceLine" id="cb1-4" title="4">          <span class="st">"ssb_bydel_jan2020.csv"</span>)</a>
+<a class="sourceLine" id="cb1-5" title="5">years =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2004</span>, <span class="dv">2018</span>, <span class="dv">2020</span>)</a>
+<a class="sourceLine" id="cb1-6" title="6">folder =<span class="st"> "C:/geo/bydel"</span></a>
+<a class="sourceLine" id="cb1-7" title="7">des =<span class="st"> "C:/geo/bydel/output"</span></a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="kw">geo_change</span>(<span class="dt">files =</span> files,</a>
+<a class="sourceLine" id="cb1-10" title="10">           <span class="dt">years =</span> years,</a>
+<a class="sourceLine" id="cb1-11" title="11">           <span class="dt">type =</span> <span class="st">"bydel"</span>,</a>
+<a class="sourceLine" id="cb1-12" title="12">           <span class="dt">key.col =</span> <span class="st">"name"</span></a>
+<a class="sourceLine" id="cb1-13" title="13">           <span class="dt">folder.path =</span> folder,</a>
+<a class="sourceLine" id="cb1-14" title="14">           <span class="dt">file.type =</span> <span class="st">"Excel"</span>,</a>
+<a class="sourceLine" id="cb1-15" title="15">           <span class="dt">des.path =</span> des)</a></code></pre></div>
 <p>The output will be two files. One is all the codes from 2004 that have changed in 2018, and the other file is all the codes in 2018 that have changed in 2020.</p>
   </div>
 

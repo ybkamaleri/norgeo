@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MIT License • norgeo</title>
+<title>norgeo • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="MIT License" />
+<meta property="og:title" content="norgeo" />
 
 
 
@@ -128,16 +128,50 @@
 <div class="row">
   <div class="contents col-md-9">
     <div class="page-header">
-      <h1>MIT License</h1>
+      <h1>norgeo</h1>
     </div>
 
-<div id="mit-license" class="section level1">
 
-<p>Copyright (c) 2020 Yusman Kamaleri</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<hr>
+<div id="output-github_document" class="section level2">
+<h2 class="hasAnchor">
+<a href="#output-github_document" class="anchor"></a>output: github_document</h2>
 </div>
+<div id="norgeo" class="section level1">
+
+<!-- badges: start -->
+<p><a href="https://travis-ci.com/helseprofil/norgeo"><img src="https://travis-ci.com/helseprofil/norgeo.svg?branch=master" alt="Build Status"></a> <!-- badges: end --></p>
+<p>Regional granularity levels in Norway which are depicted by different codes, have undergone several changes over the years. Identifying when codes have changed and how many changes have taken place can be troublesome. This package will help to identify these changes and when the changes have taken place. One of the limitation of this package is that it is heavily depending on the codes available from SSB which can be accessed from their <a href="https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020">website</a>. To use other data than the data structure should mimic those from SSB.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p><code>norgeo</code> package can be installed directly from <strong>GitHub</strong> page of <a href="https://github.com/helseprofil">Helseprofil</a>. You can run the code below for installation. It will use <code>remotes</code> package to access to the <strong>GitHub</strong>. If you haven’t installed it before, the package will be installed automatically prior to installing <code>norgeo</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/norgeo"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<p>Data can either be downloaded directly from SSB website or via API. When you download the files manually then use the functions with <code>geo_</code> prefix while functions with <code>get_</code> prefix are used to get data via API.</p>
+<p>All functions with <code>geo_</code> prefix are the main function for <code>norgeo</code> downloaded files. Among them, <code><a href="reference/geo_set.html">geo_set()</a></code> is the most important one to set up object accordingly for further use. Other available functions aren’t really necessary to know, but they are available when needed. They are mostly for internal use. To learn how to use these function, please read the tutorial under <a href="articles/code-change.html">Guides</a></p>
+<p>To get all code changes directly via API can be done with <code><a href="reference/get_change.html">get_change()</a></code> function, while <code><a href="reference/geo_change.html">geo_change()</a></code> is used when you have downloaded the files manually.</p>
+</div>
+<div id="output" class="section level2">
+<h2 class="hasAnchor">
+<a href="#output" class="anchor"></a>Output</h2>
+<p>Among the output produced by the function <code><a href="reference/geo_merge.html">geo_merge()</a></code> is as follows:</p>
+<p><img src="man/figures/kommune_merge.PNG" alt="output-result"></p>
+<p>The data elucidate the complexity of all the codes change. For Larvik for instance, the manucipality has grown in 2020 with the inclusion of Lardal. Therefore the code for Larvik has changed twice. How about Holmestrand? When there are more than 350 manucipalities with different changes, then tracking these can be a nightmare. The same with enumeration units ie. <em>grunnkrets</em> with 14000 units!</p>
+</div>
+<div id="file-structure" class="section level2">
+<h2 class="hasAnchor">
+<a href="#file-structure" class="anchor"></a>File structure</h2>
+<p>I would suggest to structure your files in different folders as shown below:</p>
+<p><img src="man/figures/geo_dir2.PNG" alt="File structure"></p>
+</div>
+</div>
+
 
   </div>
 

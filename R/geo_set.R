@@ -133,9 +133,9 @@ geo_set <- function(grep.file = NULL,
   ## ----------------
   DT <- xlTbl[dt, on = c(curr = "code")]
   DT[, currName := NULL]
-  setnames(DT, "curr", "code")
+  data.table::setnames(DT, "curr", "code")
   otherCols <- setdiff(names(DT), mainCols)
-  setcolorder(DT, c(mainCols, otherCols))
+  data.table::setcolorder(DT, c(mainCols, otherCols))
 
   list(
     data = DT[],

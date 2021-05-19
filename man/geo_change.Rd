@@ -43,7 +43,12 @@ years <- c(2004, 2018, 2020)
 folder <- "C:/geo/bydel"
 des <- "C:/geo/bydel/output"
 
-geo_change(files = files, years = years, type = "bydel", folder.path = folder, file.type = "xls", des.path = des)
+geo_change(
+  files = files,
+  years = years,
+  type = "bydel",
+  folder.path = folder, file.type = "xls", des.path = des
+)
 }
 
 }

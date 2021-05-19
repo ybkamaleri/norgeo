@@ -22,7 +22,12 @@
 #' folder <- "C:/geo/bydel"
 #' des <- "C:/geo/bydel/output"
 #'
-#' geo_change(files = files, years = years, type = "bydel", folder.path = folder, file.type = "xls", des.path = des)
+#' geo_change(
+#'   files = files,
+#'   years = years,
+#'   type = "bydel",
+#'   folder.path = folder, file.type = "xls", des.path = des
+#' )
 #' }
 #'
 #' @export
@@ -38,11 +43,11 @@ geo_change <- function(files = NULL,
 
   if (length(file.type) > 1) file.type <- "none"
   outputFile <- switch(file.type,
-                       "xls" = ".xlsx",
-                       "excel" = ".xlsx",
-                       "csv" = ".csv",
-                       "none"
-                       )
+    "xls" = ".xlsx",
+    "excel" = ".xlsx",
+    "csv" = ".csv",
+    "none"
+  )
 
   if (inherits(files, "list") == 0) {
     files <- unlist(files)
