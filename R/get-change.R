@@ -16,13 +16,16 @@ get_change <- function(type = c(
                        year = NULL,
                        from = NULL) {
   type <- match.arg(type)
+  if (type == "bydel") {
+    message("*** Change table for bydel is not available in SSB Klass API ***\n")
+  }
 
   klass <- switch(type,
-    fylke = 104,
-    kommune = 131,
-    bydel = 103,
-    grunnkrets = 1
-  )
+                  fylke = 104,
+                  kommune = 131,
+                  bydel = 103,
+                  grunnkrets = 1
+                  )
 
   if (is.null(year)) {
     year <- as.integer(format(Sys.Date(), "%Y"))
