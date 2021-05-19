@@ -13,6 +13,8 @@ cast_code(file, type, year, folder.path = NULL, keep.col = c("code", "name"))
 
 \item{year}{Year of the selected code list}
 
+\item{folder.path}{Folder path to the files}
+
 \item{keep.col}{Exisiting column names to be kept}
 }
 \description{

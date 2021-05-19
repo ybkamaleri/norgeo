@@ -140,7 +140,7 @@ the output object from geo_set() function." />
 the output object from <code><a href='geo_set.html'>geo_set()</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_merge</span>(<span class='kw'>files</span>, output = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"all"</span>, <span class='st'>"split"</span>, <span class='st'>"merge"</span>, <span class='st'>"change"</span>, <span class='st'>"complete"</span>))</pre>
+    <pre class="usage"><span class='fu'>geo_merge</span><span class='op'>(</span><span class='va'>files</span>, output <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"all"</span>, <span class='st'>"split"</span>, <span class='st'>"merge"</span>, <span class='st'>"change"</span>, <span class='st'>"complete"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,12 +164,12 @@ the output object from <code><a href='geo_set.html'>geo_set()</a></code> functio
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>kommune2018</span>, <span class='kw'>kommune2019</span>, <span class='kw'>kommune2020</span>))
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>geo_merge</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>kommune2018</span>, <span class='va'>kommune2019</span>, <span class='va'>kommune2020</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='kw'>dts</span> <span class='op'>&lt;-</span> <span class='fu'>geo_merge</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>kommune2018</span>, <span class='kw'>kommune2019</span>, <span class='kw'>kommune2020</span>), output = <span class='st'>"split"</span>)
+<span class='va'>dts</span> <span class='op'>&lt;-</span> <span class='fu'>geo_merge</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>kommune2018</span>, <span class='va'>kommune2019</span>, <span class='va'>kommune2020</span><span class='op'>)</span>, output <span class='op'>=</span> <span class='st'>"split"</span><span class='op'>)</span>
 
-}
+<span class='op'>}</span>
 
 </div></pre>
   </div>

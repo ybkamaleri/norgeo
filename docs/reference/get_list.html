@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • norgeo</title>
+<title>Get the list of geographical levels — get_list • norgeo</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Get the list of geographical levels — get_list" />
+<meta property="og:description" content="This function will download the codes of selected geographical levels via API." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -128,61 +129,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/helseprofil/norgeo/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Get the list of geographical levels</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/norgeo/blob/master/R/get-list.R'><code>R/get-list.R</code></a></small>
+    <div class="hidden name"><code>get_list.Rd</code></div>
     </div>
 
-    <div id="norgeo-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#norgeo-development-version" class="anchor"></a>norgeo (development version)</h1>
-<div id="dev-branch" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dev-branch" class="anchor"></a><code>dev</code> branch</h2>
-<p>All ongoing new ideas will be implemented here. So contibutions and bugs reports are very much welcome.</p>
-<ul>
-<li>
-<code>geo_list</code> function to download geo levels via API from SSB.</li>
-<li>
-<code>geo_change</code> function to download code changes via API.</li>
-<li>
-<code>geo_set</code> function is now a wrapper function for <code>geo_list</code> and <code>geo_change</code>
-</li>
-</ul>
-</div>
-<div id="tranck-changes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tranck-changes" class="anchor"></a>Tranck changes</h2>
-<ul>
-<li>
-<code><a href="../reference/geo_merge.html">geo_merge()</a></code> function provide output for <code>split</code> and <code>merge</code> codes, but it’s only relevant to those that are splitted or merged in the most recent code list. All that happened prior to this haven’t been handled properly. So may be you can help to solve this?</li>
-</ul>
-</div>
-<div id="change-table" class="section level2">
-<h2 class="hasAnchor">
-<a href="#change-table" class="anchor"></a>Change table</h2>
-<p>Hopefully a better alternative to solve this challenge when SSB doesn’t provide codes that have changed. May be SSB sees the problem and will fix it to help external users.</p>
-</div>
-</div>
-    <div id="norgeo-090" class="section level1">
-<h1 class="page-header" data-toc-text="0.9.0">
-<a href="#norgeo-090" class="anchor"></a>norgeo 0.9.0</h1>
-<ul>
-<li>The real first release version</li>
-</ul>
-</div>
-    <div id="norgeo-133" class="section level1">
-<h1 class="page-header" data-toc-text="1.3.3">
-<a href="#norgeo-133" class="anchor"></a>norgeo 1.3.3</h1>
-<p>Despite it was version 1.3.3 til then, unfortunately <code>norgeo</code> was actually premature since it hasn’t been tested properly, but was released due to the need to use the function. So that was much too early and I have to pull it back and make rebirth of <code>norgeo 0.9</code> with a bit properly thought function names and structure. But of course there are always errors and things that can be better… Anyway, <code>norgeo 1.3.3</code> before <code>norgeo 0.9.0</code> works but too ambitious to call it 1.3.3, but hopefully the second future version of <code>norgeo 1.3.3</code> will be much better :-)</p>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>This function will download the codes of selected geographical levels via API.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>get_list</span><span class='op'>(</span>
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span><span class='op'>)</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  from <span class='op'>=</span> <span class='cn'>NULL</span>,
+  date <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>type</th>
+      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>Year of the selected code list</p></td>
+    </tr>
+    <tr>
+      <th>from</th>
+      <td><p>Year from</p></td>
+    </tr>
+    <tr>
+      <th>date</th>
+      <td><p>If TRUE then give complete date else year only</p></td>
+    </tr>
+    </table>
+
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 

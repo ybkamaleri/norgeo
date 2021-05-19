@@ -42,7 +42,10 @@
 <meta property="og:title" content="Set geo codes changes — geo_set" />
 <meta property="og:description" content="The downloaded file of geo codes for specific year from SSB is saved in csv
 format. The codes that have changed are copied from Endringer tab and pasted into
-an Excel file. The .csv and .xlsx files will than be merged by running this function." />
+an Excel file. The .csv and .xlsx files will than be merged by running this function.
+This is a wrapper function to get geo code list and code changes. But code changes
+will only valid for every two years. To find codes changes for multiple years, use
+get_change function." />
 
 
 
@@ -132,7 +135,7 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Set geo codes changes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/norgeo/blob/master/R/geo_set.R'><code>R/geo_set.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/norgeo/blob/master/R/geo_set.R'><code>R/geo_set.R</code></a>, <a href='https://github.com/helseprofil/norgeo/blob/master/R/get_set.R'><code>R/get_set.R</code></a></small>
     <div class="hidden name"><code>geo_set.Rd</code></div>
     </div>
 
@@ -140,21 +143,34 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
     <p>The downloaded file of geo codes for specific year from SSB is saved in <code>csv</code>
 format. The codes that have changed are copied from <em>Endringer</em> tab and pasted into
 an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be merged by running this function.</p>
+<p>This is a wrapper function to get geo code list and code changes. But code changes
+will only valid for every two years. To find codes changes for multiple years, use
+<code>get_change</code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_set</span>(
-  grep.file = <span class='kw'>NULL</span>,
-  grep.change = <span class='kw'>NULL</span>,
-  year = <span class='kw'>NULL</span>,
-  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span>),
-  folder.path = <span class='kw'>NULL</span>,
-  filegeo = <span class='kw'>NULL</span>,
-  filechg = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>geo_set</span><span class='op'>(</span>
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span><span class='op'>)</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  from <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
+<span class='fu'>geo_set</span><span class='op'>(</span>
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span><span class='op'>)</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  from <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>type</th>
+      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>Year of the selected code list</p></td>
+    </tr>
     <tr>
       <th>grep.file</th>
       <td><p>Common file name for the selected period eg. "jan2019"</p></td>
@@ -162,14 +178,6 @@ an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be m
     <tr>
       <th>grep.change</th>
       <td><p>Common name for <code>xlsx</code> file for code change eg. "change"</p></td>
-    </tr>
-    <tr>
-      <th>year</th>
-      <td><p>Year of the selected code list</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of regional granularity ie. fylke, kommune etc.</p></td>
     </tr>
     <tr>
       <th>folder.path</th>
@@ -192,6 +200,12 @@ an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be m
 <li><p>xl     : The xlsx file</p></li>
 <li><p>change : Path where the change file is if <code>raw = FALSE</code></p></li>
 <li><p>code   : Path where the <code>csv</code> file is if <code>raw = FALSE</code></p></li>
+<li><p>type   : The granularity level</p></li>
+</ul>
+
+<p>The following dataset will be generated:</p><ul>
+<li><p>data   : The whole merged dataset</p></li>
+<li><p>change : The code changes</p></li>
 <li><p>type   : The granularity level</p></li>
 </ul>
 

@@ -20,6 +20,8 @@ geo_cast(
 \item{year}{Year of the selected code list}
 
 \item{keep.col}{Exisiting column names to be kept}
+
+\item{folder.path}{Folder path to the files}
 }
 \description{
 Add all granularity levels. Here the structure is important.
