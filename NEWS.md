@@ -2,7 +2,7 @@
 
 Introduce functions to download data via API with `get_` prefix:
 
-- `get_list` function to download geo levels via API from SSB.
+- `get_code` function to download geo levels via API from SSB.
 - `get_change` function to download code changes.
 - `get_correspond` function to get geo codes for corresponding granularity.
 - `get_set` function is now a wrapper function for `get_list` and `get_change`
