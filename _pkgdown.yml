@@ -25,7 +25,7 @@ reference:
     All functions that start with `get_` are used to download data
     via API.
 - contents:
-  - get_list
+  - get_code
   - get_change
   - get_correspond
 - title: "Additional functions"

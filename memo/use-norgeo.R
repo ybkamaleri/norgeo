@@ -9,7 +9,8 @@ dset
 dc <- get_change("fylke", 2020)
 get_change("f", 2020, 2017)[]
 
-get_list("b", 2020, 2000)[]
+get_code("b", 2000, 2020)[]
+get_code("b", 2020)
 get_change("b", 2020, 2019)[]
 
 geo_set("fylke", 2021, 2018)

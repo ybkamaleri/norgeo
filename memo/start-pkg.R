@@ -14,7 +14,6 @@ pacman::p_load(pkgs, character.only = TRUE)
 ## Looping
 devtools::load_all()
 devtools::document()
-
 devtools::check()
 devtools::test()
 
