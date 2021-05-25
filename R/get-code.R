@@ -47,7 +47,7 @@ get_code <- function(type = c(
 
   if (is.null(to)) {
     koDT[, setdiff(names(koDT), keepName) := NULL]
-    koDT[, validTo := date_now()][]
+    koDT[, validTo := paste0(from, "-01-01")][]
   } else {
     indN <- grep("InRequestedRange", names(koDT))
     valN <- names(koDT)[indN]
