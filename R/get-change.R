@@ -2,8 +2,7 @@
 #'
 #' This function will download all registered geo code changes via API from SSB.
 #'
-#' @param from Year from
-#' @inheritParams geo_set
+#' @inheritParams get_code
 #'
 #' @export
 
@@ -13,36 +12,36 @@ get_change <- function(type = c(
                          "bydel",
                          "grunnkrets"
                        ),
-                       year = NULL,
-                       from = NULL) {
+                       from = NULL,
+                       to = NULL) {
   type <- match.arg(type)
   if (type == "bydel") {
     message("*** Change table for bydel is not available in SSB Klass API ***\n")
   }
 
   klass <- switch(type,
-                  fylke = 104,
-                  kommune = 131,
-                  bydel = 103,
-                  grunnkrets = 1
-                  )
-
-  if (is.null(year)) {
-    year <- as.integer(format(Sys.Date(), "%Y"))
-  }
+    fylke = 104,
+    kommune = 131,
+    bydel = 103,
+    grunnkrets = 1
+  )
 
   if (is.null(from)) {
-    from <- year - 1
+    from <- as.integer(format(Sys.Date(), "%Y"))
+  }
+
+  if (is.null(to)) {
+    to <- format(Sys.Date(), "%Y")
   }
 
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
   klsUrl <- paste0(baseUrl, klass)
   chgUrl <- paste0(klsUrl, "/changes")
 
-  vecYr <- from:year
+  vecYr <- from:to
   nYr <- length(vecYr)
 
-  ## reference table for year from and to
+  ## reference table for from and to
   allRef <- data.table::CJ(1:nYr, 1:nYr)
   tblRef <- allRef[V2 - V1 == 1]
 
@@ -78,13 +77,9 @@ get_change <- function(type = c(
     chgDT <- as.data.table(chgJS[[1]])
 
     ## no error produced but table is empty
-    if (!is.null(chgJS) && is.null(chgDT)) {
-      message("No changes from ", dateFrom, " to ", dateTo)
+    if (!is.null(chgJS) && length(chgDT) == 0) {
+      message("No code changes from ", dateFrom, " to ", dateTo)
     }
-
-    ## ## no error but no table either
-    ## if (is.null(chgJS) && !is.null(chgDT))
-    ##   message("Neither table nor changes found from", dateFrom, " to ", dateTo)
 
     listDT[[i]] <- chgDT
   }
@@ -101,7 +96,7 @@ set_year <- function(x, to = TRUE) {
   x <- as.character(x)
   dy <- paste0(x, "-01-01")
 
-  ## valid codes for current year should NOT start with 01.jan
+  ## valid codes for current from should NOT start with 01.jan
   is.errYr <- identical(format(Sys.Date(), "%m-%d"), "01-01")
   if (is.errYr || isTRUE(to)) {
     dy <- paste0(x, "-01-02")

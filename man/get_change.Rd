@@ -6,16 +6,16 @@
 \usage{
 get_change(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
-  year = NULL,
-  from = NULL
+  from = NULL,
+  to = NULL
 )
 }
 \arguments{
-\item{type}{Type of regional granularity ie. fylke, kommune etc.}
+\item{type}{Higer granularity from specified correspond arg.}
 
-\item{year}{Year of the selected code list}
+\item{from}{Specify the starting year for range period. Current year is the default.}
 
-\item{from}{Year from}
+\item{to}{Specify the year to end the range period. Indefinite is used when not specified.}
 }
 \description{
 This function will download all registered geo code changes via API from SSB.
