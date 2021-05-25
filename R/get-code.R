@@ -30,6 +30,13 @@ get_code <- function(type = c(
     grunnkrets = 1
   )
 
+  if (is.null(from)) {
+    from <- date_now()
+  } else {
+    from <- paste0(from, "-01-01")
+  }
+
+  if (!is.null(to)) to <- paste0(to, "-01-02")
   base <- "http://data.ssb.no/api/klass/v1/classifications/"
 
   dt <- set_url(
@@ -47,7 +54,7 @@ get_code <- function(type = c(
 
   if (is.null(to)) {
     koDT[, setdiff(names(koDT), keepName) := NULL]
-    koDT[, validTo := paste0(from, "-01-01")][]
+    koDT[, validTo := from][]
   } else {
     indN <- grep("InRequestedRange", names(koDT))
     valN <- names(koDT)[indN]
@@ -65,46 +72,38 @@ get_code <- function(type = c(
     }
   }
 
-  return(koDT)
+    return(koDT)
 }
 
-# base - What is base url
-# source - Where the data is from eg. codesAt, corresponds etc
+## base - What is base url
+## source - Where the data is from eg. codesAt, corresponds etc
 set_url <- function(base = NULL,
                     from = NULL,
                     to = NULL,
                     klass = NULL,
                     source = NULL) {
-  baseUrl <- paste0(base, klass)
+    baseUrl <- paste0(base, klass)
 
-  if (is.null(from)) {
-    from <- date_now()
-  } else {
-    from <- paste0(from, "-01-01")
-  }
+    if (is.null(to)) {
+        sourceUrl <- paste0(source, "At")
+        endUrl <- paste(baseUrl, sourceUrl, sep = "/")
+        codeQry <- list(date = from)
+    } else {
+        endUrl <- paste(baseUrl, source, sep = "/")
+        codeQry <- list(from = from, to = to)
+    }
 
-  if (!is.null(to)) to <- paste0(to, "-01-02")
-
-  if (is.null(to)) {
-    sourceUrl <- paste0(source, "At")
-    endUrl <- paste(baseUrl, sourceUrl, sep = "/")
-    codeQry <- list(date = from)
-  } else {
-    endUrl <- paste(baseUrl, source, sep = "/")
-    codeQry <- list(from = from, to = to)
-  }
-
-  koGET <- httr::GET(endUrl, query = codeQry)
-  koTxt <- httr::content(koGET, as = "text")
-  koJS <- jsonlite::fromJSON(koTxt)
+    koGET <- httr::GET(endUrl, query = codeQry)
+    koTxt <- httr::content(koGET, as = "text")
+    koJS <- jsonlite::fromJSON(koTxt)
 }
 
 ## Ensure date is the required format
 date_now <- function() {
-  format(Sys.Date(), "%Y-%m-%d")
+    format(Sys.Date(), "%Y-%m-%d")
 }
 
 ## Defunc
 get_list <- function() {
-  .Defunct("get_code")
+    .Defunct("get_code")
 }
