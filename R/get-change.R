@@ -15,80 +15,88 @@ get_change <- function(type = c(
                        ),
                        from = NULL,
                        to = NULL,
-                       quiet = FALSE) {
-    type <- match.arg(type)
+                       quiet = FALSE,
+                       date = FALSE) {
+  type <- match.arg(type)
 
-    if (type == "bydel") {
-        message("*** Change table for bydel is not available in SSB Klass API ***\n")
-    }
+  if (type == "bydel") {
+    message("*** Change table for bydel is not available in SSB Klass API ***\n")
+  }
 
-    klass <- switch(type,
-                    fylke = 104,
-                    kommune = 131,
-                    bydel = 103,
-                    grunnkrets = 1
-                    )
+  klass <- switch(type,
+    fylke = 104,
+    kommune = 131,
+    bydel = 103,
+    grunnkrets = 1
+  )
 
-    if (is.null(from)) {
-        from <- as.integer(format(Sys.Date(), "%Y"))
-    }
+  if (is.null(from)) {
+    from <- as.integer(format(Sys.Date(), "%Y"))
+  }
 
-    if (is.null(to)) {
-        to <- format(Sys.Date(), "%Y")
-    }
+  if (is.null(to)) {
+    to <- format(Sys.Date(), "%Y")
+  }
 
-    baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
-    klsUrl <- paste0(baseUrl, klass)
-    chgUrl <- paste0(klsUrl, "/changes")
+  baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
+  klsUrl <- paste0(baseUrl, klass)
+  chgUrl <- paste0(klsUrl, "/changes")
 
-    vecYr <- from:to
-    nYr <- length(vecYr)
+  vecYr <- from:to
+  nYr <- length(vecYr)
 
-    ## reference table for from and to
-    allRef <- data.table::CJ(1:nYr, 1:nYr)
-    tblRef <- allRef[V2 - V1 == 1]
+  ## reference table for from and to
+  allRef <- data.table::CJ(1:nYr, 1:nYr)
+  tblRef <- allRef[V2 - V1 == 1]
 
-    ## Create empty list
-    listDT <- vector(mode = "list", length = nrow(tblRef))
+  ## Create empty list
+  listDT <- vector(mode = "list", length = nrow(tblRef))
 
-    for (i in seq_len(nrow(tblRef))) {
-        indFrom <- tblRef$V1[i]
-        indTo <- tblRef$V2[i]
-        yrFrom <- vecYr[indFrom]
-        yrTo <- vecYr[indTo]
+  for (i in seq_len(nrow(tblRef))) {
+    indFrom <- tblRef$V1[i]
+    indTo <- tblRef$V2[i]
+    yrFrom <- vecYr[indFrom]
+    yrTo <- vecYr[indTo]
 
-        dateFrom <- set_year(yrFrom, FALSE)
-        dateTo <- set_year(yrTo, TRUE)
+    dateFrom <- set_year(yrFrom, FALSE)
+    dateTo <- set_year(yrTo, TRUE)
 
-        ## specify query
-        chgQ <- list(from = dateFrom, to = dateTo)
-        chgGET <- httr::GET(chgUrl, query = chgQ)
-        chgTxt <- httr::content(chgGET, as = "text")
+    ## specify query
+    chgQ <- list(from = dateFrom, to = dateTo)
+    chgGET <- httr::GET(chgUrl, query = chgQ)
+    chgTxt <- httr::content(chgGET, as = "text")
 
-        chgJS <- tryCatch(
-        {
-            jsonlite::fromJSON(chgTxt)
-        },
-        error = function(err) {
-            message(
-                "*** Change table for ", type,
-                " doesn't exist. From ", dateFrom, " to ", dateTo, " ***"
-            )
-        }
+    chgJS <- tryCatch(
+      {
+        jsonlite::fromJSON(chgTxt)
+      },
+      error = function(err) {
+        message(
+          "*** Change table for ", type,
+          " doesn't exist. From ", dateFrom, " to ", dateTo, " ***"
         )
+      }
+    )
 
-        chgDT <- as.data.table(chgJS[[1]])
+    chgDT <- as.data.table(chgJS[[1]])
 
-        ## no error produced but table is empty
-        if (quiet == 0 && !is.null(chgJS) && length(chgDT) == 0) {
-            message("No code changes from ", dateFrom, " to ", dateTo)
-        }
-
-        listDT[[i]] <- chgDT
+    ## no error produced but table is empty
+    if (quiet == 0 && !is.null(chgJS) && length(chgDT) == 0) {
+        message("No code changes from ", dateFrom, " to ", dateTo)
     }
 
-    cat("\n")
-    DT <- data.table::rbindlist(listDT)
+    listDT[[i]] <- chgDT
+  }
+
+  cat("\n")
+  DT <- data.table::rbindlist(listDT)
+
+  if (date == 0) {
+      DT[, changeOccurred := format(as.Date(changeOccurred), "%Y")]
+  }
+
+  delCol <- c("oldShortName", "newShortName")
+  DT[, (delCol) := NULL][]
 }
 
 
