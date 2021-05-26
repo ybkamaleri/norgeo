@@ -7,7 +7,8 @@
 get_change(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
-  to = NULL
+  to = NULL,
+  quiet = TRUE
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ get_change(
 \item{from}{Specify the starting year for range period. Current year is the default.}
 
 \item{to}{Specify the year to end the range period. Indefinite is used when not specified.}
+
+\item{quiet}{TRUE will suppress messages when no changes happened for a specific time range}
 }
 \description{
 This function will download all registered geo code changes via API from SSB.
