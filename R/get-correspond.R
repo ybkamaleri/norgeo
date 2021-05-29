@@ -5,7 +5,7 @@
 #' @param type Higer granularity from specified correspond arg.
 #' @param correspond Lower granularity from the specified type arg.
 #' @param from Specify the starting year for range period. Current year is the default.
-#' @param to Specify the year to end the range period. Indefinite is used when not specified.
+#' @param to Specify the year to end the range period. Current year is used when not specified.
 #' @param dt Output as data.table
 #'
 #' @examples
@@ -16,43 +16,43 @@
 #' @export
 
 get_correspond <- function(type = c(
-                             "fylke",
-                             "kommune",
-                             "bydel",
-                             "grunnkrets"
-                           ),
-                           correspond = c(
-                             "fylke",
-                             "kommune",
-                             "bydel",
-                             "grunnkrets"
-                           ),
-                           from = NULL,
-                           to = NULL,
-                           dt = TRUE) {
+  "fylke",
+  "kommune",
+  "bydel",
+  "grunnkrets"
+),
+correspond = c(
+  "fylke",
+  "kommune",
+  "bydel",
+  "grunnkrets"
+),
+from = NULL,
+to = NULL,
+dt = TRUE) {
   type <- match.arg(type)
   klass <- switch(type,
-    fylke = 104,
-    kommune = 131,
-    bydel = 103,
-    grunnkrets = 1
-    )
+                  fylke = 104,
+                  kommune = 131,
+                  bydel = 103,
+                  grunnkrets = 1
+                  )
 
   correspond <- match.arg(correspond)
   corr <- switch(correspond,
-    fylke = 104,
-    kommune = 131,
-    bydel = 103,
-    grunnkrets = 1
-    )
+                 fylke = 104,
+                 kommune = 131,
+                 bydel = 103,
+                 grunnkrets = 1
+                 )
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
   klsUrl <- paste0(baseUrl, klass)
 
   if (is.null(from)) {
     year <- as.character(format(Sys.Date(), "%Y"))
-    from <- paste0(year, "-01-02")
+    from <- paste0(year, "-01-01")
   } else {
-    from <- paste0(from, "-01-02")
+    from <- paste0(from, "-01-01")
   }
 
   if (!is.null(to)) to <- paste0(to, "-01-02")

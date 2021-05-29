@@ -72,7 +72,7 @@ get_code <- function(type = c(
     }
   }
 
-    return(koDT)
+  return(koDT)
 }
 
 ## base - What is base url
@@ -82,28 +82,28 @@ set_url <- function(base = NULL,
                     to = NULL,
                     klass = NULL,
                     source = NULL) {
-    baseUrl <- paste0(base, klass)
+  baseUrl <- paste0(base, klass)
 
-    if (is.null(to)) {
-        sourceUrl <- paste0(source, "At")
-        endUrl <- paste(baseUrl, sourceUrl, sep = "/")
-        codeQry <- list(date = from)
-    } else {
-        endUrl <- paste(baseUrl, source, sep = "/")
-        codeQry <- list(from = from, to = to)
-    }
+  if (is.null(to)) {
+    sourceUrl <- paste0(source, "At")
+    endUrl <- paste(baseUrl, sourceUrl, sep = "/")
+    codeQry <- list(date = from)
+  } else {
+    endUrl <- paste(baseUrl, source, sep = "/")
+    codeQry <- list(from = from, to = to)
+  }
 
-    koGET <- httr::GET(endUrl, query = codeQry)
-    koTxt <- httr::content(koGET, as = "text")
-    koJS <- jsonlite::fromJSON(koTxt)
+  koGET <- httr::GET(endUrl, query = codeQry)
+  koTxt <- httr::content(koGET, as = "text")
+  koJS <- jsonlite::fromJSON(koTxt)
 }
 
 ## Ensure date is the required format
 date_now <- function() {
-    format(Sys.Date(), "%Y-%m-%d")
+  format(Sys.Date(), "%Y-%m-%d")
 }
 
-## Defunc
+## Depricated function
 get_list <- function() {
-    .Defunct("get_code")
+  .Defunct("get_code")
 }

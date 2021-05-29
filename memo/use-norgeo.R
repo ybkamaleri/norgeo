@@ -21,3 +21,9 @@ komchg
 uniqueN(komchg$newCode)
 unique(komchg$newCode)
 komchg[duplicated(newCode), .N]
+
+
+
+
+## install
+remotes::install_github("helseprofil/norgeo@dev")
