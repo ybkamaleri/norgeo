@@ -1,7 +1,22 @@
 #' Track all changes for codes from API
 #'
+#' Track code changes from the downloaded data via API
+#'
+#' @inheritParams get_code
+#'
+#' @import data.table
+#'
+#' @export
 
-track_change <- function(type, from, to) {
+track_change <- function(type = c(
+  "fylke",
+  "kommune",
+  "bydel",
+  "grunnkrets"
+),
+from = NULL,
+to = NULL) {
+  type <- match.arg(type)
   dataApi <<- new.env()
   dataApi$dt <- data_current(type, from, to)
   vecYear <- unique(dataApi$dc$changeOccurred)
@@ -82,6 +97,7 @@ data_merge <- function(data1, data2, year) {
   dd <- rbindlist(list(data1, DTC), use.names = TRUE)
 }
 
+## Avoid downloading changes data multiple times
 data_change <- function(type, from, to) {
   dataApi$dc <- get_change(type, from, to, quiet = TRUE)
 }
