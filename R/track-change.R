@@ -2,6 +2,7 @@
 #'
 
 track_change <- function(type, from, to) {
+  dataApi <<- new.env()
   dataApi$dt <- data_current(type, from, to)
   vecYear <- unique(dataApi$dc$changeOccurred)
   selYear <- sort(vecYear[vecYear != dataApi$yrMax], decreasing = TRUE)
@@ -13,7 +14,10 @@ track_change <- function(type, from, to) {
 
   data.table::setkey(dataApi$dt, newCode, changeOccurred)
   ## When nothing changes
-  dataApi$dt[oldCode == newCode, oldCode := NA][]
+  dataApi$dt[oldCode == newCode, oldCode := NA]
+
+  data.table::setnames(dataApi$dt, "newCode", "currentCode")
+  return(dataApi$dt[])
 }
 
 ## Do testing with:
@@ -54,25 +58,30 @@ data_merge <- function(data1, data2, year) {
     c("oldCode", "oldName", "changeOccurred")
   )
 
-  ## previous changes
-  dtp <- data1[data2[changeOccurred == year], on = "newCode"]
-  delCols <- c("oldCode", "oldName", "newName", "changeOccurred")
-  dtp[, (delCols) := NULL]
-  setnames(
-    dtp,
-    c("i.oldCode", "i.changeOccurred", "i.oldName", "i.newName"),
-    c("oldCode", "changeOccurred", "oldName", "newName")
-  )
+  ## Code changes that keep the earlier code change eg. Trondheim in 2018 and
+  ## with Klæbu joining in 2020
+  codeMulti <- dtc[is.na(newCode)]$oldCode
 
-  dtprev <- dtp[newCode != oldCode]
+  if (length(codeMulti) > 0) {
+    dtp <- data1[data2[oldCode == codeMulti], on = "newCode"]
+    delCols <- c("oldCode", "oldName", "newName", "changeOccurred")
+    dtp[, (delCols) := NULL]
+    setnames(
+      dtp,
+      c("i.oldCode", "i.changeOccurred", "i.oldName", "i.newName"),
+      c("oldCode", "changeOccurred", "oldName", "newName")
+    )
 
-  DTC <- rbindlist(list(dtc, dtprev), use.names = TRUE)
+    dtcNA <- dtc[!is.na(newCode)]
+
+    DTC <- rbindlist(list(dtcNA, dtp), use.names = TRUE)
+  } else {
+    DTC <- dtc
+  }
+
   dd <- rbindlist(list(data1, DTC), use.names = TRUE)
 }
 
 data_change <- function(type, from, to) {
   dataApi$dc <- get_change(type, from, to, quiet = TRUE)
 }
-
-
-dataApi <- new.env()
