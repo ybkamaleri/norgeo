@@ -17,6 +17,7 @@ track_change <- function(type = c(
 from = NULL,
 to = NULL) {
   type <- match.arg(type)
+
   dataApi <<- new.env()
   dataApi$dt <- data_current(type, from, to)
   vecYear <- unique(dataApi$dc$changeOccurred)
@@ -78,7 +79,7 @@ data_merge <- function(data1, data2, year) {
   codeMulti <- dtc[is.na(newCode)]$oldCode
 
   if (length(codeMulti) > 0) {
-    dtp <- data1[data2[oldCode == codeMulti], on = "newCode"]
+    dtp <- data1[data2[oldCode %in% codeMulti], on = "newCode"]
     delCols <- c("oldCode", "oldName", "newName", "changeOccurred")
     dtp[, (delCols) := NULL]
     setnames(
