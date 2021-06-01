@@ -17,7 +17,7 @@ get_change(
 
 \item{from}{Specify the starting year for range period. Current year is the default.}
 
-\item{to}{Specify the year to end the range period. Indefinite is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when not specified.}
 
 \item{quiet}{TRUE will suppress messages when no changes happened for a specific time range}
 

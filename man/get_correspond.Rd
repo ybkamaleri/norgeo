@@ -19,7 +19,7 @@ get_correspond(
 
 \item{from}{Specify the starting year for range period. Current year is the default.}
 
-\item{to}{Specify the year to end the range period. Indefinite is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when not specified.}
 
 \item{dt}{Output as data.table}
 }

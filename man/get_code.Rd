@@ -16,7 +16,7 @@ get_code(
 
 \item{from}{Specify the starting year for range period. Current year is the default.}
 
-\item{to}{Specify the year to end the range period. Indefinite is used when not specified.}
+\item{to}{Specify the year to end the range period. Current year is used when not specified.}
 
 \item{date}{If TRUE then give complete date else year only}
 }
