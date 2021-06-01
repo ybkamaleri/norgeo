@@ -22,7 +22,7 @@ uniqueN(komchg$newCode)
 unique(komchg$newCode)
 komchg[duplicated(newCode), .N]
 
-
+dtc <- track_change("kommune", 2015, 2021)
 
 
 ## install
