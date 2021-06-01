@@ -3,6 +3,7 @@
 #' Track code changes from the downloaded data via API
 #'
 #' @inheritParams get_code
+#' @return dataApi environment with main objects ie. dc (data change) and dt (current data)
 #'
 #' @import data.table
 #'
@@ -18,14 +19,15 @@ from = NULL,
 to = NULL) {
   type <- match.arg(type)
 
-  dataApi <<- new.env()
-  dataApi$dt <- data_current(type, from, to)
+  data_change(type, from, to)
+  ## Prepare the starting dataset with current year vs. last year
+  data_current(type, from, to)
+
   vecYear <- unique(dataApi$dc$changeOccurred)
   selYear <- sort(vecYear[vecYear != dataApi$yrMax], decreasing = TRUE)
 
   for (i in seq_along(selYear)) {
-    DT <- data_merge(dataApi$dt, dataApi$dc, selYear[i])
-    dataApi$dt <- DT
+    dataApi$dt <- data_merge(dataApi$dt, dataApi$dc, selYear[i])
   }
 
   data.table::setkey(dataApi$dt, newCode, changeOccurred)
@@ -42,8 +44,7 @@ to = NULL) {
 data_current <- function(type, from, to) {
   DT <- get_code(type, from = to)
 
-  data_change(type, from, to)
-
+  ## Created when data_change is called in function track_change
   yrMax <- max(dataApi$dc$changeOccurred)
   dataApi$yrMax <- yrMax
 
@@ -57,6 +58,7 @@ data_current <- function(type, from, to) {
   ]
 
   dt[, c("name", "validTo") := NULL][]
+  dataApi$dt <- dt
 }
 
 ## data1 : newest dataset with code changes
@@ -74,8 +76,8 @@ data_merge <- function(data1, data2, year) {
     c("oldCode", "oldName", "changeOccurred")
   )
 
-  ## Code changes that keep the earlier code change eg. Trondheim in 2018 and
-  ## with Klæbu joining in 2020
+  ## Code changes that happen multiple time at different years while keeping the newest code
+  ## eg. Trondheim in 2018 and Klæbu joining Trondheim in 2020
   codeMulti <- dtc[is.na(newCode)]$oldCode
 
   if (length(codeMulti) > 0) {
@@ -97,6 +99,7 @@ data_merge <- function(data1, data2, year) {
 
   dd <- rbindlist(list(data1, DTC), use.names = TRUE)
 }
+
 
 ## Avoid downloading changes data multiple times
 data_change <- function(type, from, to) {
