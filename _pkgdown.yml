@@ -28,6 +28,9 @@ reference:
   - get_code
   - get_change
   - get_correspond
+  - track_change
+  - track_split
+  - track_merge
 - title: "Additional functions"
   desc: "Extra functions when needed for special cases"
 - contents:

@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -132,6 +132,20 @@
       <small>Source: <a href='https://github.com/helseprofil/norgeo/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="norgeo-092" class="section level1">
+<h1 class="page-header" data-toc-text="0.9.2">
+<a href="#norgeo-092" class="anchor"></a>norgeo 0.9.2</h1>
+<p>All API functions now use arguments <code>from</code> and <code>to</code> instead of <code>year</code> as in <code>geo_</code> functions. This is matching the specification from SSB API Klass.</p>
+<p>New features are introduced to help working with the downloaded data from API. Now you can use:</p>
+<ul>
+<li>
+<code>track_change</code> to get all code changes until the date specified year in <code>to</code> argument</li>
+<li>
+<code>track_split</code> to find geo codes that are split to different geo codes</li>
+<li>
+<code>track_merge</code> to find geo codes that are merged to a new geo</li>
+</ul>
+</div>
     <div id="norgeo-091" class="section level1">
 <h1 class="page-header" data-toc-text="0.9.1">
 <a href="#norgeo-091" class="anchor"></a>norgeo 0.9.1</h1>

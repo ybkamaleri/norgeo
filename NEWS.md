@@ -1,4 +1,16 @@
+# norgeo 0.9.2
+
+All API functions now use arguments `from` and `to` instead of `year` as in `geo_` functions.
+This is matching the specification from SSB API Klass.
+
+New features are introduced to help working with the downloaded data from API. Now you can use:
+
+- `track_change` to get all code changes until the date specified year in `to` argument
+- `track_split` to find geo codes that are split to different geo codes
+- `track_merge` to find geo codes that are merged to a new geo
+
 # norgeo 0.9.1
+
 
 Introduce functions to download data via API with `get_` prefix:
 
