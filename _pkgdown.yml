@@ -34,6 +34,8 @@ reference:
 - title: "Additional functions"
   desc: "Extra functions when needed for special cases"
 - contents:
+  - norgeo
+  - dataApi
   - read_csv
   - find_change
   - merge_multi
@@ -46,6 +48,8 @@ navbar:
       href: index.html
     - text: Guides
       menu:
+        - text: Use API data
+          href: articles/use-api.html
         - text: Add changes
           href: articles/code-change.html
         - text: Cast granularity

@@ -1,0 +1,44 @@
+---
+title: "Use API data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Use API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This is a simple guide to access data data via API.
+
+# Download data with API
+
+All functions that has `get_` prefix access data directly via [SSB API](https://data.ssb.no/api/klass/v1/api-guide.html). This is the simple guide to use *norgeo* API functions:
+
+```{r api1, eval=FALSE}
+library(norgeo)
+dt <- get_code("kommune", from = 2015, to = 2021)
+# only current geo code
+dt <- get_code("kommune", from = 2021)
+```
+
+You could also find geo code changes via `get_change()` function. 
+
+```{r api2, eval=FALSE}
+dtc <- get_change("kommune", from = 2015, to = 2021)
+```
+
+# Track geo changes
+
+To track all geo changes to the current date specified in the argument `to` can be done as follows:
+
+```{r api3, eval=FALSE}
+dtt <- track_change("kommune", from = 2015, to = 2021)
+```
+
+You can also track the geo codes that are *split* or *merged* to a new geo with function `track_split()` or `track_merge()`.
