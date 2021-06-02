@@ -31,6 +31,12 @@ if(!require(remotes)) install.packages("remotes")
 remotes::install_github("helseprofil/norgeo")
 ```
 
+If you want to use the development version then use:
+
+```{r dev, eval=FALSE}
+remotes::install_github("helseprofil/norgeo@dev")
+```
+
 ## Usage
 
 Data can either be downloaded directly from SSB website or via API. When you download the files manually then use the functions with `geo_` prefix while functions with `get_` prefix are used to get data via API. 
