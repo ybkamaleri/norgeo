@@ -43,7 +43,8 @@ downloaded files. Among them, `geo_set()` is the most important one to
 set up object accordingly for further use. Other available functions
 aren’t really necessary to know, but they are available when needed.
 They are mostly for internal use. To learn how to use these function,
-please read the tutorial under [Guides](articles/use-api.html)
+please read the tutorial under
+[Guides](https://helseprofil.github.io/norgeo/articles/use-api.html)
 
 To get all code changes directly via API can be done with `get_change()`
 function, while `geo_change()` is used when you have downloaded the

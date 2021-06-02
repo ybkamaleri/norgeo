@@ -1,6 +1,6 @@
 #' Get geo code that are merged after code change
 #'
-#' @inheritParams get_correspond
+#' @inheritParams get_code
 #' @return Dataset with column 'merge' showing how many the codes have been merged to
 #' @export
 

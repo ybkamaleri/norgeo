@@ -1,6 +1,6 @@
 #' Get geo code that are split after code change
 #'
-#' @inheritParams get_correspond
+#' @inheritParams get_code
 #' @return Dataset with column 'split' showing how many the codes have been split to
 #' @export
 
