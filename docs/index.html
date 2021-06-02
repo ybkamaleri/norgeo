@@ -95,18 +95,22 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
+
 <div id="norgeo" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#norgeo" class="anchor"></a>norgeo</h1></div>
-<!-- badges: start -->
-
 <p>Regional granularity levels in Norway which are depicted by different codes, have undergone several changes over the years. Identifying when codes have changed and how many changes have taken place can be troublesome. This package will help to identify these changes and when the changes have taken place. One of the limitation of this package is that it is heavily depending on the codes available from SSB which can be accessed from their <a href="https://www.ssb.no/befolkning/artikler-og-publikasjoner/regionale-endringer-2020">website</a>. To use other data than the data structure should mimic those from SSB.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p><code>norgeo</code> package can be installed directly from <strong>GitHub</strong> page of <a href="https://github.com/helseprofil">Helseprofil</a>. You can run the code below for installation. It will use <code>remotes</code> package to access to the <strong>GitHub</strong>. If you haven’t installed it before, the package will be installed automatically prior to installing <code>norgeo</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(remotes)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"helseprofil/norgeo"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/norgeo"</span><span class="op">)</span></code></pre></div>
+<p>If you want to use the development version then use:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/norgeo@dev"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -129,6 +133,7 @@
 <p><img src="reference/figures/geo_dir2.PNG" alt="File structure"></p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -160,7 +165,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.com/helseprofil/norgeo"><img src="https://travis-ci.com/helseprofil/norgeo.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://github.com/helseprofil/norgeo/actions"><img src="https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 </div>
