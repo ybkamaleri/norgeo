@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+[![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
+
 # norgeo
 
 Regional granularity levels in Norway which are depicted by different codes, have
@@ -36,6 +38,7 @@ If you want to use the development version then use:
 ```{r dev, eval=FALSE}
 remotes::install_github("helseprofil/norgeo@dev")
 ```
+
 
 ## Usage
 

@@ -1,3 +1,6 @@
+
+[![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
+
 # norgeo
 
 Regional granularity levels in Norway which are depicted by different
@@ -18,8 +21,16 @@ below for installation. It will use `remotes` package to access to the
 **GitHub**. If you haven’t installed it before, the package will be
 installed automatically prior to installing `norgeo`.
 
-    if(!require(remotes)) install.packages("remotes")
-    remotes::install_github("helseprofil/norgeo")
+``` r
+if(!require(remotes)) install.packages("remotes")
+remotes::install_github("helseprofil/norgeo")
+```
+
+If you want to use the development version then use:
+
+``` r
+remotes::install_github("helseprofil/norgeo@dev")
+```
 
 ## Usage
 
@@ -32,7 +43,7 @@ downloaded files. Among them, `geo_set()` is the most important one to
 set up object accordingly for further use. Other available functions
 aren’t really necessary to know, but they are available when needed.
 They are mostly for internal use. To learn how to use these function,
-please read the tutorial under [Guides](https://helseprofil.github.io/norgeo/articles/use-api.html)
+please read the tutorial under [Guides](articles/use-api.html)
 
 To get all code changes directly via API can be done with `get_change()`
 function, while `geo_change()` is used when you have downloaded the
@@ -49,7 +60,7 @@ for instance, the manucipality has grown in 2020 with the inclusion of
 Lardal. Therefore the code for Larvik has changed twice. How about
 Holmestrand? When there are more than 350 manucipalities with different
 changes, then tracking these can be a nightmare. The same with
-enumeration units ie. *grunnkrets* with 14000 units!
+enumeration units ie. *grunnkrets* with 14000 units\!
 
 ## File structure
 
