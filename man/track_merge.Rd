@@ -11,7 +11,7 @@ track_merge(
 )
 }
 \arguments{
-\item{type}{Higer granularity from specified correspond arg.}
+\item{type}{Type of regional granularity ie. fylke, kommune etc.}
 
 \item{from}{Specify the starting year for range period. Current year is the default.}
 

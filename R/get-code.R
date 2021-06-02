@@ -2,6 +2,7 @@
 #'
 #' This function will download the codes of selected geographical levels via API.
 #'
+#' @param type Type of regional granularity ie. fylke, kommune etc.
 #' @param date If TRUE then give complete date else year only
 #' @inheritParams get_correspond
 #'
