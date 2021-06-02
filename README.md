@@ -1,11 +1,5 @@
 # norgeo
 
-<!-- badges: start -->
-
-[![Build
-Status](https://travis-ci.com/helseprofil/norgeo.svg?branch=master)](https://travis-ci.com/helseprofil/norgeo)
-<!-- badges: end -->
-
 Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
 codes have changed and how many changes have taken place can be
