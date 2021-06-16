@@ -1,7 +1,9 @@
 #' Add lower granularity to all files
 #'
-#' Add all granularity levels. Here the structure is important.
+#' Add all granularity levels for all manually downloaded files.
+#' Here the structure is important.
 #' The the order for types should be similar to the order in files.
+#' OBS! The 6 digits from grunnkrets does not represent bydel.
 #'
 #' @param file Files names with complete path to the files
 #' @param type Types equivalent to the file names. Must be the same order with file names
@@ -10,13 +12,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' file = c("C:/Geo/fylke/fylke2020.csv",
-#'           "C:/Geo/kommune/kommune2020.csv",
-#'           "C:/folder2/bydel2020.csv" )
+#' file <- c(
+#'   "C:/Geo/fylke/fylke2020.csv",
+#'   "C:/Geo/kommune/kommune2020.csv",
+#'   "C:/folder2/bydel2020.csv"
+#' )
 #'
-#' types = c("fylke","kommune","bydel")
+#' types <- c("fylke", "kommune", "bydel")
 #'
-#' DT <- geo_cast(files=files, type=types, year=2020)
+#' DT <- geo_cast(files = files, type = types, year = 2020)
 #' }
 #'
 #' @import data.table
@@ -26,11 +30,10 @@ geo_cast <- function(file,
                      type = NULL,
                      year = NULL,
                      keep.col = c("code", "name"),
-                     folder.path = NULL){
-
-
-  if (length(file) != length(type))
+                     folder.path = NULL) {
+  if (length(file) != length(type)) {
     stop("Length of file and type is different!")
+  }
 
   allFiles <- file_folder(file, folder.path)
   tblFile <- data.table(file = allFiles, type = type)
@@ -38,24 +41,24 @@ geo_cast <- function(file,
   ## allocate template for memory use
   listDT <- vector(mode = "list", length = nrow(tblFile))
 
-  for (i in seq_len(nrow(tblFile))){
-
+  for (i in seq_len(nrow(tblFile))) {
     fileName <- tblFile[i, file]
     typeName <- tblFile[i, type]
 
-    dt <- cast_code(file = fileName,
-                   type = typeName,
-                   year = year,
-                   keep.col = keep.col)
+    dt <- cast_code(
+      file = fileName,
+      type = typeName,
+      year = year,
+      keep.col = keep.col
+    )
 
     listDT[[i]] <- dt
-
   }
 
   DT <- rbindlist(listDT, fill = TRUE)
 
   ## Fill the granularity level columns with its own code
-  for (i in type){
+  for (i in type) {
     DT[granularity == i, (i) := code]
   }
 
@@ -81,14 +84,13 @@ geo_cast <- function(file,
 #' @inheritParams geo_set
 #'
 #' @examples
-#'
 #' \dontrun{
-#' file = "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
-#' type = "grunnkrets"
-#' year = 2020
-#' cols = c("code", "name")
+#' file <- "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
+#' type <- "grunnkrets"
+#' year <- 2020
+#' cols <- c("code", "name")
 #'
-#' DT <- cast_code(file = file, type = type, year = year, keep.col=cols)
+#' DT <- cast_code(file = file, type = type, year = year, keep.col = cols)
 #' }
 #'
 #' @import data.table
@@ -98,9 +100,7 @@ cast_code <- function(file,
                       type,
                       year,
                       folder.path = NULL,
-                      keep.col = c("code", "name")
-                      ){
-
+                      keep.col = c("code", "name")) {
   fName <- file_folder(file, folder.path)
 
   dt <- data.table::fread(fName, fill = TRUE)
@@ -119,19 +119,26 @@ cast_code <- function(file,
   type <- tolower(type)
 
   refTab <- switch(type,
-                   "kommune" = data.table(v1 = "fylke",
-                                          v2 = 2),
-                   "bydel" = data.table(v1 = c("fylke", "kommune"),
-                                        v2 = c(4, 2)),
-                   "grunnkrets" = data.table(v1 = c("fylke", "kommune", "bydel"),
-                                             v2 = c(6, 4, 2)),
-                   data.table(v1 = NULL,
-                              v2 = NULL)
+                   "kommune" = data.table(
+                     v1 = "fylke",
+                     v2 = 2
+                   ),
+                   "bydel" = data.table(
+                     v1 = c("fylke", "kommune"),
+                     v2 = c(4, 2)
+                   ),
+                   "grunnkrets" = data.table(
+                     v1 = c("fylke", "kommune"),
+                     v2 = c(6, 4)
+                   ),
+                   data.table(
+                     v1 = NULL,
+                     v2 = NULL
+                   )
                    )
 
-  if (type != "fylke"){
-
-    for (i in seq_len(nrow(refTab))){
+  if (type != "fylke") {
+    for (i in seq_len(nrow(refTab))) {
       colName <- refTab$v1[i]
       numD <- refTab$v2[i]
       subDigit <- paste0("\\d{", numD, "}$")
