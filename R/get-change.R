@@ -97,6 +97,22 @@ get_change <- function(type = c(
   cat("\n")
   DT <- data.table::rbindlist(listDT)
 
+  ## need to create empty data.table when it's empty data from API
+  if (nrow(DT) == 0) {
+    colNs <- c(
+      "oldCode",
+      "oldName",
+      "oldShortName",
+      "newCode",
+      "newName",
+      "newShortName",
+      "changeOccurred"
+    )
+
+    DT <- data.table::data.table(matrix(nrow = 0, ncol = 7))
+    data.table::setnames(DT, new = colNs)
+  }
+
   if (date == 0) {
     DT[, changeOccurred := format(as.Date(changeOccurred), "%Y")]
   }
