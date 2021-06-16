@@ -40,6 +40,8 @@ get_change <- function(type = c(
     to <- as.integer(format(Sys.Date(), "%Y"))
   }
 
+  check_range(from = from, to = to)
+
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
   klsUrl <- paste0(baseUrl, klass)
   chgUrl <- paste0(klsUrl, "/changes")
