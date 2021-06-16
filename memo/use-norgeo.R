@@ -26,4 +26,11 @@ dtc <- track_change("kommune", 2015, 2021)
 
 
 ## install
-remotes::install_github("helseprofil/norgeo@dev")
+remotes::install_github("helseprofil/norgeo@HEAD")
+library(norgeo)
+
+dtg <- get_change("g", 2018)
+dtg[newCode == 15350309]
+dtt <- norgeo::track_change("g", 2020)
+dtt[currentCode == 15350309]
+dtt[oldName == "Hjelset"]

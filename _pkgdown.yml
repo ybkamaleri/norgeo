@@ -8,6 +8,18 @@ template:
     bootswatch: cosmo
 
 reference:
+- title: "API data"
+  desc: >
+    All functions that start with `get_` are used to download data
+    via API.
+- contents:
+  - get_code
+  - get_change
+  - get_correspond
+  - track_change
+  - track_split
+  - track_merge
+  - cast_geo
 - title: "Downloaded files"
   desc: >
     All functions that start with `geo_` are used to restructure
@@ -20,17 +32,6 @@ reference:
   - geo_cast
   - geo_save
   - geo_change
-- title: "API data"
-  desc: >
-    All functions that start with `get_` are used to download data
-    via API.
-- contents:
-  - get_code
-  - get_change
-  - get_correspond
-  - track_change
-  - track_split
-  - track_merge
 - title: "Additional functions"
   desc: "Extra functions when needed for special cases"
 - contents:
@@ -40,6 +41,7 @@ reference:
   - find_change
   - merge_multi
   - cast_code
+  - find_correspond
 
 navbar:
   type: default

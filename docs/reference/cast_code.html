@@ -75,7 +75,7 @@ the available table that can be downloaded from SSB. The file should be in a CSV
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -176,14 +176,13 @@ the available table that can be downloaded from SSB. The file should be in a CSV
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>file</span> <span class='op'>=</span> <span class='st'>"c:/Users/geo/ssb_grunnkrets_jan2020.csv"</span>
-<span class='va'>type</span> <span class='op'>=</span> <span class='st'>"grunnkrets"</span>
-<span class='va'>year</span> <span class='op'>=</span> <span class='fl'>2020</span>
-<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"code"</span>, <span class='st'>"name"</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>file</span> <span class='op'>&lt;-</span> <span class='st'>"c:/Users/geo/ssb_grunnkrets_jan2020.csv"</span>
+<span class='va'>type</span> <span class='op'>&lt;-</span> <span class='st'>"grunnkrets"</span>
+<span class='va'>year</span> <span class='op'>&lt;-</span> <span class='fl'>2020</span>
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"code"</span>, <span class='st'>"name"</span><span class='op'>)</span>
 
-<span class='va'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>cast_code</span><span class='op'>(</span>file <span class='op'>=</span> <span class='va'>file</span>, type <span class='op'>=</span> <span class='va'>type</span>, year <span class='op'>=</span> <span class='va'>year</span>, keep.col<span class='op'>=</span><span class='va'>cols</span><span class='op'>)</span>
+<span class='va'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>cast_code</span><span class='op'>(</span>file <span class='op'>=</span> <span class='va'>file</span>, type <span class='op'>=</span> <span class='va'>type</span>, year <span class='op'>=</span> <span class='va'>year</span>, keep.col <span class='op'>=</span> <span class='va'>cols</span><span class='op'>)</span>
 <span class='op'>}</span>
 
 </div></pre>

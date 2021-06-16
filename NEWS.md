@@ -1,3 +1,12 @@
+# norgeo 0.9.3
+
+All geo codes downloaded via API can be cast for geo granularity with `cast_geo`
+
+  | codes   | year | level   | grks    | fylke | kommune | bydel  |
+  |---------|------|---------|:--------|-------|---------|:-------|
+  | 0320333 | 2021 | grks    | 0333333 | 03    | 0320    | 032141 |
+  | 0322    | 2021 | kommune | NA      | 03    | 0322    | NA     |
+
 # norgeo 0.9.2
 
 All API functions now use arguments `from` and `to` instead of `year` as in `geo_` functions.

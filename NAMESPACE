@@ -2,8 +2,10 @@
 
 export("%>%")
 export(cast_code)
+export(cast_geo)
 export(dataApi)
 export(find_change)
+export(find_correspond)
 export(geo_cast)
 export(geo_change)
 export(geo_merge)

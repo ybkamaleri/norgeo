@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -145,6 +145,61 @@
     <tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-api-data" class="hasAnchor"><a href="#section-api-data" class="anchor"></a>API data</h2>
+          <p class="section-desc"><p>All functions that start with <code>get_</code> are used to download data via API.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="get_code.html">get_code()</a></code> </p>
+        </td>
+        <td><p>Get the codes of geographical levels</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_change.html">get_change()</a></code> </p>
+        </td>
+        <td><p>Get geo code changes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_correspond.html">find_correspond()</a></code> <code><a href="get_correspond.html">get_correspond()</a></code> </p>
+        </td>
+        <td><p>Get geo corresponds</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_change.html">track_change()</a></code> </p>
+        </td>
+        <td><p>Track all changes for codes from API</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_split.html">track_split()</a></code> </p>
+        </td>
+        <td><p>Get geo code that are split after code change</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="track_merge.html">track_merge()</a></code> </p>
+        </td>
+        <td><p>Get geo code that are merged after code change</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cast_geo.html">cast_geo()</a></code> </p>
+        </td>
+        <td><p>Cast geo granularity from API</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-downloaded-files" class="hasAnchor"><a href="#section-downloaded-files" class="anchor"></a>Downloaded files</h2>
           <p class="section-desc"><p>All functions that start with <code>geo_</code> are used to restructure the downloaded files from SSB. The most important of them is <code>geo_set</code>. This will set configuration to be easily used in the next processes.</p></p>
         </th>
@@ -184,55 +239,6 @@
           <p><code><a href="geo_change.html">geo_change()</a></code> </p>
         </td>
         <td><p>Get change from complete geo list</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-api-data" class="hasAnchor"><a href="#section-api-data" class="anchor"></a>API data</h2>
-          <p class="section-desc"><p>All functions that start with <code>get_</code> are used to download data via API.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_code.html">get_code()</a></code> </p>
-        </td>
-        <td><p>Get the codes of geographical levels</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_change.html">get_change()</a></code> </p>
-        </td>
-        <td><p>Get geo code changes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_correspond.html">get_correspond()</a></code> </p>
-        </td>
-        <td><p>Get geo corresponds</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="track_change.html">track_change()</a></code> </p>
-        </td>
-        <td><p>Track all changes for codes from API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="track_split.html">track_split()</a></code> </p>
-        </td>
-        <td><p>Get geo code that are split after code change</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="track_merge.html">track_merge()</a></code> </p>
-        </td>
-        <td><p>Get geo code that are merged after code change</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -282,6 +288,12 @@
           <p><code><a href="cast_code.html">cast_code()</a></code> </p>
         </td>
         <td><p>Add lower granularity when applicable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_correspond.html">find_correspond()</a></code> <code><a href="get_correspond.html">get_correspond()</a></code> </p>
+        </td>
+        <td><p>Get geo corresponds</p></td>
       </tr>
     </tbody>
     </table>
