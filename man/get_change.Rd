@@ -8,6 +8,7 @@ get_change(
   type = c("fylke", "kommune", "bydel", "grunnkrets"),
   from = NULL,
   to = NULL,
+  code = TRUE,
   quiet = FALSE,
   date = FALSE
 )
@@ -18,6 +19,8 @@ get_change(
 \item{from}{Specify the starting year for range period. Current year is the default.}
 
 \item{to}{Specify the year to end the range period. Current year is used when not specified.}
+
+\item{code}{TRUE will only track code changes. Else change name only will also be considered as change.}
 
 \item{quiet}{TRUE will suppress messages when no changes happened for a specific time range}
 

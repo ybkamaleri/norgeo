@@ -42,7 +42,7 @@ to = NULL) {
 ## dat <- data_current()
 ## length(unique(dat$changeOccurred))==2
 data_current <- function(type, from, to) {
-  DT <- get_code(type, from = to)
+  DT <- get_code(type = type, from = to)
 
   ## Created when data_change is called in function track_change
   yrMax <- max(dataApi$dc$changeOccurred)
@@ -103,5 +103,10 @@ data_merge <- function(data1, data2, year) {
 
 ## Avoid downloading changes data multiple times
 data_change <- function(type, from, to) {
-  dataApi$dc <- get_change(type, from, to, quiet = TRUE)
+  dataApi$dc <- get_change(
+    type = type,
+    from = from,
+    to = to,
+    quiet = TRUE
+  )
 }

@@ -2,6 +2,7 @@
 #'
 #' This function will download all registered geo code changes via API from SSB.
 #'
+#' @param code TRUE will only track code changes. Else change name only will also be considered as change.
 #' @param quiet TRUE will suppress messages when no changes happened for a specific time range
 #' @inheritParams get_code
 #'
@@ -15,6 +16,7 @@ get_change <- function(type = c(
                        ),
                        from = NULL,
                        to = NULL,
+                       code = TRUE,
                        quiet = FALSE,
                        date = FALSE) {
   type <- match.arg(type)
@@ -35,7 +37,7 @@ get_change <- function(type = c(
   }
 
   if (is.null(to)) {
-    to <- format(Sys.Date(), "%Y")
+    to <- as.integer(format(Sys.Date(), "%Y"))
   }
 
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
@@ -80,9 +82,13 @@ get_change <- function(type = c(
 
     chgDT <- as.data.table(chgJS[[1]])
 
+    if (code && nrow(chgDT) != 0) {
+      chgDT <- chgDT[oldCode != newCode]
+    }
+
     ## no error produced but table is empty
     if (quiet == 0 && !is.null(chgJS) && length(chgDT) == 0) {
-        message("No code changes from ", dateFrom, " to ", dateTo)
+      message("No code changes from ", dateFrom, " to ", dateTo)
     }
 
     listDT[[i]] <- chgDT
@@ -92,7 +98,7 @@ get_change <- function(type = c(
   DT <- data.table::rbindlist(listDT)
 
   if (date == 0) {
-      DT[, changeOccurred := format(as.Date(changeOccurred), "%Y")]
+    DT[, changeOccurred := format(as.Date(changeOccurred), "%Y")]
   }
 
   delCol <- c("oldShortName", "newShortName")
