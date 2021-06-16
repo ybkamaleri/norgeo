@@ -113,7 +113,7 @@ get_change <- function(type = c(
     data.table::setnames(DT, new = colNs)
   }
 
-  if (date == 0) {
+  if (date == 0 && nrow(DT) != 0) {
     DT[, changeOccurred := format(as.Date(changeOccurred), "%Y")]
   }
 

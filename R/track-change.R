@@ -10,16 +10,21 @@
 #' @export
 
 track_change <- function(type = c(
-  "fylke",
-  "kommune",
-  "bydel",
-  "grunnkrets"
-),
-from = NULL,
-to = NULL) {
+                           "fylke",
+                           "kommune",
+                           "bydel",
+                           "grunnkrets"
+                         ),
+                         from = NULL,
+                         to = NULL) {
   type <- match.arg(type)
 
   data_change(type, from, to)
+
+  if (nrow(dataApi$dc) == 0) {
+    stop("No code change has occurred for the selected time range")
+  }
+
   ## Prepare the starting dataset with current year vs. last year
   data_current(type, from, to)
 
@@ -41,7 +46,12 @@ to = NULL) {
 ## Do testing with:
 ## dat <- data_current()
 ## length(unique(dat$changeOccurred))==2
+## Else there isn't any changes occurred
 data_current <- function(type, from, to) {
+  if (is.null(to)) {
+    to <- as.integer(format(Sys.Date(), "%Y"))
+  }
+
   DT <- get_code(type = type, from = to)
 
   ## Created when data_change is called in function track_change
