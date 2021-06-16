@@ -86,12 +86,15 @@ cast_geo <- function(year = NULL) {
 find_correspond <- function(type, correspond, from) {
   ## type: Higher granularity eg. fylker
   ## correspond: Lower granularity eg. kommuner
+  stat <- list(rows = 0, from = from)
   nei <- 0
   while (nei < 1) {
     dt <- norgeo::get_correspond(type, correspond, from)
     nei <- nrow(dt)
+    stat$rows <- nei
+    stat$from <- from
     from <- from - 1
   }
-  message("Data for ", correspond, " to ", type, " is from ", from, " with ", nei, " rows")
+  message("Data for ", correspond, " to ", type, " is from ", stat$from, " with ", stat$rows, " rows")
   return(dt)
 }
