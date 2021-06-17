@@ -1,6 +1,10 @@
-#' Get geo code changes
+#' Get geo code changes with API
 #'
-#' This function will download all registered geo code changes via API from SSB.
+#' This function will download all registered geo code changes from SSB via API. Basically it's the data you
+#' can see \href{https://www.ssb.no/klass/klassifikasjoner/131/endringer}{here} if you looking
+#' for code change in manucipality (\emph{kommune}). The advantage of using \code{get_change} or
+#' \href{https://data.ssb.no/api/klass/v1/api-guide.html#_changes}{KLASS} is that you
+#' can get all code changes for several years at once.
 #'
 #' @param code TRUE will only track code changes. Else change name only will also be considered as change.
 #' @param quiet TRUE will suppress messages when no changes happened for a specific time range
