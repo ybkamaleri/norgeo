@@ -1,9 +1,17 @@
 #' Track all changes for codes from API
 #'
-#' Track code changes from the downloaded data via API
+#' Track all code changes until current year or the year specified in \code{to} argument.
+#' The column \code{oldCode} could have several codes if it has changed many times until
+#' it becomes the code in \code{newCode}. When no code change has taken place, \code{NA} will
+#' be used.
 #'
 #' @inheritParams get_code
 #' @return dataApi environment with main objects ie. dc (data change) and dt (current data)
+#'
+#' @examples
+#' \dontrun{
+#' mydata <- track - change("kommune", from = 2017, to = 2020)
+#' }
 #'
 #' @import data.table
 #'
