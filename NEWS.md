@@ -1,11 +1,16 @@
 # norgeo 0.9.3
 
-All geo codes downloaded via API can be cast for geo granularity with `cast_geo`
+- All geo codes downloaded via API can be cast for geo granularity with `cast_geo`
 
   | codes   | year | level   | grks    | fylke | kommune | bydel  |
-  |---------|------|---------|:--------|-------|---------|:-------|
+  |---------|------|---------|---------|-------|---------|--------|
   | 0320333 | 2021 | grks    | 0333333 | 03    | 0320    | 032141 |
   | 0322    | 2021 | kommune | NA      | 03    | 0322    | NA     |
+
+- Gives error message if specification in `get_correspond()` for `type` and
+  `correspond` in oppsite order.
+- Give error message if year specification in `from` and `to` in a wrong order.
+- Stop if there is no code change for the specified year when running `track_change()`
 
 # norgeo 0.9.2
 
