@@ -45,6 +45,17 @@ dt = TRUE) {
                  bydel = 103,
                  grunnkrets = 1
                  )
+
+  trueType <- klass %in% c(103, 131)
+  msg <- "Correspond should be lower granularity or requested combination is not available in SSB"
+  if (trueType && corr != 1) {
+    stop(msg)
+  }
+
+  if (klass == 104 && corr != 131) {
+    stop(msg)
+  }
+
   baseUrl <- "http://data.ssb.no/api/klass/v1/classifications/"
   klsUrl <- paste0(baseUrl, klass)
 
