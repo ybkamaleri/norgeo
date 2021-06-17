@@ -54,13 +54,13 @@ data_current <- function(type, from, to) {
 
   DT <- get_code(type = type, from = to)
 
-  ## Created when data_change is called in function track_change
+  ## dataApi$dc is created when data_change is called in function track_change
   yrMax <- max(dataApi$dc$changeOccurred)
   dataApi$yrMax <- yrMax
 
   dt <- dataApi$dc[changeOccurred == yrMax][DT, on = c(newCode = "code")]
 
-  ## when no code changes have occurred
+  ## when no code changes have occurred except names
   dt[is.na(oldCode), oldCode := newCode][
     is.na(changeOccurred), changeOccurred := validTo
   ][
@@ -80,7 +80,7 @@ data_merge <- function(data1, data2, year) {
   dtc <- data1[data2[changeOccurred == year], on = c(oldCode = "newCode")]
   delCols <- c("oldCode", "oldName", "i.newName", "changeOccurred")
   dtc[, (delCols) := NULL]
-  setnames(
+  data.table::setnames(
     dtc,
     c("i.oldCode", "i.oldName", "i.changeOccurred"),
     c("oldCode", "oldName", "changeOccurred")
@@ -94,7 +94,7 @@ data_merge <- function(data1, data2, year) {
     dtp <- data1[data2[oldCode %in% codeMulti], on = "newCode"]
     delCols <- c("oldCode", "oldName", "newName", "changeOccurred")
     dtp[, (delCols) := NULL]
-    setnames(
+    data.table::setnames(
       dtp,
       c("i.oldCode", "i.changeOccurred", "i.oldName", "i.newName"),
       c("oldCode", "changeOccurred", "oldName", "newName")
@@ -102,12 +102,12 @@ data_merge <- function(data1, data2, year) {
 
     dtcNA <- dtc[!is.na(newCode)]
 
-    DTC <- rbindlist(list(dtcNA, dtp), use.names = TRUE)
+    DTC <- data.table::rbindlist(list(dtcNA, dtp), use.names = TRUE)
   } else {
     DTC <- dtc
   }
 
-  dd <- rbindlist(list(data1, DTC), use.names = TRUE)
+  dd <- data.table::rbindlist(list(data1, DTC), use.names = TRUE)
 }
 
 
