@@ -16,38 +16,38 @@
 #' @export
 
 get_correspond <- function(type = c(
-  "fylke",
-  "kommune",
-  "bydel",
-  "grunnkrets"
-),
-correspond = c(
-  "fylke",
-  "kommune",
-  "bydel",
-  "grunnkrets"
-),
-from = NULL,
-to = NULL,
-dt = TRUE) {
+                             "fylke",
+                             "kommune",
+                             "bydel",
+                             "grunnkrets"
+                           ),
+                           correspond = c(
+                             "fylke",
+                             "kommune",
+                             "bydel",
+                             "grunnkrets"
+                           ),
+                           from = NULL,
+                           to = NULL,
+                           dt = TRUE) {
   type <- match.arg(type)
   klass <- switch(type,
-                  fylke = 104,
-                  kommune = 131,
-                  bydel = 103,
-                  grunnkrets = 1
-                  )
+    fylke = 104,
+    kommune = 131,
+    bydel = 103,
+    grunnkrets = 1
+  )
 
   correspond <- match.arg(correspond)
   corr <- switch(correspond,
-                 fylke = 104,
-                 kommune = 131,
-                 bydel = 103,
-                 grunnkrets = 1
-                 )
+    fylke = 104,
+    kommune = 131,
+    bydel = 103,
+    grunnkrets = 1
+  )
 
   trueType <- klass %in% c(103, 131)
-  msg <- "Correspond should be lower granularity or requested combination is not available in SSB"
+  msg <- "Correspond should be lower granularity than type,\n  or requested combination is not available in SSB"
   if (trueType && corr != 1) {
     stop(msg)
   }
