@@ -9,6 +9,7 @@
 #' @export
 
 cast_geo <- function(year = NULL) {
+  cat("Start casting geo codes from API ..")
   level <- sourceCode <- kommune <- fylke <- grunnkrets <- bydel <- NULL
 
   if (is.null(year)) {
@@ -22,8 +23,11 @@ cast_geo <- function(year = NULL) {
   for (i in seq_along(geos)) {
     DT[[geos[i]]] <- norgeo::get_code(geos[i], from = year)
     DT[[geos[i]]][, level := geos[i]]
+    cat("..")
   }
+
   dt <- data.table::rbindlist(DT)
+
 
   ## SSB has correspond data only for
   ## - bydel-grunnkrets
@@ -35,6 +39,8 @@ cast_geo <- function(year = NULL) {
     gr_kom = c("kommune", "grunnkrets"),
     kom_fylke = c("fylke", "kommune")
   )
+
+  cat("..\n")
 
   for (i in seq_along(COR)) {
     COR[[i]] <- norgeo::find_correspond(COR[[i]][1], COR[[i]][2], from = year)
@@ -69,6 +75,24 @@ cast_geo <- function(year = NULL) {
   dt[level == "grunnkrets", grunnkrets := code]
   dt[level == "fylke", fylke := code]
 
+  ## When enumeration number (grunnkrets) doesn't have missing
+  ## then need to add it manually because some raw datasets have this code
+  ## and it's needed to be able to merged for summing up for country total
+  if (isFALSE(is.element("99999999", dt$code))) {
+    validYr <- dt[level == "grunnkrets", c(validTo)][1]
+    gk <- list(
+      code = "99999999",
+      name = "Uoppgitt",
+      validTo = validYr,
+      level = "grunnkrets",
+      grunnkrets = "99999999",
+      kommune = "9999",
+      fylke = "99",
+      bydel = "999999"
+    )
+
+    dt <- data.table::rbindlist(list(dt, gk), use.name = TRUE)
+  }
   data.table::setcolorder(dt, c(
     "code", "name", "validTo", "level",
     "grunnkrets", "kommune", "fylke", "bydel"
