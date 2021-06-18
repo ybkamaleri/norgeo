@@ -101,6 +101,8 @@ cast_code <- function(file,
                       year,
                       folder.path = NULL,
                       keep.col = c("code", "name")) {
+  message("Start casting geo codes from manually downloaded data ....")
+
   fName <- file_folder(file, folder.path)
 
   dt <- data.table::fread(fName, fill = TRUE)

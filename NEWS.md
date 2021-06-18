@@ -11,6 +11,10 @@
   `correspond` in oppsite order.
 - Give error message if year specification in `from` and `to` in a wrong order.
 - Stop if there is no code change for the specified year when running `track_change()`
+- Add enumerator (_grunnkrets_) for missing with `99999999` when not allready
+  available in the dataset downloaded from API. This is needed for merging
+  dataset that has this code to be able to calculate total for the whole dataset.
+
 
 # norgeo 0.9.2
 
