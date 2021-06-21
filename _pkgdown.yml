@@ -8,9 +8,22 @@ template:
     bootswatch: cosmo
 
 reference:
-- title: "Main function"
+- title: "API data"
   desc: >
-    All function that start with `geo_`. The most important
+    All functions that start with `get_` are used to download data
+    via API.
+- contents:
+  - get_code
+  - get_change
+  - get_correspond
+  - track_change
+  - track_split
+  - track_merge
+  - cast_geo
+- title: "Downloaded files"
+  desc: >
+    All functions that start with `geo_` are used to restructure
+    the downloaded files from SSB. The most important
     of them is `geo_set`. This will set configuration to be
     easily used in the next processes.
 - contents:
@@ -19,13 +32,16 @@ reference:
   - geo_cast
   - geo_save
   - geo_change
-- title: "Additional function"
+- title: "Additional functions"
   desc: "Extra functions when needed for special cases"
 - contents:
+  - norgeo
+  - dataApi
   - read_csv
   - find_change
   - merge_multi
   - cast_code
+  - find_correspond
 
 navbar:
   type: default
@@ -34,6 +50,8 @@ navbar:
       href: index.html
     - text: Guides
       menu:
+        - text: Use API data
+          href: articles/use-api.html
         - text: Add changes
           href: articles/code-change.html
         - text: Cast granularity

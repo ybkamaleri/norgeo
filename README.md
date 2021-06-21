@@ -1,11 +1,7 @@
 
+[![R-CMD-check](https://github.com/helseprofil/norgeo/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/norgeo/actions)
+
 # norgeo
-
-<!-- badges: start -->
-
-[![Build
-Status](https://travis-ci.com/helseprofil/norgeo.svg?branch=master)](https://travis-ci.com/helseprofil/norgeo)
-<!-- badges: end -->
 
 Regional granularity levels in Norway which are depicted by different
 codes, have undergone several changes over the years. Identifying when
@@ -30,14 +26,29 @@ if(!require(remotes)) install.packages("remotes")
 remotes::install_github("helseprofil/norgeo")
 ```
 
+If you want to use the development version then use:
+
+``` r
+remotes::install_github("helseprofil/norgeo@dev")
+```
+
 ## Usage
 
-All functions with `geo_` prefix are the main function for `norgeo`.
-Among them, `geo_set()` is the most important one to set up object
-accordingly for further use. Other available functions aren’t really
-necessary to know, but they are available when needed. They are mostly
-for internal use. To learn how to use these function, please read the
-tutorial under [Guides](articles/code-change.html)
+Data can either be downloaded directly from SSB website or via API. When
+you download the files manually then use the functions with `geo_`
+prefix while functions with `get_` prefix are used to get data via API.
+
+All functions with `geo_` prefix are the main function for `norgeo`
+downloaded files. Among them, `geo_set()` is the most important one to
+set up object accordingly for further use. Other available functions
+aren’t really necessary to know, but they are available when needed.
+They are mostly for internal use. To learn how to use these function,
+please read the tutorial under
+[Guides](https://helseprofil.github.io/norgeo/articles/use-api.html)
+
+To get all code changes directly via API can be done with `get_change()`
+function, while `geo_change()` is used when you have downloaded the
+files manually.
 
 ## Output
 

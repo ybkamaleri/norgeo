@@ -73,7 +73,7 @@ as an Excel or text file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ as an Excel or text file." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -92,6 +92,9 @@ as an Excel or text file." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/use-api.html">Use API data</a>
+    </li>
     <li>
       <a href="../articles/code-change.html">Add changes</a>
     </li>
@@ -113,7 +116,7 @@ as an Excel or text file." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/helseprofil/norgeo/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,13 +143,13 @@ as an Excel or text file." />
 as an Excel or text file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_save</span>(
-  tblname = <span class='kw'>NULL</span>,
-  obj = <span class='kw'>NULL</span>,
-  des.path = <span class='fl'>FALSE</span>,
-  file.type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Access"</span>, <span class='st'>"SQLite"</span>, <span class='st'>"Excel"</span>, <span class='st'>"Text"</span>),
-  db.name = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>geo_save</span><span class='op'>(</span>
+  tblname <span class='op'>=</span> <span class='cn'>NULL</span>,
+  obj <span class='op'>=</span> <span class='cn'>NULL</span>,
+  des.path <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  file.type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Access"</span>, <span class='st'>"SQLite"</span>, <span class='st'>"Excel"</span>, <span class='st'>"Text"</span><span class='op'>)</span>,
+  db.name <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

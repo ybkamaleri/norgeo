@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -51,6 +51,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/use-api.html">Use API data</a>
+    </li>
+    <li>
       <a href="../articles/code-change.html">Add changes</a>
     </li>
     <li>
@@ -71,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/helseprofil/norgeo/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,7 +88,7 @@
 
       
 
-      </header><script src="code-change_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="code-change_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Code change</h1>
@@ -107,28 +110,27 @@
 <h1 class="hasAnchor">
 <a href="#add-changes" class="anchor"></a>Add changes</h1>
 <p>The <code><a href="../reference/geo_set.html">geo_set()</a></code> function is the most important function to start with. This function will create an object that is easily used by other available functions in <code>norgeo</code>. This is where raw data in <code>csv</code> and <code>xlsx</code> formats will be merged. Additional information will also be added. The codes below show how the function is used:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co">## specify the folder where kommune files are</span>
-<span class="kw">folder</span> <span class="op">&lt;-</span> <span class="st">"F:/org/kommune"</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## specify the folder where kommune files are</span>
+<span class="va">folder</span> <span class="op">&lt;-</span> <span class="st">"F:/org/kommune"</span>
 
-<span class="kw">kom2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_set.html">geo_set</a></span>(grep.file = <span class="st">"jan2018"</span>,
-                   grep.change = <span class="st">"change"</span>,
-                   year = <span class="fl">2018</span>,
-                   type = <span class="st">"kommune"</span>,
-                   folder.path = <span class="kw">folder</span>)
+<span class="va">kom2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_set.html">geo_set</a></span><span class="op">(</span>grep.file <span class="op">=</span> <span class="st">"jan2018"</span>,
+                   grep.change <span class="op">=</span> <span class="st">"change"</span>,
+                   year <span class="op">=</span> <span class="fl">2018</span>,
+                   type <span class="op">=</span> <span class="st">"kommune"</span>,
+                   folder.path <span class="op">=</span> <span class="va">folder</span><span class="op">)</span>
 
-<span class="kw">kom2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_set.html">geo_set</a></span>(grep.file = <span class="st">"jan2019"</span>,
-                   grep.change = <span class="st">"change"</span>,
-                   year = <span class="fl">2019</span>,
-                   type = <span class="st">"kommune"</span>,
-                   folder.path = <span class="kw">folder</span>)
+<span class="va">kom2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_set.html">geo_set</a></span><span class="op">(</span>grep.file <span class="op">=</span> <span class="st">"jan2019"</span>,
+                   grep.change <span class="op">=</span> <span class="st">"change"</span>,
+                   year <span class="op">=</span> <span class="fl">2019</span>,
+                   type <span class="op">=</span> <span class="st">"kommune"</span>,
+                   folder.path <span class="op">=</span> <span class="va">folder</span><span class="op">)</span>
 
-<span class="kw">kom2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_set.html">geo_set</a></span>(grep.file = <span class="st">"jan2020"</span>,
-                   grep.change = <span class="st">"change"</span>,
-                   year = <span class="fl">2020</span>,
-                   type = <span class="st">"kommune"</span>,
-                   folder.path = <span class="kw">folder</span>)
-</pre></div>
+<span class="va">kom2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_set.html">geo_set</a></span><span class="op">(</span>grep.file <span class="op">=</span> <span class="st">"jan2020"</span>,
+                   grep.change <span class="op">=</span> <span class="st">"change"</span>,
+                   year <span class="op">=</span> <span class="fl">2020</span>,
+                   type <span class="op">=</span> <span class="st">"kommune"</span>,
+                   folder.path <span class="op">=</span> <span class="va">folder</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="merge-changes" class="section level1">
 <h1 class="hasAnchor">
@@ -144,38 +146,35 @@
 <li>
 <code>merge</code> : At least two codes are merged into one in the current list</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-
-<span class="kw">komfiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">kom2018</span>, <span class="kw">kom2019</span>, <span class="kw">kom2020</span>)
-<span class="kw">DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_merge.html">geo_merge</a></span>(files = <span class="kw">komfiles</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">komfiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">kom2018</span>, <span class="va">kom2019</span>, <span class="va">kom2020</span><span class="op">)</span>
+<span class="va">DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_merge.html">geo_merge</a></span><span class="op">(</span>files <span class="op">=</span> <span class="va">komfiles</span><span class="op">)</span>
 
 <span class="co"># show only codes that have changed</span>
-<span class="kw">DFS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_merge.html">geo_merge</a></span>(files = <span class="kw">komfiles</span>, output = <span class="st">"split"</span>)
-</pre></div>
+<span class="va">DFS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_merge.html">geo_merge</a></span><span class="op">(</span>files <span class="op">=</span> <span class="va">komfiles</span>, output <span class="op">=</span> <span class="st">"split"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="save-codes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#save-codes" class="anchor"></a>Save codes</h1>
 <p>The output created from <code><a href="../reference/geo_merge.html">geo_merge()</a></code> i.e <code>DF</code>, can be saved in a database management system (DBMS) which include Access and SQLite, or as ordinary files such as Excel or text file.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">fpath</span> <span class="op">=</span> <span class="st">"C:/Users/ybka/dbms"</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fpath</span> <span class="op">=</span> <span class="st">"C:/Users/ybka/dbms"</span>
 
-<span class="fu"><a href="../reference/geo_save.html">geo_save</a></span>(tblname = <span class="st">"tblTest"</span>,
-         obj = <span class="kw">DF</span>,
-         des.path = <span class="kw">fpath</span>,
-         file.type = <span class="st">"Excel"</span>)
-</pre></div>
+<span class="fu"><a href="../reference/geo_save.html">geo_save</a></span><span class="op">(</span>tblname <span class="op">=</span> <span class="st">"tblTest"</span>,
+         obj <span class="op">=</span> <span class="va">DF</span>,
+         des.path <span class="op">=</span> <span class="va">fpath</span>,
+         file.type <span class="op">=</span> <span class="st">"Excel"</span><span class="op">)</span></code></pre></div>
 <p>When saving as a table in a DBMS, a database file must be available prior to saving it. In the example below the object is saved as a table to an Access database <code>geo_ssb.accdb</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">dbpath</span> <span class="op">=</span> <span class="st">"C:/Users/ybka/dbms"</span>
-<span class="kw">dbname</span> <span class="op">=</span> <span class="st">"geo_ssb.accdb"</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dbpath</span> <span class="op">=</span> <span class="st">"C:/Users/ybka/dbms"</span>
+<span class="va">dbname</span> <span class="op">=</span> <span class="st">"geo_ssb.accdb"</span>
 
-<span class="fu"><a href="../reference/geo_save.html">geo_save</a></span>(tblname = <span class="st">"tblGeo"</span>,
-         obj = <span class="kw">bigDF</span>,
-         des.path = <span class="kw">dbpath</span>,
-         file.type = <span class="st">"Access"</span>,
-         db.name = <span class="kw">dbname</span>)
-</pre></div>
+<span class="fu"><a href="../reference/geo_save.html">geo_save</a></span><span class="op">(</span>tblname <span class="op">=</span> <span class="st">"tblGeo"</span>,
+         obj <span class="op">=</span> <span class="va">bigDF</span>,
+         des.path <span class="op">=</span> <span class="va">dbpath</span>,
+         file.type <span class="op">=</span> <span class="st">"Access"</span>,
+         db.name <span class="op">=</span> <span class="va">dbname</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 

@@ -74,7 +74,7 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norgeo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -93,6 +93,9 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/use-api.html">Use API data</a>
+    </li>
     <li>
       <a href="../articles/code-change.html">Add changes</a>
     </li>
@@ -114,7 +117,7 @@ an Excel file. The .csv and .xlsx files will than be merged by running this func
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/helseprofil/norgeo/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,15 +145,15 @@ format. The codes that have changed are copied from <em>Endringer</em> tab and p
 an Excel file. The <code>.csv</code> and <code>.xlsx</code> files will than be merged by running this function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_set</span>(
-  grep.file = <span class='kw'>NULL</span>,
-  grep.change = <span class='kw'>NULL</span>,
-  year = <span class='kw'>NULL</span>,
-  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span>),
-  folder.path = <span class='kw'>NULL</span>,
-  filegeo = <span class='kw'>NULL</span>,
-  filechg = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>geo_set</span><span class='op'>(</span>
+  grep.file <span class='op'>=</span> <span class='cn'>NULL</span>,
+  grep.change <span class='op'>=</span> <span class='cn'>NULL</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"land"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span>, <span class='st'>"grunnkrets"</span><span class='op'>)</span>,
+  folder.path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  filegeo <span class='op'>=</span> <span class='cn'>NULL</span>,
+  filechg <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

@@ -24,14 +24,13 @@ For grunnkrets file then both kommune and fylke code will be added. This is base
 the available table that can be downloaded from SSB. The file should be in a CSV format.
 }
 \examples{
-
 \dontrun{
-file = "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
-type = "grunnkrets"
-year = 2020
-cols = c("code", "name")
+file <- "c:/Users/geo/ssb_grunnkrets_jan2020.csv"
+type <- "grunnkrets"
+year <- 2020
+cols <- c("code", "name")
 
-DT <- cast_code(file = file, type = type, year = year, keep.col=cols)
+DT <- cast_code(file = file, type = type, year = year, keep.col = cols)
 }
 
 }

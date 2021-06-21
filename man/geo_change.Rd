@@ -10,7 +10,7 @@ geo_change(
   type = NULL,
   key.col = NULL,
   folder.path = NULL,
-  file.type = c("none", "Excel", "Text"),
+  file.type = c("none", "xls", "csv", "excel"),
   des.path = NULL
 )
 }
@@ -25,7 +25,7 @@ geo_change(
 
 \item{folder.path}{Folder path to the files}
 
-\item{file.type}{Which format to save the output. Option are Excel or Text.}
+\item{file.type}{Which format to save the output. Option are \code{xls} or \code{csv}.}
 
 \item{des.path}{Destination folder where the file to be saved}
 }
@@ -37,14 +37,18 @@ years. Therefore this function should be used with caution.
 The output can be as \code{xlsx} or \code{csv} file.
 }
 \examples{
-
 \dontrun{
-files = c("ssb_bydel_jan2004.csv", "ssb_bydel_jan2018.csv", "ssb_bydel_jan2020.csv")
-years = c(2004, 2018, 2020)
-folder = "C:/geo/bydel"
-des = "C:/geo/bydel/output"
+files <- c("ssb_bydel_jan2004.csv", "ssb_bydel_jan2018.csv", "ssb_bydel_jan2020.csv")
+years <- c(2004, 2018, 2020)
+folder <- "C:/geo/bydel"
+des <- "C:/geo/bydel/output"
 
-geo_change(files=files, years=years, type="bydel",folder.path=folder, file.type="xls", des.path=des)
+geo_change(
+  files = files,
+  years = years,
+  type = "bydel",
+  folder.path = folder, file.type = "xls", des.path = des
+)
 }
 
 }

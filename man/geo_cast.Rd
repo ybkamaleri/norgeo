@@ -24,18 +24,22 @@ geo_cast(
 \item{folder.path}{Folder path to the files}
 }
 \description{
-Add all granularity levels. Here the structure is important.
+Add all granularity levels for all manually downloaded files.
+Here the structure is important.
 The the order for types should be similar to the order in files.
+OBS! The 6 digits from grunnkrets does not represent bydel.
 }
 \examples{
 \dontrun{
-file = c("C:/Geo/fylke/fylke2020.csv",
-          "C:/Geo/kommune/kommune2020.csv",
-          "C:/folder2/bydel2020.csv" )
+file <- c(
+  "C:/Geo/fylke/fylke2020.csv",
+  "C:/Geo/kommune/kommune2020.csv",
+  "C:/folder2/bydel2020.csv"
+)
 
-types = c("fylke","kommune","bydel")
+types <- c("fylke", "kommune", "bydel")
 
-DT <- geo_cast(files=files, type=types, year=2020)
+DT <- geo_cast(files = files, type = types, year = 2020)
 }
 
 }

@@ -1,7 +1,0 @@
-language: r
-cache: packages
-warnings_are_errors: false
-
-notifications:
- email:
-   on_failure: change
